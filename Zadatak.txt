@@ -1,0 +1,5 @@
+U okviru ove teme potrebno je teoretski obraditi osnovne pojmove vezane uz teoriju igara, elemente strategijske igre, igre izmeðu osobe sa sumom nula, 
+igra sa sedlom, igre bez sedla, dominaciju te se malo opširnije usredotoèiti na primjenu linearnog programiranja u teoriji igara. 
+
+Prikazati postupak izgradnje modela i rješavanja problema. Opisati primjer problema i rješavanje problema. 
+Kandidat se posebno mora usredotoèiti na izradu programskog rješenja za obradu odabranog primjera. 

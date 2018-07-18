@@ -1,0 +1,11 @@
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe.config
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.pdb
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csprojAssemblyReference.cache
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.PocetnaForma.resources
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.Properties.Resources.resources
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.SimplexForma.resources
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csproj.GenerateResource.cache
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csproj.CoreCompileInputs.cache
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.exe
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.pdb
