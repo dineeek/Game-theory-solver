@@ -8,10 +8,10 @@ namespace OI2GameTheory
 {
     public class SimplexKalkulator
     {
-
-        public SimplexKalkulator()
+        private SpremanjeUnosa podaciStrategija;
+        public SimplexKalkulator(SpremanjeUnosa podaci)
         {
-
+            podaciStrategija = podaci;
         }
     }
 }

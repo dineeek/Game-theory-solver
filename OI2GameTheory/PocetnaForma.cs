@@ -22,7 +22,7 @@ namespace OI2GameTheory
         {
             if(string.IsNullOrEmpty(txtStrA.Text) || string.IsNullOrEmpty(txtStrB.Text))
             {
-                MessageBox.Show("Unesite broj strategija svakog igrača!");
+                MessageBox.Show("Unesite broj strategija svakog igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -48,30 +48,43 @@ namespace OI2GameTheory
                 }
                 catch
                 {
-                    MessageBox.Show("Unesite cijele brojeve!");
+                    MessageBox.Show("Unesite cijele brojeve!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
 
         private void btnSimplex_Click(object sender, EventArgs e)
         {
-            try
+           try
             {
                 uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
                 
-                //prvo provjera dominantnih strategija
+                //provjera postojanja sedla
                 Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
-                
 
-                //provjera sedla
+                bool postojiSedlo = provjeraSedla.ProvjeriSedlo().Item1;
+                int rezultatIgre = provjeraSedla.ProvjeriSedlo().Item2;
+                if (postojiSedlo)
+                {
+                    MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Ne postoji sedlo - izračunava se miješana igra!");
+                    provjeraSedla.ukloniDominantneStrategije();//provjera dominantnih strategija
 
-                //simplex metoda
+                    //simplex metoda - TO DO!
+                    SimplexKalkulator smplxCalc = new SimplexKalkulator(provjeraSedla.uneseniPodaci); //šalju se strategije bez onih dominantnih
+
+                    //poslati joj samo rezultat iz klase simplexkalkulator - ali da se prikažu svi koraci, tj. tablice
+                    SimplexForma formaSimplexMetode = new SimplexForma();
+                    formaSimplexMetode.ShowDialog();
+                }        
             }
             catch
             {
-                MessageBox.Show("Unesite gubitke i dobitke pojedinih igrača!");
-            }
-            
+                MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }         
         }
 
 

@@ -9,3 +9,6 @@ C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.cspro
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csproj.CoreCompileInputs.cache
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.exe
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.pdb
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\System.ValueTuple.dll
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\System.ValueTuple.xml
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csproj.CopyComplete
