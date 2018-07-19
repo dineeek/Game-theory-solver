@@ -14,7 +14,7 @@ namespace OI2GameTheory
         {
             uneseniPodaci = podaci;
         }
-        public (bool, int) ProvjeriSedlo()
+        public (bool, int, int) ProvjeriSedlo()
         {
             bool postojiSedlo = false;
 
@@ -38,7 +38,7 @@ namespace OI2GameTheory
             if (maximumMinimuma == minimumMaximuma)
                 postojiSedlo = true;
 
-            return (postojiSedlo, maximumMinimuma);
+            return (postojiSedlo, maximumMinimuma, minimumiReda.Min());
         }
 
         public void ukloniDominantneStrategije()

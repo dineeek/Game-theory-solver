@@ -39,6 +39,7 @@
             this.dgvSimplexTablica.AllowUserToDeleteRows = false;
             this.dgvSimplexTablica.AllowUserToResizeColumns = false;
             this.dgvSimplexTablica.AllowUserToResizeRows = false;
+            this.dgvSimplexTablica.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSimplexTablica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSimplexTablica.Location = new System.Drawing.Point(12, 26);
             this.dgvSimplexTablica.Name = "dgvSimplexTablica";
@@ -58,6 +59,7 @@
             this.Name = "SimplexForma";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simplex postupak problema";
+            this.Load += new System.EventHandler(this.SimplexForma_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimplexTablica)).EndInit();
             this.ResumeLayout(false);
 
