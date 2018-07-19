@@ -44,21 +44,48 @@ namespace OI2GameTheory
         public void ukloniDominantneStrategije()
         {
             //za igrača A – red sa svim negativnim brojevima
-            foreach(var strategija in uneseniPodaci.igracA.ToList())
+            int brojacStrategijaA = 0;
+            foreach (var strategija in uneseniPodaci.igracA.ToList())
             {
                 bool sviNegativni = strategija.DobitakGubitakStrategije.All(x => x < 0);
 
                 if (sviNegativni)
+                {
                     uneseniPodaci.igracA.Remove(strategija);
+
+                    //brisanje kod igracaB
+                    foreach (var strategijaB in uneseniPodaci.igracB.ToList())
+                    {
+                        List<int> pomoc = strategijaB.DobitakGubitakStrategije.ToList();
+                        pomoc.RemoveAt(brojacStrategijaA); //brise one brojeve koji su gore uklonjeni
+                        strategijaB.DobitakGubitakStrategije = pomoc.ToArray();
+                    }
+                }
+
+                brojacStrategijaA++;
+
             }
 
             //za igrača B – stupac sa svim pozitivnim brojevima
-            foreach (var strategija in uneseniPodaci.igracB.ToList())
+            int brojacStrategijaB = 0;
+            foreach (var strategija in uneseniPodaci.igracB.ToList()) //treba ukloniti i kod A te brojke
             {
                 bool sviPozitivni = strategija.DobitakGubitakStrategije.All(x => x >= 0);
 
                 if (sviPozitivni)
+                {
                     uneseniPodaci.igracB.Remove(strategija);
+
+                    //brisanje kod igracaA
+                    foreach(var strategijA in uneseniPodaci.igracA.ToList())
+                    {
+                        List<int> pomoc = strategijA.DobitakGubitakStrategije.ToList();
+                        pomoc.RemoveAt(brojacStrategijaB);          
+                        strategijA.DobitakGubitakStrategije = pomoc.ToArray();
+                    }
+                }
+
+                brojacStrategijaB++;
             }
         }
 

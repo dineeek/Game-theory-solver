@@ -70,14 +70,14 @@ namespace OI2GameTheory
                 }
                 else
                 {
-                    MessageBox.Show("Ne postoji sedlo - izračunava se miješana igra!");
-                    provjeraSedla.ukloniDominantneStrategije();//provjera dominantnih strategija
+                    //MessageBox.Show("Ne postoji sedlo - izračunava se miješana igra!");
+                    provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
 
-                    //simplex metoda 
-                    SimplexKalkulator smplxCalc = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                //simplex metoda 
 
-                    //poslati joj samo rezultat iz klase simplexkalkulator - ali da se prikažu svi koraci, tj. tablice
-                    SimplexForma formaSimplexMetode = new SimplexForma(smplxCalc.SimplexTablica);
+                SimplexKalkulator smplxCalc = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+
+                    SimplexForma formaSimplexMetode = new SimplexForma(smplxCalc.SimplexTablice);
                     formaSimplexMetode.ShowDialog();
                 }        
             }
