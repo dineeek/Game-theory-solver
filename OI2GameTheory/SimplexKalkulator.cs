@@ -102,6 +102,10 @@ namespace OI2GameTheory
                 for (int i = 0; i < strategija.DobitakGubitakStrategije.Length; i++)
                 {
                     redakZjCj["Ῡ" + (i + 1) + ""] = -1;
+                }
+
+                for(int i = 0; i < podaciStrategija.igracA.Count; i++)
+                {
                     redakZjCj["u" + (i + 1) + ""] = 0;
                 }
                 kontrolaRedka += -1;
@@ -119,26 +123,107 @@ namespace OI2GameTheory
             prethodnaSimplexTablica = pocetnaSimplexTablica;
         }
 
-        private void odrediVodeciStupac()
+        private int odrediVodeciStupac()
         {
+            int indexStupca = 0; 
+            int ukupnoVrijednosti = podaciStrategija.igracB.Count + podaciStrategija.igracA.Count;//zbroj var Y i dopunskih
+
+            double[] vrijednostiRedaZjCj = new double[ukupnoVrijednosti];
+            double najveci = 0;
+
+            for(int i=3; i<prethodnaSimplexTablica.Columns.Count-2; i++)
+            {
+                double internHelp = Math.Abs(Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 2][i].ToString()));
+                vrijednostiRedaZjCj[i - 3] = internHelp;
+                if (najveci < internHelp)
+                {
+                    najveci = internHelp;
+                    indexStupca = i;
+                }
+            }
+
+            double prviBroj = vrijednostiRedaZjCj[0];
+            bool sviIsti = false;
+            sviIsti = vrijednostiRedaZjCj.Skip(1)
+              .All(s => double.Equals(prviBroj, s));
+
+            if (sviIsti)
+            {
+                double najvecaVrijednostStupca = 0;
+                for(int i = 3; i < prethodnaSimplexTablica.Columns.Count - 2; i++)
+                {
+                    for (int j = 0; j < podaciStrategija.igracA.Count; j++)
+                    {
+                        double vrijednostStupca = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i].ToString());
+                        if (najvecaVrijednostStupca < vrijednostStupca)
+                        {
+                            najvecaVrijednostStupca = vrijednostStupca;
+                            indexStupca = i;
+                        }
+                    }
+                }
+
+                return indexStupca;
+            }
+            else
+            {
+                return indexStupca;
+            }
 
         }
 
-        private void odrediVodeciRedak()
+        private int odrediVodeciRedak(int indexStupca) //kaj ak imam iste vrijednosti rezultata
         {
+            int indexReda = 0;
 
+            double internHelp = 0;
+            double[] rezultati = new double[prethodnaSimplexTablica.Rows.Count - 2];
+
+            for (int i = 0; i<prethodnaSimplexTablica.Rows.Count-2; i++)
+            {
+                internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[i][indexStupca]);
+                prethodnaSimplexTablica.Rows[i][prethodnaSimplexTablica.Columns.Count - 1] = internHelp;
+                rezultati[i] = internHelp;
+            }
+
+            double najmanji = rezultati[0];
+            for(int i= 0; i<rezultati.Length; i++)
+            {
+                if(najmanji > rezultati[i])
+                {
+                    najmanji = rezultati[i];
+                    indexReda = i;
+                }
+            }
+
+            return indexReda;
+        }
+
+        private int odrediStozerniElement(int indexStupca, int indexReda)
+        {
+            int stozerniElement = 0;
+            //pobojati prije u prethodnoj stozerni element, ili redak i stupac i onda mergati
+            SimplexTablice.Merge(prethodnaSimplexTablica);
+            return stozerniElement;
         }
 
         
         private void pokreniSimplexPostupak()
         {
             //novaSimplexTablica - temelji se na prethodnojSimplexTablici
-            odrediVodeciRedak();
-            odrediVodeciStupac();
-            //napraviti pomocni dgv gdje ce biti zapisano samo prethodno razdoblje i pomocu njega dodavati novo 
-            //pokreniSimplexPostupak();
+            System.Windows.Forms.MessageBox.Show(odrediVodeciRedak(odrediVodeciStupac()).ToString());
 
-            prethodnaSimplexTablica = novaSimplexTablica;
+            int indexStupca = odrediVodeciStupac();
+            int indexRedka = odrediVodeciRedak(indexStupca);
+            int stozerniElement = odrediStozerniElement(indexStupca, indexRedka);
+
+            SimplexTablice.Merge(novaSimplexTablica); //prije if-a obavezno
+
+            //if(novaSimplexTablica treba daljnji postupak)
+                //prethodnaSimplexTablica = novaSimplexTablica;
+                //pokreniSimplexPostupak()
+            //else
+                //gotovo
         }
     }
 }

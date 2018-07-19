@@ -56,7 +56,7 @@ namespace OI2GameTheory
         private void btnSimplex_Click(object sender, EventArgs e)
         {
            try
-            {
+           {
                 uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
                 
                 //provjera postojanja sedla
