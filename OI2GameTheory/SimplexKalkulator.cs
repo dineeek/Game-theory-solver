@@ -96,21 +96,21 @@ namespace OI2GameTheory
             var redakZjCj = pocetnaSimplexTablica.NewRow();
             redakZjCj["Var"] = "Zj-Cj";
             redakZjCj["Kol"] = 0;
-            decimal kontrolaRedka = 0;//kolicina
 
-            foreach(var strategija in podaciStrategija.igracA)
+            for (int i = 0; i < podaciStrategija.igracB.Count; i++)
             {
-                for (int i = 0; i < strategija.DobitakGubitakStrategije.Length; i++)
-                {
-                    redakZjCj["Ῡ" + (i + 1) + ""] = -1;
-                }
-
-                for(int i = 0; i < podaciStrategija.igracA.Count; i++)
-                {
-                    redakZjCj["u" + (i + 1) + ""] = 0;
-                }
-                kontrolaRedka += -1;
+                redakZjCj["Ῡ" + (i + 1) + ""] = -1;
             }
+
+            for (int i = 0; i < podaciStrategija.igracA.Count; i++)
+            {
+                redakZjCj["u" + (i + 1) + ""] = 0;
+            }
+
+            decimal kontrolaRedka = 0;//kolicina
+            foreach (var strategija in podaciStrategija.igracB)
+                kontrolaRedka--;
+
 
             redakZjCj["Kontrola"] = kontrolaRedka;
             pocetnaSimplexTablica.Rows.Add(redakZjCj);
@@ -212,7 +212,7 @@ namespace OI2GameTheory
                 internHelp = Convert.ToDecimal(prethodnaSimplexTablica.Rows[i][2]) / Convert.ToDecimal(prethodnaSimplexTablica.Rows[i][indexStupca]);              
                 rezultati[i] = internHelp;
                 if(internHelp > 0)
-                    prethodnaSimplexTablica.Rows[i][prethodnaSimplexTablica.Columns.Count - 1] = Math.Round(internHelp, 4, MidpointRounding.AwayFromZero);
+                    prethodnaSimplexTablica.Rows[i][prethodnaSimplexTablica.Columns.Count - 1] = Math.Round((decimal)internHelp, 4);
             }
             SimplexTablice.Merge(prethodnaSimplexTablica);
             decimal najmanji = rezultati.Where(x => x > 0).Min();
@@ -240,7 +240,7 @@ namespace OI2GameTheory
             for(int i=2; i<prethodnaSimplexTablica.Columns.Count-1; i++)
             {
                 decimal internHelp = Convert.ToDecimal(prethodnaSimplexTablica.Rows[indexRedka][i]);
-                novaSimplexTablica.Rows[indexRedka][i] = (decimal) internHelp / stozerniElement;
+                novaSimplexTablica.Rows[indexRedka][i] = Math.Round((decimal) internHelp / (decimal) stozerniElement, 4);
             }
 
             novaSimplexTablica.Rows[indexRedka][0] = 1; //vrijednost Cj = 1
@@ -264,8 +264,8 @@ namespace OI2GameTheory
                     {
                         if(j != indexRedka)
                         {
-                            decimal internHelp = Convert.ToDecimal(prethodnaSimplexTablica.Rows[j][i].ToString()) - ((decimal)((decimal)(Convert.ToDecimal(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / stozerniElement) * Convert.ToDecimal(prethodnaSimplexTablica.Rows[j][indexStupca].ToString())));
-                            novaSimplexTablica.Rows[j][i] = Math.Round(internHelp, 4, MidpointRounding.AwayFromZero);
+                            decimal internHelp = (decimal) (Convert.ToDecimal(prethodnaSimplexTablica.Rows[j][i].ToString()) - ((decimal)((decimal)(Convert.ToDecimal(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / (decimal) stozerniElement) * Convert.ToDecimal(prethodnaSimplexTablica.Rows[j][indexStupca].ToString()))));
+                            novaSimplexTablica.Rows[j][i] = Math.Round((decimal)internHelp, 4);
                         }
                     }
                 }
@@ -341,15 +341,133 @@ namespace OI2GameTheory
 
                 }
 
-                IzuracunajPostotke();
+                IzracunajPostotke(); //posalji to formi
 
+                //pretvori u razlomke
             }
 
         }
 
-        private void IzuracunajPostotke()
+        private void IzracunajPostotke()
         {
-            //operirati po SimplexTablica. Rows.Count - 2
+            //operirati po zadnjoj novoj simplex tablici. Rows.Count - 1
+        }
+
+        private void test()
+        {
+            RealToFraction()
+        }
+
+        //PRETVARANJE DECIMALNIH U RAZLOMKE
+
+        Fraction f = new Fraction();
+
+        public struct Fraction
+        {
+            public Fraction(int n, int d)
+            {
+                N = n;
+                D = d;
+            }
+
+            public int N { get; private set; }
+            public int D { get; private set; }
+        }
+
+        public Fraction RealToFraction(double value, double accuracy)
+        {
+            if (accuracy <= 0.0 || accuracy >= 1.0)
+            {
+                throw new ArgumentOutOfRangeException("accuracy", "Must be > 0 and < 1.");
+            }
+
+            int sign = Math.Sign(value);
+
+            if (sign == -1)
+            {
+                value = Math.Abs(value);
+            }
+
+            // Accuracy is the maximum relative error; convert to absolute maxError
+            double maxError = sign == 0 ? accuracy : value * accuracy;
+
+            int n = (int)Math.Floor(value);
+            value -= n;
+
+            if (value < maxError)
+            {
+                return new Fraction(sign * n, 1);
+            }
+
+            if (1 - maxError < value)
+            {
+                return new Fraction(sign * (n + 1), 1);
+            }
+
+            // The lower fraction is 0/1
+            int lower_n = 0;
+            int lower_d = 1;
+
+            // The upper fraction is 1/1
+            int upper_n = 1;
+            int upper_d = 1;
+
+            while (true)
+            {
+                // The middle fraction is (lower_n + upper_n) / (lower_d + upper_d)
+                int middle_n = lower_n + upper_n;
+                int middle_d = lower_d + upper_d;
+
+                if (middle_d * (value + maxError) < middle_n)
+                {
+                    // real + error < middle : middle is our new upper
+                    Seek(ref upper_n, ref upper_d, lower_n, lower_d, (un, ud) => (lower_d + ud) * (value + maxError) < (lower_n + un));
+                }
+                else if (middle_n < (value - maxError) * middle_d)
+                {
+                    // middle < real - error : middle is our new lower
+                    Seek(ref lower_n, ref lower_d, upper_n, upper_d, (ln, ld) => (ln + upper_n) < (value - maxError) * (ld + upper_d));
+                }
+                else
+                {
+                    // Middle is our best fraction
+                    return new Fraction((n * middle_d + middle_n) * sign, middle_d);
+                }
+            }
+        }
+
+        private void Seek(ref int a, ref int b, int ainc, int binc, Func<int, int, bool> f)
+        {
+            a += ainc;
+            b += binc;
+
+            if (f(a, b))
+            {
+                int weight = 1;
+
+                do
+                {
+                    weight *= 2;
+                    a += ainc * weight;
+                    b += binc * weight;
+                }
+                while (f(a, b));
+
+                do
+                {
+                    weight /= 2;
+
+                    int adec = ainc * weight;
+                    int bdec = binc * weight;
+
+                    if (!f(a - adec, b - bdec))
+                    {
+                        a -= adec;
+                        b -= bdec;
+                    }
+                }
+                while (weight > 1);
+            }
         }
     }
 }

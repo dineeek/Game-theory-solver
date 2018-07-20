@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimplexForma));
             this.dgvSimplexTablica = new System.Windows.Forms.DataGridView();
+            this.txtRjesenje = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimplexTablica)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,8 +46,37 @@
             this.dgvSimplexTablica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSimplexTablica.Location = new System.Drawing.Point(12, 26);
             this.dgvSimplexTablica.Name = "dgvSimplexTablica";
-            this.dgvSimplexTablica.Size = new System.Drawing.Size(1226, 657);
+            this.dgvSimplexTablica.Size = new System.Drawing.Size(1226, 552);
             this.dgvSimplexTablica.TabIndex = 0;
+            // 
+            // txtRjesenje
+            // 
+            this.txtRjesenje.Location = new System.Drawing.Point(12, 603);
+            this.txtRjesenje.Multiline = true;
+            this.txtRjesenje.Name = "txtRjesenje";
+            this.txtRjesenje.ReadOnly = true;
+            this.txtRjesenje.Size = new System.Drawing.Size(1226, 73);
+            this.txtRjesenje.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Simplex tablice iteracija: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(9, 587);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Rješenje zadatka: ";
             // 
             // SimplexForma
             // 
@@ -53,6 +85,9 @@
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.smplxPoz;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1251, 700);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtRjesenje);
             this.Controls.Add(this.dgvSimplexTablica);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -62,11 +97,15 @@
             this.Load += new System.EventHandler(this.SimplexForma_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimplexTablica)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dgvSimplexTablica;
+        private System.Windows.Forms.TextBox txtRjesenje;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
