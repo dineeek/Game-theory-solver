@@ -119,7 +119,7 @@ namespace OI2GameTheory
             var prazanRedak1 = pocetnaSimplexTablica.NewRow();
             pocetnaSimplexTablica.Rows.Add(prazanRedak1);
 
-            //SimplexTablice.Merge(pocetnaSimplexTablica);
+            SimplexTablice.Merge(pocetnaSimplexTablica);
 
             prethodnaSimplexTablica = pocetnaSimplexTablica;
         }
@@ -145,14 +145,16 @@ namespace OI2GameTheory
 
             double[] vrijednostiRedaZjCj = new double[brojNegativnih];
             int[] indexiVrijSupca = new int[brojNegativnih];
+            int brojac = 0;
             for (int i=3; i<prethodnaSimplexTablica.Columns.Count-2; i++)
             {
                 internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 2][i].ToString());
                 if (internHelp < 0)
                 {
                     internHelp = Math.Abs(internHelp);
-                    vrijednostiRedaZjCj[i - 3] = internHelp;
-                    indexiVrijSupca[i - 3] = i;
+                    vrijednostiRedaZjCj[brojac] = internHelp;
+                    indexiVrijSupca[brojac] = i;
+                    brojac++;
 
                     if (najveci < internHelp)
                     {
@@ -168,7 +170,11 @@ namespace OI2GameTheory
             sviIsti = vrijednostiRedaZjCj.Skip(1)
               .All(s => double.Equals(prviBroj, s));
 
-            if (sviIsti) 
+            if (vrijednostiRedaZjCj.Count() == 1)
+            {
+                return (indexStupca, nazivSupca);
+            }
+            else if (sviIsti) 
             {
                 double najvecaVrijednostStupca = 0;
                 for(int i = 0; i < indexiVrijSupca.Length; i++)
@@ -184,7 +190,6 @@ namespace OI2GameTheory
                         }
                     }
                 }
-
                 return (indexStupca, nazivSupca);
             }
             else
@@ -205,9 +210,9 @@ namespace OI2GameTheory
                 internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[i][indexStupca]);              
                 rezultati[i] = internHelp;
                 if(internHelp > 0)
-                    prethodnaSimplexTablica.Rows[i][prethodnaSimplexTablica.Columns.Count - 1] = internHelp;
+                    prethodnaSimplexTablica.Rows[i][prethodnaSimplexTablica.Columns.Count - 1] = Math.Round(internHelp, 4);
             }
-
+            SimplexTablice.Merge(prethodnaSimplexTablica);
             double najmanji = rezultati.Where(x => x > 0).Min();
             
             for (int i= 0; i<rezultati.Length; i++)
@@ -224,7 +229,7 @@ namespace OI2GameTheory
         private double odrediStozerniElement(int indexStupca, int indexReda)
         {
             double stozerniElement = Convert.ToDouble(prethodnaSimplexTablica.Rows[indexReda][indexStupca]);
-            SimplexTablice.Merge(prethodnaSimplexTablica);
+            //SimplexTablice.Merge(prethodnaSimplexTablica);
             return stozerniElement;
         }
 
@@ -257,18 +262,15 @@ namespace OI2GameTheory
                     {
                         if(j != indexRedka)
                         {
-                            double internHelp = Math.Round(Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i].ToString()) - ((Convert.ToDouble(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / stozerniElement) * Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString())), 2);
-                            novaSimplexTablica.Rows[j][i] = internHelp;
+                            double internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i].ToString()) - ((double)((double)(Convert.ToDouble(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / stozerniElement) * Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString())));
+                            novaSimplexTablica.Rows[j][i] = Math.Round(internHelp, 4);
                         }
                     }
                 }
             }
         }
-        
         private void pokreniSimplexPostupak()
         {
-            //novaSimplexTablica - temelji se na prethodnojSimplexTablici
-
             int indexStupca = odrediVodeciStupac().Item1;
             string nazivVodecegStupca = odrediVodeciStupac().Item2;
 
@@ -297,10 +299,48 @@ namespace OI2GameTheory
 
             simplexAlgoritam(indexStupca, indexRedka, stozerniElement);
 
-
             SimplexTablice.Merge(novaSimplexTablica); //prije if-a obavezno
 
-            //if(novaSimplexTablica treba daljnji postupak)
+            //koliko ima neg. u zadnjem redku
+            int brojNegativnih = 0;
+            for (int i = 3; i < novaSimplexTablica.Columns.Count - 2; i++)
+            {
+                double internHelp = Convert.ToDouble(novaSimplexTablica.Rows[novaSimplexTablica.Rows.Count - 2][i].ToString());
+                if (internHelp < 0)
+                {
+                    brojNegativnih++;
+                }
+            }
+
+            if(brojNegativnih != 0)
+            {
+                //prethodnaSimplexTablica = novaSimplexTablica;
+                prethodnaSimplexTablica = new DataTable();
+                prethodnaSimplexTablica = novaSimplexTablica.Copy();//da naslijedi strukturu samo
+                novaSimplexTablica = new DataTable();
+
+                pokreniSimplexPostupak();
+            }
+            else
+            {
+                //pisanje iteracija tako da je pregledno i jasnije
+                int interHelp = SimplexTablice.Rows.Count-1;
+                int brojRedovaIteracije = (novaSimplexTablica.Rows.Count*2)-1;
+                int brojRedova = (novaSimplexTablica.Rows.Count * 2);
+                int brojIteracija = 1;
+                for (int i=0; i< interHelp; i++)
+                {
+                    if (i == brojRedovaIteracije)
+                    {
+                        SimplexTablice.Rows[i][1] ="Tablica "+ brojIteracija+". iteracije";
+                        brojRedovaIteracije += brojRedova;
+                        brojIteracija++;
+                    }
+
+                }
+                System.Windows.Forms.MessageBox.Show("KRAJ! TREBA ZAKLJUČAK IZRAČUNATI!");
+            }
+            //if(novaSimplexTablica treba daljnji postupak) AKO SU SVE VRIJEDNOSTI U ZjCj redku >= 0
             //prethodnaSimplexTablica = novaSimplexTablica;
             //novaSimplex.Clear();
             //pokreniSimplexPostupak()
