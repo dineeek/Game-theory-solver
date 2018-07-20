@@ -77,7 +77,7 @@ namespace OI2GameTheory
 
                 SimplexKalkulator smplxCalc = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
 
-                    SimplexForma formaSimplexMetode = new SimplexForma(smplxCalc.SimplexTablice);
+                    SimplexForma formaSimplexMetode = new SimplexForma(smplxCalc.SimplexTabliceRazlomci);
                     formaSimplexMetode.ShowDialog();
                 }        
             }
