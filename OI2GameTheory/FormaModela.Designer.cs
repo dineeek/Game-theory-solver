@@ -38,12 +38,15 @@
             this.txtModel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtModel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtModel.Location = new System.Drawing.Point(3, 24);
             this.txtModel.Multiline = true;
             this.txtModel.Name = "txtModel";
             this.txtModel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtModel.Size = new System.Drawing.Size(844, 434);
             this.txtModel.TabIndex = 0;
+            this.txtModel.TabStop = false;
             // 
             // label1
             // 

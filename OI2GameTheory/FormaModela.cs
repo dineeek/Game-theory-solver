@@ -12,9 +12,10 @@ namespace OI2GameTheory
 {
     public partial class FormaModela : Form
     {
-        public FormaModela()
+        public FormaModela(string model)
         {
             InitializeComponent();
+            txtModel.Text = model;
         }
     }
 }

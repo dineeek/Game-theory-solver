@@ -38,6 +38,7 @@ namespace OI2GameTheory
                     if(dgvMatrica.Rows.Count > 0 && dgvMatrica.Columns.Count > 0)
                     {
                         btnSimplex.Enabled = true;
+                        btnModelZadatka.Enabled = true;
                     }
 
                     //za izgled tablice - tako da je cijela popunjena
@@ -89,10 +90,29 @@ namespace OI2GameTheory
         }
         private void btnModelZadatka_Click(object sender, EventArgs e)
         {
-            //TO DO
+            try
+            {
+                uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
-            FormaModela model = new FormaModela();
-            model.ShowDialog();
+                //provjera postojanja sedla
+                Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+              
+                ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+
+                if (!protuprirodnost.ProvjeriProtuprirodnost())
+                    provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
+
+                IzgradnjaModela modelZadatka = new IzgradnjaModela(provjeraSedla.uneseniPodaci);
+
+                FormaModela model = new FormaModela(modelZadatka.DohvatiZapisModela());
+                model.ShowDialog();
+
+            }
+            catch
+            {
+                MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
         }
 
 
