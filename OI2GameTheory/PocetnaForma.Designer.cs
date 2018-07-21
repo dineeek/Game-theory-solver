@@ -37,6 +37,7 @@
             this.btnGenerirajMatricu = new System.Windows.Forms.Button();
             this.dgvMatrica = new System.Windows.Forms.DataGridView();
             this.btnSimplex = new System.Windows.Forms.Button();
+            this.btnModelZadatka = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrica)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,13 +125,24 @@
             // btnSimplex
             // 
             this.btnSimplex.Enabled = false;
-            this.btnSimplex.Location = new System.Drawing.Point(15, 349);
+            this.btnSimplex.Location = new System.Drawing.Point(114, 348);
             this.btnSimplex.Name = "btnSimplex";
-            this.btnSimplex.Size = new System.Drawing.Size(112, 23);
+            this.btnSimplex.Size = new System.Drawing.Size(93, 23);
             this.btnSimplex.TabIndex = 7;
             this.btnSimplex.Text = "Simplex metoda";
             this.btnSimplex.UseVisualStyleBackColor = true;
             this.btnSimplex.Click += new System.EventHandler(this.btnSimplex_Click);
+            // 
+            // btnModelZadatka
+            // 
+            this.btnModelZadatka.Enabled = false;
+            this.btnModelZadatka.Location = new System.Drawing.Point(15, 348);
+            this.btnModelZadatka.Name = "btnModelZadatka";
+            this.btnModelZadatka.Size = new System.Drawing.Size(93, 23);
+            this.btnModelZadatka.TabIndex = 8;
+            this.btnModelZadatka.Text = "Model zadatka";
+            this.btnModelZadatka.UseVisualStyleBackColor = true;
+            this.btnModelZadatka.Click += new System.EventHandler(this.btnModelZadatka_Click);
             // 
             // PocetnaForma
             // 
@@ -138,6 +150,7 @@
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.poz;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(381, 375);
+            this.Controls.Add(this.btnModelZadatka);
             this.Controls.Add(this.btnSimplex);
             this.Controls.Add(this.dgvMatrica);
             this.Controls.Add(this.btnGenerirajMatricu);
@@ -147,6 +160,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "PocetnaForma";
@@ -168,6 +182,7 @@
         private System.Windows.Forms.Button btnGenerirajMatricu;
         private System.Windows.Forms.DataGridView dgvMatrica;
         private System.Windows.Forms.Button btnSimplex;
+        private System.Windows.Forms.Button btnModelZadatka;
     }
 }
 

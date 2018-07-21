@@ -52,6 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrtanjeMatrice.cs" />
+    <Compile Include="FormaModela.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaModela.Designer.cs">
+      <DependentUpon>FormaModela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IzgradnjaModela.cs" />
     <Compile Include="KalkulatorZakljucka.cs" />
     <Compile Include="PocetnaForma.cs">
       <SubType>Form</SubType>
@@ -71,6 +78,9 @@
     <Compile Include="SimplexKalkulator.cs" />
     <Compile Include="SpremanjeUnosa.cs" />
     <Compile Include="Strategija.cs" />
+    <EmbeddedResource Include="FormaModela.resx">
+      <DependentUpon>FormaModela.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PocetnaForma.resx">
       <DependentUpon>PocetnaForma.cs</DependentUpon>
     </EmbeddedResource>

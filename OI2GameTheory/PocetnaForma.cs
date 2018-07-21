@@ -73,9 +73,8 @@ namespace OI2GameTheory
                     //MessageBox.Show("Ne postoji sedlo - izračunava se miješana igra!");
                     provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
 
-                //simplex metoda 
-
-                SimplexKalkulator smplxCalc = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                    //simplex metoda 
+                    SimplexKalkulator smplxCalc = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
 
                     SimplexForma formaSimplexMetode = new SimplexForma(smplxCalc.SimplexTabliceRazlomci, smplxCalc.Zakljucak);
                     formaSimplexMetode.ShowDialog();
@@ -86,7 +85,13 @@ namespace OI2GameTheory
                 MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }         
         }
+        private void btnModelZadatka_Click(object sender, EventArgs e)
+        {
+            //TO DO
 
+            FormaModela model = new FormaModela();
+            model.ShowDialog();
+        }
 
 
         //SITNICE
