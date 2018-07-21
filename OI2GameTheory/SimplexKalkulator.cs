@@ -19,6 +19,7 @@ namespace OI2GameTheory
 
         public DataTable SimplexTablice = new DataTable(); //svi postupci
         public DataTable SimplexTabliceRazlomci = new DataTable(); //svi postupci
+        public string Zakljucak = "";
 
         public SimplexKalkulator(SpremanjeUnosa podaci, int minDif)
         {
@@ -342,18 +343,14 @@ namespace OI2GameTheory
 
                 }
 
-                IzracunajPostotke(); //posalji to formi
+                KalkulatorZakljucka zakljucak = new KalkulatorZakljucka(novaSimplexTablica, podaciStrategija, diferencija);
+                Zakljucak = zakljucak.DohvatiZakljucak();
 
                 //pretvaranje decimalni u razlomke
                 SimplexTabliceRazlomci = SimplexTablice.Copy();
                 SimplexTablice = new DataTable();
                 PretvoriURazlomke();
             }
-        }
-
-        private void IzracunajPostotke()
-        {
-            //operirati po zadnjoj novoj simplex tablici. Rows.Count - 1
         }
 
         private void PretvoriURazlomke()
@@ -378,9 +375,7 @@ namespace OI2GameTheory
             }
         }
 
-        //PRETVARANJE doubleNIH U RAZLOMKE
-
-
+        //PRETVARANJE double U RAZLOMKE
         public struct Fraction
         {
             public Fraction(int n, int d)

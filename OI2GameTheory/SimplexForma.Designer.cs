@@ -46,6 +46,7 @@
             this.dgvSimplexTablica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSimplexTablica.Location = new System.Drawing.Point(12, 26);
             this.dgvSimplexTablica.Name = "dgvSimplexTablica";
+            this.dgvSimplexTablica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvSimplexTablica.Size = new System.Drawing.Size(1226, 552);
             this.dgvSimplexTablica.TabIndex = 0;
             // 
@@ -54,7 +55,7 @@
             this.txtRjesenje.Location = new System.Drawing.Point(12, 603);
             this.txtRjesenje.Multiline = true;
             this.txtRjesenje.Name = "txtRjesenje";
-            this.txtRjesenje.ReadOnly = true;
+            this.txtRjesenje.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtRjesenje.Size = new System.Drawing.Size(1226, 73);
             this.txtRjesenje.TabIndex = 1;
             // 

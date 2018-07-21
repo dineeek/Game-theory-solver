@@ -116,7 +116,7 @@
             this.dgvMatrica.Location = new System.Drawing.Point(15, 86);
             this.dgvMatrica.MultiSelect = false;
             this.dgvMatrica.Name = "dgvMatrica";
-            this.dgvMatrica.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dgvMatrica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvMatrica.Size = new System.Drawing.Size(355, 259);
             this.dgvMatrica.TabIndex = 6;
             this.dgvMatrica.SizeChanged += new System.EventHandler(this.dgvMatrica_SizeChanged);
