@@ -70,8 +70,10 @@ namespace OI2GameTheory
                 }
                 else
                 {
-                    //MessageBox.Show("Ne postoji sedlo - izračunava se miješana igra!");
-                    provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
+                    ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+
+                    if(!protuprirodnost.ProvjeriProtuprirodnost())
+                        provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
 
                     //simplex metoda 
                     SimplexKalkulator smplxCalc = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
