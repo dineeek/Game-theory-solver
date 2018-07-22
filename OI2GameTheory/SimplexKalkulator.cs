@@ -207,7 +207,7 @@ namespace OI2GameTheory
             }
         }
 
-        private int odrediVodeciRedak(int indexStupca) //kaj ak imam iste vrijednosti rezultata
+        private int odrediVodeciRedak(int indexStupca)
         {
             int indexReda = 0;
 
