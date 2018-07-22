@@ -128,7 +128,7 @@
             this.btnSimplex.Location = new System.Drawing.Point(114, 348);
             this.btnSimplex.Name = "btnSimplex";
             this.btnSimplex.Size = new System.Drawing.Size(93, 23);
-            this.btnSimplex.TabIndex = 7;
+            this.btnSimplex.TabIndex = 8;
             this.btnSimplex.Text = "Simplex metoda";
             this.btnSimplex.UseVisualStyleBackColor = true;
             this.btnSimplex.Click += new System.EventHandler(this.btnSimplex_Click);
@@ -139,7 +139,7 @@
             this.btnModelZadatka.Location = new System.Drawing.Point(15, 348);
             this.btnModelZadatka.Name = "btnModelZadatka";
             this.btnModelZadatka.Size = new System.Drawing.Size(93, 23);
-            this.btnModelZadatka.TabIndex = 8;
+            this.btnModelZadatka.TabIndex = 7;
             this.btnModelZadatka.Text = "Model zadatka";
             this.btnModelZadatka.UseVisualStyleBackColor = true;
             this.btnModelZadatka.Click += new System.EventHandler(this.btnModelZadatka_Click);

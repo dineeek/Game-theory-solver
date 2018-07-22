@@ -13,3 +13,8 @@ C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\System.ValueTuple.d
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\System.ValueTuple.xml
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csproj.CopyComplete
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.FormaModela.resources
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe.manifest
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.application
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.TrustInfo.xml
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.exe.manifest
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.application
