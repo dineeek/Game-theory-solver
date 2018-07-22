@@ -218,7 +218,55 @@ namespace OI2GameTheory
             }
             SimplexTablice.Merge(prethodnaSimplexTablica);
             double najmanji = rezultati.Where(x => x > 0).Min();
-            
+
+            bool postojeIsteVrijednostiRez = false;
+            if (rezultati.Length != rezultati.Distinct().Count())
+            {
+                postojeIsteVrijednostiRez = true;
+            }
+
+            if (postojeIsteVrijednostiRez)
+            {
+                double[] vrijednostiReda = new double[podaciStrategija.igracA.Count];
+                double internHelp2;
+                for(int i=0; i<prethodnaSimplexTablica.Rows.Count-2; i++) //redci
+                {
+                    internHelp2 = 0;
+                    for(int j=3; j<podaciStrategija.igracB.Count+3; j++)//stupci
+                    {
+                        internHelp2 += Convert.ToDouble(prethodnaSimplexTablica.Rows[i][j]);
+                    }
+
+                    vrijednostiReda[i] = internHelp2;
+                }
+
+                double najveciRedak = rezultati.Where(x => x > 0).Max();
+
+                for (int i = 0; i < vrijednostiReda.Length; i++)
+                {
+                    if (najveciRedak == vrijednostiReda[i])
+                    {
+                        indexReda = i;
+                    }
+                }
+
+                return indexReda;
+            }
+            else
+            {
+                for (int i = 0; i < rezultati.Length; i++)
+                {
+                    if (najmanji == rezultati[i])
+                    {
+                        //najmanji = rezultati[i];
+                        indexReda = i;
+                    }
+                }
+                return indexReda;
+            }
+
+
+            /*
             for (int i= 0; i<rezultati.Length; i++)
             {
                 if(najmanji == rezultati[i])
@@ -228,6 +276,7 @@ namespace OI2GameTheory
                 }
             }           
             return indexReda;
+            */
         }
 
         private double odrediStozerniElement(int indexStupca, int indexReda)

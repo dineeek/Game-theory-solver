@@ -35,9 +35,9 @@ namespace OI2GameTheory
                 protuprirodna = true;
                 return protuprirodna;
             }
-            else if((brojStrategijaA - igracA) < 0 || (brojStrategijaB - igracB) < 0)
+            else if((((brojStrategijaA - igracA) <= 2) && ((brojStrategijaB - igracB) < 2)) || (((brojStrategijaA - igracA) < 2) && ((brojStrategijaB - igracB) <= 2)))//kontradiktorna
             {
-                System.Windows.Forms.MessageBox.Show("Unesena je protuprirodna ili kontradiktorna  igra!\nNe uklanjam dominantne strategije.");
+                System.Windows.Forms.MessageBox.Show("Unesena je kontradiktorna  igra!\nNe uklanjam dominantne strategije.");
                 protuprirodna = true;
                 return protuprirodna;
             }
