@@ -21,6 +21,11 @@ namespace OI2GameTheory
         public DataTable SimplexTabliceRazlomci = new DataTable(); //svi postupci
         public string Zakljucak = "";
 
+        public List<int> indexiVodecihStupaca = new List<int>();
+        public List<int> indexiVodecihRedaka = new List<int>();
+        public int brojRedaka;
+        public int brojStupaca;
+
         public SimplexKalkulator(SpremanjeUnosa podaci, int minDif)
         {
             podaciStrategija = podaci;
@@ -264,19 +269,6 @@ namespace OI2GameTheory
                 }
                 return indexReda;
             }
-
-
-            /*
-            for (int i= 0; i<rezultati.Length; i++)
-            {
-                if(najmanji == rezultati[i])
-                {
-                    //najmanji = rezultati[i];
-                    indexReda = i;
-                }
-            }           
-            return indexReda;
-            */
         }
 
         private double odrediStozerniElement(int indexStupca, int indexReda)
@@ -324,10 +316,15 @@ namespace OI2GameTheory
         }
         private void pokreniSimplexPostupak()
         {
+            brojRedaka = prethodnaSimplexTablica.Rows.Count;
+            brojStupaca = prethodnaSimplexTablica.Columns.Count;
+
             int indexStupca = odrediVodeciStupac().Item1;
             string nazivVodecegStupca = odrediVodeciStupac().Item2;
+            indexiVodecihStupaca.Add(indexStupca);
 
             int indexRedka = odrediVodeciRedak(indexStupca);
+            indexiVodecihRedaka.Add(indexRedka);
 
             double stozerniElement = odrediStozerniElement(indexStupca, indexRedka);
 
