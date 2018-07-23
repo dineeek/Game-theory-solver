@@ -52,6 +52,11 @@ namespace OI2GameTheory
                     MessageBox.Show("Unesite cijele brojeve!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+
+            foreach (DataGridViewColumn stupac in dgvMatrica.Columns)
+            {
+                stupac.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private void btnSimplex_Click(object sender, EventArgs e)

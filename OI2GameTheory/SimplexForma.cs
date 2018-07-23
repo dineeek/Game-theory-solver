@@ -87,6 +87,11 @@ namespace OI2GameTheory
 
                 brojac2++;
             }
+
+            foreach (DataGridViewColumn stupac in dgvSimplexTablica.Columns)
+            {
+                stupac.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
     }
 }

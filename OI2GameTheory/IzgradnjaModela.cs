@@ -139,9 +139,9 @@ namespace OI2GameTheory
 
         private void supstituiraj()
         {
-            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "Ῡ = y'(i)/V'" + Environment.NewLine;
+            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "Ῡ = y'(i)/V'" + Environment.NewLine + Environment.NewLine;
 
-            zapisModela += "SUPSTITUIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
+            zapisModela += "PROBLEM SA SUPSTITUCIJOM: " + Environment.NewLine + "Z = ";
 
             for (int i = 1; i <= sveVarijableYB.Count; i++)
             {

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OI2GameTheory.exe" size="1470896">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OI2GameTheory.exe" size="1422256">
       <assemblyIdentity name="OI2GameTheory" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0wF25lXfS7wzAxqfRx9w+H/4ews7FF9YdtPU7NSetx4=</dsig:DigestValue>
+        <dsig:DigestValue>UG9Ia+qh8VPtvHKXqeLmcvONBrlYPUwKaY7vLPpgnzY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
