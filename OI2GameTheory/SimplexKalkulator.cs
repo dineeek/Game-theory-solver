@@ -224,37 +224,77 @@ namespace OI2GameTheory
             SimplexTablice.Merge(prethodnaSimplexTablica);
             double najmanji = rezultati.Where(x => x > 0).Min();
 
-            bool postojeIsteVrijednostiRez = false;
-            if (rezultati.Length != rezultati.Distinct().Count())
+            int brojacIstihMin = 0;
+            bool postojeIsteMinVrijednostiRez = false;
+            for(int i=0; i<rezultati.Length; i++)
             {
-                postojeIsteVrijednostiRez = true;
+                if (najmanji == rezultati[i])
+                    brojacIstihMin++;
             }
 
-            if (postojeIsteVrijednostiRez)
+            if (brojacIstihMin >= 2) // u slučaju da postoje isti koji nisu minimalni
             {
-                double[] vrijednostiReda = new double[podaciStrategija.igracA.Count];
-                double internHelp2;
-                for(int i=0; i<prethodnaSimplexTablica.Rows.Count-2; i++) //redci
+                postojeIsteMinVrijednostiRez = true;
+            }
+            
+            double istaVrijednostRezulata = rezultati.Min();
+
+            int[] indexiIstihRezultata = new int[brojacIstihMin];
+            int pomocniBrojac1 = 0;
+            for (int i = 0; i < rezultati.Length; i++)
+            {
+                if (istaVrijednostRezulata == rezultati[i])
                 {
-                    internHelp2 = 0;
-                    for(int j=3; j<podaciStrategija.igracB.Count+3; j++)//stupci
-                    {
-                        internHelp2 += Convert.ToDouble(prethodnaSimplexTablica.Rows[i][j]);
-                    }
+                    indexiIstihRezultata[pomocniBrojac1] = i;
+                    pomocniBrojac1++;
+                }                               
+            }
 
-                    vrijednostiReda[i] = internHelp2;
-                }
-
-                double najveciRedak = rezultati.Where(x => x > 0).Max();
-
-                for (int i = 0; i < vrijednostiReda.Length; i++)
+            double internHelp2=0;
+            double[] degeneracija;
+            int pomocniBrojac2 = 0;
+            if (postojeIsteMinVrijednostiRez)
+            {
+                for(int i=3; i<prethodnaSimplexTablica.Columns.Count-2; i++)//pomicanje po stupcima
                 {
-                    if (najveciRedak == vrijednostiReda[i])
+                    degeneracija = new double[prethodnaSimplexTablica.Rows.Count - 2];
+                    pomocniBrojac2 = 0;
+                    if (i != indexStupca)//indexStupca je vodeci stupac
                     {
-                        indexReda = i;
+                        for (int j = 0; j < prethodnaSimplexTablica.Rows.Count - 2; j++)//pomicanje po redcima
+                        {
+                            if (j == indexiIstihRezultata[pomocniBrojac2])
+                            {
+                                internHelp2 = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca]);
+                                degeneracija[j] = internHelp2;
+                                pomocniBrojac2++;
+                            }
+                            else
+                                degeneracija[j] = Convert.ToDouble(9999999999999);
+                        }
+
+                        //provjera dal postoji jednistveni max u degeneraciji
+                        bool postojiJednistveniMax = false;
+                        if (degeneracija.Length == degeneracija.Distinct().Count())
+                        {
+                            postojiJednistveniMax = true;
+                        }
+
+                        if (postojiJednistveniMax)
+                        {
+                            double najveciRedak = degeneracija.Min();
+                            for (int d = 0; d < degeneracija.Length; d++)
+                            {
+                                if (najveciRedak == degeneracija[d])
+                                {
+                                    indexReda = d;
+                                }
+                            }
+                            //return indexReda;
+                            break;
+                        }
                     }
                 }
-
                 return indexReda;
             }
             else
@@ -262,10 +302,7 @@ namespace OI2GameTheory
                 for (int i = 0; i < rezultati.Length; i++)
                 {
                     if (najmanji == rezultati[i])
-                    {
-                        //najmanji = rezultati[i];
                         indexReda = i;
-                    }
                 }
                 return indexReda;
             }

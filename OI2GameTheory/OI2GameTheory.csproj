@@ -157,10 +157,11 @@
     <None Include="Resources\poz2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\smplxPoz.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="bearPaw.ico" />
+    <None Include="Resources\smplxPoz.jpg" />
+    <None Include="Resources\wallpaper.jpg" />
+    <None Include="Resources\mramor.jpg" />
+    <None Include="Resources\pozadina.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

@@ -93,8 +93,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::OI2GameTheory.Properties.Resources.smplxPoz;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1251, 700);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
