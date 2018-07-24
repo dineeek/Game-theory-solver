@@ -48,7 +48,7 @@ namespace OI2GameTheory
                         {
                             if (i == indexiVodecihRedaka[brojacIndexa])
                             {
-                                dgvSimplexTablica.Rows[red.Index+i].DefaultCellStyle.BackColor = Color.LightSalmon;
+                                dgvSimplexTablica.Rows[red.Index+i].DefaultCellStyle.BackColor = Color.LightSeaGreen;
                                 brojacIndexa++;
                                 break;
                             }
@@ -76,7 +76,7 @@ namespace OI2GameTheory
                             if (i == indexiVodecihStupaca[brojacIndexa2])
                             {
                                 for(int j = 0; j<brojRedaka1Tablice-1; j++)
-                                    dgvSimplexTablica.Rows[red.Index+j].Cells[i].Style.BackColor = Color.LightSalmon;
+                                    dgvSimplexTablica.Rows[red.Index+j].Cells[i].Style.BackColor = Color.LightSeaGreen;
                                 brojacIndexa2++;
                                 break;
                             }
@@ -84,8 +84,23 @@ namespace OI2GameTheory
                     }
                     trenutniRedak2 += brojRedaka1Tablice * 2;
                 }
-
                 brojac2++;
+            }
+
+            //pisanje iteracija tako da je pregledno i jasnije
+            int interHelp = simplexTablica.Rows.Count - 1;
+            int brojRedovaIteracije = (brojRedaka1Tablice * 2) - 1;
+            int brojRedova = (brojRedaka1Tablice * 2);
+            int brojIteracija = 1;
+            for (int i = 0; i < interHelp; i++)
+            {
+                if (i == brojRedovaIteracije)
+                {
+                    dgvSimplexTablica.Rows[i].DefaultCellStyle.BackColor = Color.Lavender;
+                    brojRedovaIteracije += brojRedova;
+                    brojIteracija++;
+                }
+
             }
 
             foreach (DataGridViewColumn stupac in dgvSimplexTablica.Columns)
