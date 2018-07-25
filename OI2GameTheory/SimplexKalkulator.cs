@@ -219,7 +219,7 @@ namespace OI2GameTheory
                 internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[i][indexStupca]);              
                 rezultati[i] = internHelp;
                 if(internHelp > 0)
-                    prethodnaSimplexTablica.Rows[i][prethodnaSimplexTablica.Columns.Count - 1] = Math.Round((double)internHelp, 6, MidpointRounding.AwayFromZero);
+                    prethodnaSimplexTablica.Rows[i][prethodnaSimplexTablica.Columns.Count - 1] = Math.Round((double)internHelp, 6);
             }
             SimplexTablice.Merge(prethodnaSimplexTablica);
             double najmanji = rezultati.Where(x => x > 0).Min();
@@ -320,7 +320,7 @@ namespace OI2GameTheory
             for(int i=2; i<prethodnaSimplexTablica.Columns.Count-1; i++)
             {
                 double internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[indexRedka][i]);
-                novaSimplexTablica.Rows[indexRedka][i] = Math.Round((double) internHelp / (double) stozerniElement, 6, MidpointRounding.AwayFromZero);
+                novaSimplexTablica.Rows[indexRedka][i] = Math.Round((double) internHelp / (double) stozerniElement, 6);
             }
 
             novaSimplexTablica.Rows[indexRedka][0] = 1; //vrijednost Cj = 1
@@ -345,7 +345,7 @@ namespace OI2GameTheory
                         if(j != indexRedka)
                         {
                             double internHelp = (double) (Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i].ToString()) - ((double)((double)(Convert.ToDouble(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / (double) stozerniElement) * Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString()))));
-                            novaSimplexTablica.Rows[j][i] = Math.Round((double)internHelp, 6, MidpointRounding.AwayFromZero);
+                            novaSimplexTablica.Rows[j][i] = Math.Round((double)internHelp, 6);
                         }
                     }
                 }
@@ -452,7 +452,7 @@ namespace OI2GameTheory
                     if (!praznaCelija)
                     {
                         if ((broj % 1) != 0)
-                            SimplexTabliceRazlomci.Rows[j][i] = RealToFraction(broj, 0.001).N + "/" + RealToFraction(broj, 0.001).D;
+                            SimplexTabliceRazlomci.Rows[j][i] = RealToFraction(broj, 0.0001).N + "/" + RealToFraction(broj, 0.0001).D;
                     }
                 }
             }

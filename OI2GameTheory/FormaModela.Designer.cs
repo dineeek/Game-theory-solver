@@ -44,7 +44,7 @@
             this.txtModel.Multiline = true;
             this.txtModel.Name = "txtModel";
             this.txtModel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtModel.Size = new System.Drawing.Size(844, 434);
+            this.txtModel.Size = new System.Drawing.Size(845, 546);
             this.txtModel.TabIndex = 0;
             this.txtModel.TabStop = false;
             // 
@@ -66,7 +66,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.smplxPoz;
-            this.ClientSize = new System.Drawing.Size(848, 459);
+            this.ClientSize = new System.Drawing.Size(849, 571);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtModel);
             this.DoubleBuffered = true;

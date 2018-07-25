@@ -16,26 +16,27 @@ namespace OI2GameTheory
 
         public bool ProvjeriProtuprirodnost()
         {
-            //Sedlo provjeraSedla = new Sedlo(uneseniPodaci);
             bool protuprirodna = false;
-            int igracA, igracB;
+            int brojUklonjenihIgracA, brojUklonjenihIgracB;
 
             int brojStrategijaA = uneseniPodaci.igracA.Count;
             int brojStrategijaB = uneseniPodaci.igracB.Count;
 
+            bool protuprirodnost = protuprirodnaIgra();
+
             Tuple<int, int> brojUklonjenih;
             brojUklonjenih = DohvatiBrojUklonjenih();
 
-            igracA = brojUklonjenih.Item1;
-            igracB = brojUklonjenih.Item2;
+            brojUklonjenihIgracA = brojUklonjenih.Item1;
+            brojUklonjenihIgracB = brojUklonjenih.Item2;
 
-            if ((brojStrategijaA - igracA) == 0 || (brojStrategijaB - igracB) == 0)
+            if (protuprirodnost)
             {
-                System.Windows.Forms.MessageBox.Show("Unesena je protuprirodna ili kontradiktorna igra!\nNe uklanjam dominantne strategije.");
+                System.Windows.Forms.MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
                 protuprirodna = true;
                 return protuprirodna;
             }
-            else if((((brojStrategijaA - igracA) >= 2) && ((brojStrategijaB - igracB) < 2)) || (((brojStrategijaA - igracA) < 2) && ((brojStrategijaB - igracB) >= 2)))//kontradiktorna
+            else if((brojStrategijaA - brojUklonjenihIgracA) <= 1 || ((brojStrategijaB - brojUklonjenihIgracB) <= 1))//kontradiktorna
             {
                 System.Windows.Forms.MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");
                 protuprirodna = true;
@@ -43,6 +44,42 @@ namespace OI2GameTheory
             }
             else
                 return protuprirodna;
+        }
+
+        private bool protuprirodnaIgra()
+        {
+            bool protuprirodnost = false;
+            int brojNegativnihA = 0;
+            //igracA
+            foreach(var strategija in uneseniPodaci.igracA)
+            {
+                bool sviNegativniA = strategija.DobitakGubitakStrategije.All(x => x < 0);
+
+                if (sviNegativniA)
+                    brojNegativnihA++;
+            }
+
+            if (brojNegativnihA == uneseniPodaci.igracA.Count)
+                protuprirodnost = true;
+
+            else
+            {
+                int brojPozitivnihB = 0;
+                //igracA
+                foreach (var strategija in uneseniPodaci.igracA)
+                {
+                    bool sviPozitivniB = strategija.DobitakGubitakStrategije.All(x => x >= 0);
+
+                    if (sviPozitivniB)
+                        brojPozitivnihB++;
+                }
+
+                if (brojPozitivnihB == uneseniPodaci.igracB.Count)
+                    protuprirodnost = true;  
+            }
+
+
+            return protuprirodnost;
         }
 
         //PROVJERA BRISANJA
