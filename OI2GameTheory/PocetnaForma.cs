@@ -58,6 +58,7 @@ namespace OI2GameTheory
                 stupac.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
+        private SimplexForma formaSimplexMetode;
 
         private void btnSimplex_Click(object sender, EventArgs e)
         {
@@ -77,15 +78,29 @@ namespace OI2GameTheory
                 else
                 {
                     ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
-
-                    if(!protuprirodnost.ProvjeriProtuprirodnost())
+                    int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
+                    if (vrstaIgre == 0)
+                    {
                         provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
+                        //simplex metoda 
+                        SimplexKalkulator smplxCalcMI = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                        formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca);
+                        formaSimplexMetode.ShowDialog();
+                    }
+                    else if(vrstaIgre == 1)
+                    {
+                        SimplexKalkulator smplxCalcPI = new SimplexKalkulator(provjeraSedla.uneseniPodaci);
 
-                    //simplex metoda 
-                    SimplexKalkulator smplxCalc = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                        formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca);
+                        formaSimplexMetode.ShowDialog();
+                    }
+                    else//kontradiktorna
+                    {
+                        SimplexKalkulator smplxCalcKI = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
-                    SimplexForma formaSimplexMetode = new SimplexForma(smplxCalc.SimplexTabliceRazlomci, smplxCalc.Zakljucak, smplxCalc.indexiVodecihStupaca, smplxCalc.indexiVodecihRedaka, smplxCalc.brojRedaka, smplxCalc.brojStupaca);
-                    formaSimplexMetode.ShowDialog();
+                        formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca);
+                        formaSimplexMetode.ShowDialog();
+                    }
                 }        
             }
             catch
@@ -103,14 +118,31 @@ namespace OI2GameTheory
                 Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
               
                 ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                IzgradnjaModela modelZadatka;
+                int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
 
-                if (!protuprirodnost.ProvjeriProtuprirodnost())
-                    provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
+                if (vrstaIgre == 0)
+                {
+                    provjeraSedla.ukloniDominantneStrategije();
+                    modelZadatka = new IzgradnjaModela(provjeraSedla.uneseniPodaci);
 
-                IzgradnjaModela modelZadatka = new IzgradnjaModela(provjeraSedla.uneseniPodaci);
+                    FormaModela modelMI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                    modelMI.ShowDialog();
+                }
+                else if(vrstaIgre == 1)
+                {
+                    modelZadatka = new IzgradnjaModela(provjeraSedla.uneseniPodaci, 0);
 
-                FormaModela model = new FormaModela(modelZadatka.DohvatiZapisModela());
-                model.ShowDialog();
+                    FormaModela modelPI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                    modelPI.ShowDialog();
+                }
+                else
+                {
+                    modelZadatka = new IzgradnjaModela(provjeraSedla.uneseniPodaci);
+
+                    FormaModela modelKI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                    modelKI.ShowDialog();
+                }
 
             }
             catch
@@ -141,6 +173,12 @@ namespace OI2GameTheory
             }
         }
 
-
+        private void dgvMatrica_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception != null && e.Context == DataGridViewDataErrorContexts.Commit)
+            {
+                MessageBox.Show("Pazite na unos!");
+            }
+        }
     }
 }

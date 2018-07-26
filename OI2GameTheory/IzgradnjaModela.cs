@@ -29,6 +29,18 @@ namespace OI2GameTheory
             stvoriKanonskiOblik();
         }
 
+        public IzgradnjaModela(SpremanjeUnosa podaci, int dif)
+        {
+            upisaniPodaci = podaci;
+            Sedlo s = new Sedlo(podaci);
+            diferencija = 0;
+
+            stvoriOriginalniOblik();
+            stvoriDiferenciraniOblik();
+            supstituiraj();
+            stvoriKanonskiOblik();
+        }
+
         private void stvoriOriginalniOblik()
         {
             //stvaranje Y varijabli

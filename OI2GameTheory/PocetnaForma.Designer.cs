@@ -120,6 +120,7 @@
             this.dgvMatrica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvMatrica.Size = new System.Drawing.Size(355, 259);
             this.dgvMatrica.TabIndex = 6;
+            this.dgvMatrica.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvMatrica_DataError);
             this.dgvMatrica.SizeChanged += new System.EventHandler(this.dgvMatrica_SizeChanged);
             // 
             // btnSimplex

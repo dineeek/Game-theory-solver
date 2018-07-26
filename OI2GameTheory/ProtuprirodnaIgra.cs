@@ -14,9 +14,10 @@ namespace OI2GameTheory
             uneseniPodaci = podaci;
         }
 
-        public bool ProvjeriProtuprirodnost()
+        public int ProvjeriProtuprirodnost()
         {
-            bool protuprirodna = false;
+            int vrstaIgre = 0;//0-čista, 1-protuprirodna, 2-kontradiktorna
+            //bool protuprirodna = false;
             int brojUklonjenihIgracA, brojUklonjenihIgracB;
 
             int brojStrategijaA = uneseniPodaci.igracA.Count;
@@ -31,19 +32,20 @@ namespace OI2GameTheory
             brojUklonjenihIgracB = brojUklonjenih.Item2;
 
             if (protuprirodnost)
+
             {
                 System.Windows.Forms.MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
-                protuprirodna = true;
-                return protuprirodna;
+                vrstaIgre = 1;
+                return vrstaIgre;
             }
             else if((brojStrategijaA - brojUklonjenihIgracA) <= 1 || ((brojStrategijaB - brojUklonjenihIgracB) <= 1))//kontradiktorna
             {
                 System.Windows.Forms.MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");
-                protuprirodna = true;
-                return protuprirodna;
+                vrstaIgre = 2;
+                return vrstaIgre;
             }
             else
-                return protuprirodna;
+                return vrstaIgre;
         }
 
         private bool protuprirodnaIgra()

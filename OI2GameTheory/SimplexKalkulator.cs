@@ -37,6 +37,17 @@ namespace OI2GameTheory
             pokreniSimplexPostupak();
         }
 
+        public SimplexKalkulator(SpremanjeUnosa podaci)
+        {
+            podaciStrategija = podaci;
+
+            diferencija = 0;
+            diferencirajPodatke();
+
+            stvoriPocetnuTablicu();
+            pokreniSimplexPostupak();
+        }
+
         private void diferencirajPodatke()
         {
             foreach(var strategija in podaciStrategija.igracA.ToList())//ne mora se i kroz strategije igraca B ići
@@ -232,22 +243,21 @@ namespace OI2GameTheory
                     brojacIstihMin++;
             }
 
+            int[] indexiIstihRezultata = new int[brojacIstihMin];
+
             if (brojacIstihMin >= 2) // u slučaju da postoje isti koji nisu minimalni
             {
                 postojeIsteMinVrijednostiRez = true;
             }
-            
-            double istaVrijednostRezulata = rezultati.Min();
 
-            int[] indexiIstihRezultata = new int[brojacIstihMin];
             int pomocniBrojac1 = 0;
             for (int i = 0; i < rezultati.Length; i++)
             {
-                if (istaVrijednostRezulata == rezultati[i])
+                if (najmanji == rezultati[i])
                 {
                     indexiIstihRezultata[pomocniBrojac1] = i;
                     pomocniBrojac1++;
-                }                               
+                }
             }
 
             double internHelp2=0;
@@ -263,14 +273,18 @@ namespace OI2GameTheory
                     {
                         for (int j = 0; j < prethodnaSimplexTablica.Rows.Count - 2; j++)//pomicanje po redcima
                         {
-                            if (j == indexiIstihRezultata[pomocniBrojac2])
+                            if ((pomocniBrojac2 == indexiIstihRezultata.Length))
+                                degeneracija[j] = Convert.ToDouble(9999+j);
+
+                            else if (j == indexiIstihRezultata[pomocniBrojac2])
                             {
                                 internHelp2 = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca]);
                                 degeneracija[j] = internHelp2;
                                 pomocniBrojac2++;
                             }
+
                             else
-                                degeneracija[j] = Convert.ToDouble(9999999999999);
+                                degeneracija[j] = Convert.ToDouble(9999 + j);
                         }
 
                         //provjera dal postoji jednistveni max u degeneraciji
