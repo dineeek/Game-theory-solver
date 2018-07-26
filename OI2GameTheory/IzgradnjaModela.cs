@@ -101,7 +101,7 @@ namespace OI2GameTheory
         private void stvoriDiferenciraniOblik()
         {
             diferencirajPodatke();
-
+            zapisModela += "Diferencija = " + diferencija + Environment.NewLine;
             zapisModela += "DIFERENCIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
             for (int i = 1; i <= sveVarijableYCrtano.Count; i++)
