@@ -94,7 +94,8 @@
     <Compile Include="FormaModela.Designer.cs">
       <DependentUpon>FormaModela.cs</DependentUpon>
     </Compile>
-    <Compile Include="IzgradnjaModela.cs" />
+    <Compile Include="IzgradnjaModelaB.cs" />
+    <Compile Include="IzgradnjaModelaA.cs" />
     <Compile Include="KalkulatorZakljucka.cs" />
     <Compile Include="PocetnaForma.cs">
       <SubType>Form</SubType>
@@ -112,7 +113,7 @@
     <Compile Include="SimplexForma.Designer.cs">
       <DependentUpon>SimplexForma.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimplexKalkulator.cs" />
+    <Compile Include="SimplexKalkulatorA.cs" />
     <Compile Include="SpremanjeUnosa.cs" />
     <Compile Include="Strategija.cs" />
     <EmbeddedResource Include="FormaModela.resx">

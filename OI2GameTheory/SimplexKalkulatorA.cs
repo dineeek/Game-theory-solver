@@ -8,7 +8,7 @@ using System.Data.Common;
 
 namespace OI2GameTheory
 {
-    public class SimplexKalkulator // standardi problem LP za maximum - za igracA se racuna (inače igracB je za min) 
+    public class SimplexKalkulatorA // standardi problem LP za maximum - za igracA se racuna (inače igracB je za min) 
     {
         private SpremanjeUnosa podaciStrategija;
         private int diferencija;
@@ -26,7 +26,7 @@ namespace OI2GameTheory
         public int brojRedaka;
         public int brojStupaca;
 
-        public SimplexKalkulator(SpremanjeUnosa podaci, int minDif)
+        public SimplexKalkulatorA(SpremanjeUnosa podaci, int minDif)
         {
             podaciStrategija = podaci;
 
@@ -37,7 +37,7 @@ namespace OI2GameTheory
             pokreniSimplexPostupak();
         }
 
-        public SimplexKalkulator(SpremanjeUnosa podaci)
+        public SimplexKalkulatorA(SpremanjeUnosa podaci)
         {
             podaciStrategija = podaci;
 

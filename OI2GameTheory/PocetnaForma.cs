@@ -64,44 +64,53 @@ namespace OI2GameTheory
         {
            try
            {
-                uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
+                if(rbIgracA.Checked == true)
+                {
+                    uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
                 
-                //provjera postojanja sedla
-                Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+                    //provjera postojanja sedla
+                    Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
 
-                bool postojiSedlo = provjeraSedla.ProvjeriSedlo().Item1;
-                int rezultatIgre = provjeraSedla.ProvjeriSedlo().Item2;
-                if (postojiSedlo)
-                {
-                    MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bool postojiSedlo = provjeraSedla.ProvjeriSedlo().Item1;
+                    int rezultatIgre = provjeraSedla.ProvjeriSedlo().Item2;
+                    if (postojiSedlo)
+                    {
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                        int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
+                        if (vrstaIgre == 0)
+                        {
+                            provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
+                            //simplex metoda 
+                            SimplexKalkulatorA smplxCalcMI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                            formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca);
+                            formaSimplexMetode.ShowDialog();
+                        }
+                        else if(vrstaIgre == 1)
+                        {
+                            SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci);
+
+                            formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca);
+                            formaSimplexMetode.ShowDialog();
+                        }
+                        else//kontradiktorna
+                        {
+                            SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+
+                            formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca);
+                            formaSimplexMetode.ShowDialog();
+                        }
+                    } 
                 }
-                else
+
+                else //igracB.Check == true;
                 {
-                    ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
-                    int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
-                    if (vrstaIgre == 0)
-                    {
-                        provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
-                        //simplex metoda 
-                        SimplexKalkulator smplxCalcMI = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
-                        formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca);
-                        formaSimplexMetode.ShowDialog();
-                    }
-                    else if(vrstaIgre == 1)
-                    {
-                        SimplexKalkulator smplxCalcPI = new SimplexKalkulator(provjeraSedla.uneseniPodaci);
-
-                        formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca);
-                        formaSimplexMetode.ShowDialog();
-                    }
-                    else//kontradiktorna
-                    {
-                        SimplexKalkulator smplxCalcKI = new SimplexKalkulator(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
-
-                        formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca);
-                        formaSimplexMetode.ShowDialog();
-                    }
-                }        
+                    //igracB.Check == true;
+                }
+       
             }
             catch
             {
@@ -112,44 +121,79 @@ namespace OI2GameTheory
         {
             try
             {
-                uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
+                if(rbIgracA.Checked == true)
+                {
+                    uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
-                //provjera postojanja sedla
-                Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+                    //provjera postojanja sedla
+                    Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
               
-                ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
-                IzgradnjaModela modelZadatka;
-                int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
+                    ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                    IzgradnjaModelaA modelZadatka;
+                    int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
 
-                if (vrstaIgre == 0)
-                {
-                    provjeraSedla.ukloniDominantneStrategije();
-                    modelZadatka = new IzgradnjaModela(provjeraSedla.uneseniPodaci);
+                    if (vrstaIgre == 0)
+                    {
+                        provjeraSedla.ukloniDominantneStrategije();
+                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci);
 
-                    FormaModela modelMI = new FormaModela(modelZadatka.DohvatiZapisModela());
-                    modelMI.ShowDialog();
+                        FormaModela modelMI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        modelMI.ShowDialog();
+                    }
+                    else if(vrstaIgre == 1)
+                    {
+                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, 0);
+
+                        FormaModela modelPI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        modelPI.ShowDialog();
+                    }
+                    else
+                    {
+                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci);
+
+                        FormaModela modelKI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        modelKI.ShowDialog();
+                    }
                 }
-                else if(vrstaIgre == 1)
+                else //igracB.Check == true;
                 {
-                    modelZadatka = new IzgradnjaModela(provjeraSedla.uneseniPodaci, 0);
+                    uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
-                    FormaModela modelPI = new FormaModela(modelZadatka.DohvatiZapisModela());
-                    modelPI.ShowDialog();
+                    //provjera postojanja sedla
+                    Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+
+                    ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                    IzgradnjaModelaB modelZadatka;
+                    int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
+
+                    if (vrstaIgre == 0)
+                    {
+                        provjeraSedla.ukloniDominantneStrategije();
+                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci);
+
+                        FormaModela modelMI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        modelMI.ShowDialog();
+                    }
+                    else if (vrstaIgre == 1)
+                    {
+                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, 0);
+
+                        FormaModela modelPI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        modelPI.ShowDialog();
+                    }
+                    else
+                    {
+                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci);
+
+                        FormaModela modelKI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        modelKI.ShowDialog();
+                    }
                 }
-                else
-                {
-                    modelZadatka = new IzgradnjaModela(provjeraSedla.uneseniPodaci);
-
-                    FormaModela modelKI = new FormaModela(modelZadatka.DohvatiZapisModela());
-                    modelKI.ShowDialog();
-                }
-
             }
             catch
             {
                 MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            
+            }      
         }
 
 

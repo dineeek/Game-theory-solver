@@ -7,7 +7,7 @@ using System.Data;
 
 namespace OI2GameTheory
 {
-    public class IzgradnjaModela
+    public class IzgradnjaModelaA
     {
         private SpremanjeUnosa upisaniPodaci;
         private int diferencija;
@@ -17,7 +17,7 @@ namespace OI2GameTheory
         private List<string> sveVarijableYCrtano = new List<string>();//y'
         private List<string> sveVarijableU = new List<string>();//u - dopunske varijable
 
-        public IzgradnjaModela(SpremanjeUnosa podaci)
+        public IzgradnjaModelaA(SpremanjeUnosa podaci)
         {
             upisaniPodaci = podaci;
             Sedlo s = new Sedlo(podaci);
@@ -29,7 +29,7 @@ namespace OI2GameTheory
             stvoriKanonskiOblik();
         }
 
-        public IzgradnjaModela(SpremanjeUnosa podaci, int dif)
+        public IzgradnjaModelaA(SpremanjeUnosa podaci, int dif)
         {
             upisaniPodaci = podaci;
             Sedlo s = new Sedlo(podaci);
@@ -153,7 +153,7 @@ namespace OI2GameTheory
         {
             zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "Ῡ = y'(i)/V'" + Environment.NewLine + Environment.NewLine;
 
-            zapisModela += "PROBLEM SA SUPSTITUCIJOM: " + Environment.NewLine + "Z = ";
+            zapisModela += "SUPSTITUIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
             for (int i = 1; i <= sveVarijableYB.Count; i++)
             {

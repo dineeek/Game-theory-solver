@@ -38,7 +38,11 @@
             this.dgvMatrica = new System.Windows.Forms.DataGridView();
             this.btnSimplex = new System.Windows.Forms.Button();
             this.btnModelZadatka = new System.Windows.Forms.Button();
+            this.gbOdabirIgraca = new System.Windows.Forms.GroupBox();
+            this.rbIgracA = new System.Windows.Forms.RadioButton();
+            this.rbIgracB = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrica)).BeginInit();
+            this.gbOdabirIgraca.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -46,7 +50,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(231, 353);
+            this.label1.Location = new System.Drawing.Point(231, 371);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 13);
             this.label1.TabIndex = 0;
@@ -98,9 +102,9 @@
             // 
             // btnGenerirajMatricu
             // 
-            this.btnGenerirajMatricu.Location = new System.Drawing.Point(254, 35);
+            this.btnGenerirajMatricu.Location = new System.Drawing.Point(253, 74);
             this.btnGenerirajMatricu.Name = "btnGenerirajMatricu";
-            this.btnGenerirajMatricu.Size = new System.Drawing.Size(116, 41);
+            this.btnGenerirajMatricu.Size = new System.Drawing.Size(117, 25);
             this.btnGenerirajMatricu.TabIndex = 5;
             this.btnGenerirajMatricu.Text = "Generiraj matricu";
             this.btnGenerirajMatricu.UseVisualStyleBackColor = true;
@@ -113,8 +117,9 @@
             this.dgvMatrica.AllowUserToResizeColumns = false;
             this.dgvMatrica.AllowUserToResizeRows = false;
             this.dgvMatrica.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMatrica.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvMatrica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatrica.Location = new System.Drawing.Point(15, 86);
+            this.dgvMatrica.Location = new System.Drawing.Point(15, 104);
             this.dgvMatrica.MultiSelect = false;
             this.dgvMatrica.Name = "dgvMatrica";
             this.dgvMatrica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -126,7 +131,7 @@
             // btnSimplex
             // 
             this.btnSimplex.Enabled = false;
-            this.btnSimplex.Location = new System.Drawing.Point(114, 348);
+            this.btnSimplex.Location = new System.Drawing.Point(114, 366);
             this.btnSimplex.Name = "btnSimplex";
             this.btnSimplex.Size = new System.Drawing.Size(93, 23);
             this.btnSimplex.TabIndex = 8;
@@ -137,7 +142,7 @@
             // btnModelZadatka
             // 
             this.btnModelZadatka.Enabled = false;
-            this.btnModelZadatka.Location = new System.Drawing.Point(15, 348);
+            this.btnModelZadatka.Location = new System.Drawing.Point(15, 366);
             this.btnModelZadatka.Name = "btnModelZadatka";
             this.btnModelZadatka.Size = new System.Drawing.Size(93, 23);
             this.btnModelZadatka.TabIndex = 7;
@@ -145,12 +150,47 @@
             this.btnModelZadatka.UseVisualStyleBackColor = true;
             this.btnModelZadatka.Click += new System.EventHandler(this.btnModelZadatka_Click);
             // 
+            // gbOdabirIgraca
+            // 
+            this.gbOdabirIgraca.BackColor = System.Drawing.Color.Transparent;
+            this.gbOdabirIgraca.Controls.Add(this.rbIgracB);
+            this.gbOdabirIgraca.Controls.Add(this.rbIgracA);
+            this.gbOdabirIgraca.Location = new System.Drawing.Point(253, 12);
+            this.gbOdabirIgraca.Name = "gbOdabirIgraca";
+            this.gbOdabirIgraca.Size = new System.Drawing.Size(117, 60);
+            this.gbOdabirIgraca.TabIndex = 9;
+            this.gbOdabirIgraca.TabStop = false;
+            this.gbOdabirIgraca.Text = "Simplex postupak";
+            // 
+            // rbIgracA
+            // 
+            this.rbIgracA.AutoSize = true;
+            this.rbIgracA.Checked = true;
+            this.rbIgracA.Location = new System.Drawing.Point(15, 20);
+            this.rbIgracA.Name = "rbIgracA";
+            this.rbIgracA.Size = new System.Drawing.Size(78, 17);
+            this.rbIgracA.TabIndex = 0;
+            this.rbIgracA.TabStop = true;
+            this.rbIgracA.Text = "za igrača A";
+            this.rbIgracA.UseVisualStyleBackColor = true;
+            // 
+            // rbIgracB
+            // 
+            this.rbIgracB.AutoSize = true;
+            this.rbIgracB.Location = new System.Drawing.Point(15, 37);
+            this.rbIgracB.Name = "rbIgracB";
+            this.rbIgracB.Size = new System.Drawing.Size(78, 17);
+            this.rbIgracB.TabIndex = 1;
+            this.rbIgracB.Text = "za igrača B";
+            this.rbIgracB.UseVisualStyleBackColor = true;
+            // 
             // PocetnaForma
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.poz;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(381, 375);
+            this.ClientSize = new System.Drawing.Size(385, 391);
+            this.Controls.Add(this.gbOdabirIgraca);
             this.Controls.Add(this.btnModelZadatka);
             this.Controls.Add(this.btnSimplex);
             this.Controls.Add(this.dgvMatrica);
@@ -168,6 +208,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Teorija igara";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrica)).EndInit();
+            this.gbOdabirIgraca.ResumeLayout(false);
+            this.gbOdabirIgraca.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +226,9 @@
         private System.Windows.Forms.DataGridView dgvMatrica;
         private System.Windows.Forms.Button btnSimplex;
         private System.Windows.Forms.Button btnModelZadatka;
+        private System.Windows.Forms.GroupBox gbOdabirIgraca;
+        private System.Windows.Forms.RadioButton rbIgracA;
+        private System.Windows.Forms.RadioButton rbIgracB;
     }
 }
 
