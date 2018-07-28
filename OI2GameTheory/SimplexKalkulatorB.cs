@@ -220,13 +220,13 @@ namespace OI2GameTheory
                     indexiPozStupacaZjCj.Add(i);
             }
 
-            if(indexiNegStupacaZjCj.Count > 0 && brojPozitivnihDj > 0)//uzmi max
+            if(brojPozitivnihDj > 0)//uzmi max
             {
                 List<double> vrijednostiDjReda = new List<double>();
                 List<int> indexiVrijednostiDjReda = new List<int>();
                 int brojac = 0;
                 double najveci = 0;
-                for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - 2; i++)
+                for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)
                 {
                     internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 2][i].ToString());
                     if (internHelp > 0)
@@ -261,7 +261,7 @@ namespace OI2GameTheory
                     List<double> vrijednostiZjCjRedka = new List<double>();
 
                     double najveci2 = 0;
-                    for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - 2; i++)
+                    for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)
                     {
                         internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 3][i].ToString());
 
@@ -272,12 +272,7 @@ namespace OI2GameTheory
                             nazivSupca = prethodnaSimplexTablica.Columns[i].ColumnName;
                         }
                     }
-                    //return (indexStupca, nazivSupca);
                 }
-                //else
-                //{
-                    //return (indexStupca, nazivSupca);
-                //}
             }
             
             
@@ -285,7 +280,7 @@ namespace OI2GameTheory
             {
                 //vratiti max pozitivni zjcj
                 double najveci2 = 0;
-                for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - 2; i++)
+                for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)
                 {
                     internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 3][i].ToString());
 
@@ -296,9 +291,8 @@ namespace OI2GameTheory
                         nazivSupca = prethodnaSimplexTablica.Columns[i].ColumnName;
                     }
                 }
-
-                //return (indexStupca, nazivSupca);
             }
+            //System.Windows.Forms.MessageBox.Show(indexStupca.ToString());
             return (indexStupca, nazivSupca);
         }
 
