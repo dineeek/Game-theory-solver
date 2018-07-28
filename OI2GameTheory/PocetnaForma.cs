@@ -62,8 +62,8 @@ namespace OI2GameTheory
 
         private void btnSimplex_Click(object sender, EventArgs e)
         {
-           try
-           {
+           //try
+           //{
                 if(rbIgracA.Checked == true)
                 {
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
@@ -108,14 +108,51 @@ namespace OI2GameTheory
 
                 else //igracB.Check == true;
                 {
-                    //igracB.Check == true;
+                    uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
+
+                    //provjera postojanja sedla
+                    Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+
+                    bool postojiSedlo = provjeraSedla.ProvjeriSedlo().Item1;
+                    int rezultatIgre = provjeraSedla.ProvjeriSedlo().Item2;
+                    if (postojiSedlo)
+                    {
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                        int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
+                        if (vrstaIgre == 0)
+                        {
+                            provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
+                            //simplex metoda 
+                            SimplexKalkulatorB smplxCalcMI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                            formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca);
+                            formaSimplexMetode.ShowDialog();
+                        }
+                        else if (vrstaIgre == 1)
+                        {
+                            SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci);
+
+                            formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca);
+                            formaSimplexMetode.ShowDialog();
+                        }
+                        else//kontradiktorna
+                        {
+                            SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+
+                            formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca);
+                            formaSimplexMetode.ShowDialog();
+                        }
+                    }
                 }
        
-            }
-            catch
-            {
+            //}
+            //catch
+            //{
                 MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }         
+            //}         
         }
         private void btnModelZadatka_Click(object sender, EventArgs e)
         {
