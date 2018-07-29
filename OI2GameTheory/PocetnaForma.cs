@@ -96,7 +96,7 @@ namespace OI2GameTheory
                             else
                             {
                                 //simplex metoda 
-                                SimplexKalkulatorB smplxCalcMI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                                SimplexKalkulatorA smplxCalcMI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
                                 formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca);
                                 formaSimplexMetode.ShowDialog();
                             }
@@ -129,7 +129,7 @@ namespace OI2GameTheory
                     int rezultatIgre = provjeraSedla.ProvjeriSedlo().Item2;
                     if (postojiSedlo)
                     {
-                        MessageBox.Show("Postoji sedlo nakon uklanjanja dominantnih strategija!\nVrijednost ove igre iznosi: " + rezultatIgre, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -147,7 +147,7 @@ namespace OI2GameTheory
                             int rezultatIgreIntern = provjeraSedla.ProvjeriSedlo().Item2;
                             if (postojiSedloIntern)
                             {
-                                MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgreIntern, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Postoji sedlo nakon uklanjanja dominantnih strategija!\nVrijednost ove igre iznosi: " + rezultatIgreIntern, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {

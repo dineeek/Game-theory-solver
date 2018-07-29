@@ -224,16 +224,27 @@ namespace OI2GameTheory
 
             double internHelp = 0;
             double[] rezultati = new double[prethodnaSimplexTablica.Rows.Count - 2];
+            double djeljenik = 0;
+            double djelitelj = 0;
+            List<double> odabraniRez = new List<double>();
 
-            for (int i = 0; i<prethodnaSimplexTablica.Rows.Count-2; i++)
+            for (int i = 0; i<prethodnaSimplexTablica.Rows.Count-2; i++) // djeljenik može biti negativan, djelitelj ne
             {
-                internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[i][indexStupca]);              
+                djeljenik = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]);
+                djelitelj = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][indexStupca]);
+
+                internHelp = (double) djeljenik/djelitelj;              
                 rezultati[i] = internHelp;
-                if(internHelp > 0)
+                if(djelitelj > 0)
+                {
+                    odabraniRez.Add(internHelp);
                     prethodnaSimplexTablica.Rows[i][prethodnaSimplexTablica.Columns.Count - 1] = Math.Round((double)internHelp, 6);
+                }
             }
             SimplexTablice.Merge(prethodnaSimplexTablica);
-            double najmanji = rezultati.Where(x => x > 0).Min();
+
+            //double najmanji = rezultati.Where(x => x > 0).Min();
+            double najmanji = odabraniRez.Min();
 
             int brojacIstihMin = 0;
             bool postojeIsteMinVrijednostiRez = false;
@@ -260,21 +271,23 @@ namespace OI2GameTheory
                 }
             }
 
-            double internHelp2=0;
+            //double internHelp2=0;
             double[] degeneracija;
-            int pomocniBrojac2 = 0;
-            if (postojeIsteMinVrijednostiRez)
+            //int pomocniBrojac2 = 0;
+            if (postojeIsteMinVrijednostiRez)// ISPRAVITI - AOK SE JAVI DEGENERACIJA ONDA SE NE GLEDAJU SAMO REDCI DI SU ISTI REZULTATI NEGO SVI
             {
                 for(int i=3; i<prethodnaSimplexTablica.Columns.Count-2; i++)//pomicanje po stupcima
                 {
                     degeneracija = new double[prethodnaSimplexTablica.Rows.Count - 2];
-                    pomocniBrojac2 = 0;
+                    //pomocniBrojac2 = 0;
                     if (i != indexStupca)//indexStupca je vodeci stupac
                     {
                         for (int j = 0; j < prethodnaSimplexTablica.Rows.Count - 2; j++)//pomicanje po redcima
                         {
+                            degeneracija[j] = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca]);
+                            /*
                             if ((pomocniBrojac2 == indexiIstihRezultata.Length))
-                                degeneracija[j] = Convert.ToDouble(-9999+j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
+                                degeneracija[j] = Convert.ToDouble(9999+j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
 
                             else if (j == indexiIstihRezultata[pomocniBrojac2])
                             {
@@ -284,19 +297,20 @@ namespace OI2GameTheory
                             }
 
                             else
-                                degeneracija[j] = Convert.ToDouble(-9999 + j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
+                                degeneracija[j] = Convert.ToDouble(9999 + j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
+                            */
                         }
 
                         //provjera dal postoji jednistveni max u degeneraciji
-                        bool postojiJednistveniMax = false;
+                        bool postojiJednistveniMin = false;
                         if (degeneracija.Length == degeneracija.Distinct().Count())
                         {
-                            postojiJednistveniMax = true;
+                            postojiJednistveniMin = true;
                         }
 
-                        if (postojiJednistveniMax)
+                        if (postojiJednistveniMin)
                         {
-                            double najveciRedak = degeneracija.Max();//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
+                            double najveciRedak = degeneracija.Min();//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
                             for (int d = 0; d < degeneracija.Length; d++)
                             {
                                 if (najveciRedak == degeneracija[d])
