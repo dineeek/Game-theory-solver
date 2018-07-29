@@ -25,6 +25,7 @@ namespace OI2GameTheory
         public List<int> indexiVodecihRedaka = new List<int>();
         public int brojRedaka;
         public int brojStupaca;
+        int test = 1;
 
         public SimplexKalkulatorA(SpremanjeUnosa podaci, int minDif)
         {
@@ -271,51 +272,64 @@ namespace OI2GameTheory
                 }
             }
 
-            //double internHelp2=0;
             double[] degeneracija;
-            //int pomocniBrojac2 = 0;
-            if (postojeIsteMinVrijednostiRez)// ISPRAVITI - AOK SE JAVI DEGENERACIJA ONDA SE NE GLEDAJU SAMO REDCI DI SU ISTI REZULTATI NEGO SVI
+            if (postojeIsteMinVrijednostiRez)
             {
                 for(int i=3; i<prethodnaSimplexTablica.Columns.Count-2; i++)//pomicanje po stupcima
                 {
-                    degeneracija = new double[prethodnaSimplexTablica.Rows.Count - 2];
-                    //pomocniBrojac2 = 0;
-                    if (i != indexStupca)//indexStupca je vodeci stupac
+                    degeneracija = new double[indexiIstihRezultata.Length];
+                    if (i != indexStupca)//indexStupca je vodeci stupac i njega preskačem
                     {
+                        for (int j = 0; j < indexiIstihRezultata.Length; j++)//pomicanje po redcima
+                        {
+                            //System.Windows.Forms.MessageBox.Show(indexiIstihRezultata[j].ToString());
+                            double djeljenikIntern = Convert.ToDouble(prethodnaSimplexTablica.Rows[indexiIstihRezultata[j]][i]);
+                            double djeliteljIntern = Convert.ToDouble(prethodnaSimplexTablica.Rows[indexiIstihRezultata[j]][indexStupca]);
+
+                            if (djeliteljIntern > 0)
+                                degeneracija[j] = (double)djeljenikIntern / djeliteljIntern;
+                            else
+                                degeneracija[j] = Convert.ToDouble(999999 + j);
+
+                        }
+
+                        /* za gledanje svih rezltata redaka, a ne samo onih koji su isti
                         for (int j = 0; j < prethodnaSimplexTablica.Rows.Count - 2; j++)//pomicanje po redcima
                         {
-                            degeneracija[j] = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca]);
-                            /*
-                            if ((pomocniBrojac2 == indexiIstihRezultata.Length))
-                                degeneracija[j] = Convert.ToDouble(9999+j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
+                            double djeljenikIntern = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i]);
+                            double djeliteljIntern = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca]);
 
-                            else if (j == indexiIstihRezultata[pomocniBrojac2])
-                            {
-                                internHelp2 = Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i]) / Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca]);
-                                degeneracija[j] = internHelp2;
-                                pomocniBrojac2++;
-                            }
-
+                            if(djeliteljIntern > 0)
+                                degeneracija[j] = (double) djeljenikIntern/djeliteljIntern;
                             else
-                                degeneracija[j] = Convert.ToDouble(9999 + j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
-                            */
+                                degeneracija[j] = Convert.ToDouble(999999 + j);
+                           
+                        }
+                        */
+                        double najmanjiDegene = degeneracija.Min();
+
+                        int brojacIstihUDeg = 0;
+                        bool postojiJednistveniMin = true;
+                        for (int d = 0; d < degeneracija.Length; d++)
+                        {
+                            if (najmanjiDegene == degeneracija[d])
+                                brojacIstihUDeg++;
                         }
 
-                        //provjera dal postoji jednistveni max u degeneraciji
-                        bool postojiJednistveniMin = false;
-                        if (degeneracija.Length == degeneracija.Distinct().Count())
+                        if (brojacIstihUDeg >= 2) // u slučaju da postoje isti koji nisu minimalni
                         {
-                            postojiJednistveniMin = true;
+                            postojiJednistveniMin = false;
                         }
+
 
                         if (postojiJednistveniMin)
                         {
-                            double najveciRedak = degeneracija.Min();//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
+                            double najmanjiRedak = degeneracija.Min();//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
                             for (int d = 0; d < degeneracija.Length; d++)
                             {
-                                if (najveciRedak == degeneracija[d])
+                                if (najmanjiRedak == degeneracija[d])
                                 {
-                                    indexReda = d;
+                                    indexReda = indexiIstihRezultata[d];
                                 }
                             }
                             //return indexReda;
@@ -433,7 +447,7 @@ namespace OI2GameTheory
                 prethodnaSimplexTablica = new DataTable();
                 prethodnaSimplexTablica = novaSimplexTablica.Copy();//da naslijedi strukturu samo
                 novaSimplexTablica = new DataTable();
-
+                test++;
                 pokreniSimplexPostupak();
             }
             else
@@ -457,10 +471,12 @@ namespace OI2GameTheory
                 KalkulatorZakljuckaA zakljucak = new KalkulatorZakljuckaA(novaSimplexTablica, podaciStrategija, diferencija);
                 Zakljucak = zakljucak.DohvatiZakljucak();
 
+                
                 //pretvaranje decimalni u razlomke
                 SimplexTabliceRazlomci = SimplexTablice.Copy();
                 SimplexTablice = new DataTable();
                 PretvoriURazlomke();
+                
             }
         }
 

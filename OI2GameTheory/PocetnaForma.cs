@@ -62,8 +62,8 @@ namespace OI2GameTheory
 
         private void btnSimplex_Click(object sender, EventArgs e)
         {
-           try
-           {
+           //try
+           //{
                 if(rbIgracA.Checked == true)
                 {
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
@@ -174,11 +174,11 @@ namespace OI2GameTheory
                     }
                 }
        
-            }
-            catch
-            {
-                MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }         
+            //}
+            //catch
+            //{
+               // MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}         
         }
         private void btnModelZadatka_Click(object sender, EventArgs e)
         {
