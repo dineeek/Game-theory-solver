@@ -274,7 +274,7 @@ namespace OI2GameTheory
                         for (int j = 0; j < prethodnaSimplexTablica.Rows.Count - 2; j++)//pomicanje po redcima
                         {
                             if ((pomocniBrojac2 == indexiIstihRezultata.Length))
-                                degeneracija[j] = Convert.ToDouble(9999+j);
+                                degeneracija[j] = Convert.ToDouble(-9999+j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
 
                             else if (j == indexiIstihRezultata[pomocniBrojac2])
                             {
@@ -284,7 +284,7 @@ namespace OI2GameTheory
                             }
 
                             else
-                                degeneracija[j] = Convert.ToDouble(9999 + j);
+                                degeneracija[j] = Convert.ToDouble(-9999 + j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
                         }
 
                         //provjera dal postoji jednistveni max u degeneraciji
@@ -296,7 +296,7 @@ namespace OI2GameTheory
 
                         if (postojiJednistveniMax)
                         {
-                            double najveciRedak = degeneracija.Min();
+                            double najveciRedak = degeneracija.Max();//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
                             for (int d = 0; d < degeneracija.Length; d++)
                             {
                                 if (najveciRedak == degeneracija[d])

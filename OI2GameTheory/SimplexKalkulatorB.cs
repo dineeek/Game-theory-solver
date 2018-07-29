@@ -183,14 +183,15 @@ namespace OI2GameTheory
             int indexStupca = 0;
             string nazivSupca = "";
 
-            List<int> indexiNegStupacaZjCj = new List<int>(); //KOD KALKULATOR A TAK ISTO NAPRAVITI!
+            List<int> indexiNegStupacaZjCj = new List<int>(); 
             List<int> indexiPozStupacaZjCj = new List<int>();
 
             int brojPozitivnihDj = 0;
             for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)//bez w varijabli
             {
                 double internHelp1 = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 2][i].ToString());
-                if (internHelp1 > 0)
+                
+                if (internHelp1 > 0.000001)
                 {
                     brojPozitivnihDj++;
                 }
@@ -201,7 +202,7 @@ namespace OI2GameTheory
             for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)//bez w varijabli
             {
                 double internHelp2 = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 3][i].ToString());
-                if (internHelp2 > 0)
+                if (internHelp2 > 0.000001)
                 {
                     brojPozitivnihZj++;
                 }
@@ -224,6 +225,7 @@ namespace OI2GameTheory
             {
                 List<double> vrijednostiDjReda = new List<double>();
                 List<int> indexiVrijednostiDjReda = new List<int>();
+                List<int> indexiVrijednostiZjReda = new List<int>();//indexi onih koji su najveci Dj za slučaj ak su isti
                 int brojac = 0;
                 double najveci = 0;
                 for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)
@@ -247,10 +249,15 @@ namespace OI2GameTheory
 
                 bool postojiIstaDjVrijednost = false;
                 int brojacIstihDjVrijednosti = 0;
+                int pomBrojac = 3;
                 foreach (var vrijednost in vrijednostiDjReda)
                 {
                     if (vrijednost == najveci)
+                    {
+                        indexiVrijednostiZjReda.Add(pomBrojac);
                         brojacIstihDjVrijednosti++;
+                    }
+                    pomBrojac++;
                 }
 
                 if (brojacIstihDjVrijednosti >= 2)
@@ -259,12 +266,10 @@ namespace OI2GameTheory
                 if (postojiIstaDjVrijednost) //max Zj koji je bliži nuli- tj max!!!!
                 {
                     List<double> vrijednostiZjCjRedka = new List<double>();
-
                     double najveci2 = 0;
-                    for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)
+                    for (int i = 3; i < indexiVrijednostiZjReda.Count; i++)
                     {
-                        internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 3][i].ToString());
-
+                        internHelp = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 3][indexiVrijednostiZjReda[i-3]].ToString());
                         if (najveci2 < internHelp)
                         {
                             najveci2 = internHelp;
@@ -292,7 +297,6 @@ namespace OI2GameTheory
                     }
                 }
             }
-            //System.Windows.Forms.MessageBox.Show(indexStupca.ToString());
             return (indexStupca, nazivSupca);
         }
 
@@ -352,7 +356,7 @@ namespace OI2GameTheory
                         for (int j = 0; j < prethodnaSimplexTablica.Rows.Count - 3; j++)//pomicanje po redcima
                         {
                             if ((pomocniBrojac2 == indexiIstihRezultata.Length))
-                                degeneracija[j] = Convert.ToDouble(9999+j);
+                                degeneracija[j] = Convert.ToDouble(-9999+j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
 
                             else if (j == indexiIstihRezultata[pomocniBrojac2])
                             {
@@ -362,19 +366,17 @@ namespace OI2GameTheory
                             }
 
                             else
-                                degeneracija[j] = Convert.ToDouble(9999 + j);
+                                degeneracija[j] = Convert.ToDouble(-9999 + j);//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
                         }
 
                         //provjera dal postoji jednistveni max u degeneraciji
                         bool postojiJednistveniMax = false;
                         if (degeneracija.Length == degeneracija.Distinct().Count())
-                        {
-                            postojiJednistveniMax = true;
-                        }
+                            postojiJednistveniMax = true;                      
 
                         if (postojiJednistveniMax)
                         {
-                            double najveciRedak = degeneracija.Min();
+                            double najveciRedak = degeneracija.Max();//PROMJENITI AKO NIJE DOBRA DEGENERACIJA TAK
                             for (int d = 0; d < degeneracija.Length; d++)
                             {
                                 if (najveciRedak == degeneracija[d])
@@ -487,7 +489,7 @@ namespace OI2GameTheory
             for (int i = 3; i < novaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)//bez w varijabli
             {
                 double internHelp = Convert.ToDouble(novaSimplexTablica.Rows[novaSimplexTablica.Rows.Count - 2][i].ToString());
-                if (internHelp > 0)
+                if (internHelp > 0.000001)
                 {
                     brojPozitivnihDj++;
                 }
@@ -498,7 +500,7 @@ namespace OI2GameTheory
             for (int i = 3; i < novaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)//bez w varijabli
             {
                 double internHelp = Convert.ToDouble(novaSimplexTablica.Rows[novaSimplexTablica.Rows.Count - 3][i].ToString());
-                if (internHelp > 0)
+                if (internHelp > 0.000001)
                 {
                     brojPozitivnihZj++;
                 }
@@ -521,22 +523,21 @@ namespace OI2GameTheory
             }
 
             
-            if (postojiWJos)//POPRAVAK!! 
+            if (postojiWJos || brojPozitivnihDj > 0 || brojPozitivnihZj > 0)//POPRAVAK!! 
             {
                 prethodnaSimplexTablica = novaSimplexTablica;
                 prethodnaSimplexTablica = new DataTable();
                 prethodnaSimplexTablica = novaSimplexTablica.Copy();//da naslijedi strukturu samo
                 novaSimplexTablica = new DataTable();
-
                 pokreniSimplexPostupak();
             }
+            /*
             else if (brojPozitivnihDj > 0)
             {
                 prethodnaSimplexTablica = novaSimplexTablica;
                 prethodnaSimplexTablica = new DataTable();
                 prethodnaSimplexTablica = novaSimplexTablica.Copy();//da naslijedi strukturu samo
                 novaSimplexTablica = new DataTable();
-
                 pokreniSimplexPostupak();
             }
             else if(brojPozitivnihZj > 0)
@@ -545,9 +546,9 @@ namespace OI2GameTheory
                 prethodnaSimplexTablica = new DataTable();
                 prethodnaSimplexTablica = novaSimplexTablica.Copy();//da naslijedi strukturu samo
                 novaSimplexTablica = new DataTable();
-
                 pokreniSimplexPostupak();
             }
+            */
             else
             {
                 //pisanje iteracija tako da je pregledno i jasnije
