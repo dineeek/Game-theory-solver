@@ -62,8 +62,8 @@ namespace OI2GameTheory
 
         private void btnSimplex_Click(object sender, EventArgs e)
         {
-           //try
-           //{
+           try
+           {
                 if(rbIgracA.Checked == true)
                 {
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
@@ -103,6 +103,7 @@ namespace OI2GameTheory
                         }
                         else if (vrstaIgre == 1)
                         {
+                            provjeraSedla.ukloniDuplikatneStrategije();
                             SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca);
@@ -110,6 +111,7 @@ namespace OI2GameTheory
                         }
                         else//kontradiktorna
                         {
+                            provjeraSedla.ukloniDuplikatneStrategije();
                             SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca);
@@ -159,6 +161,7 @@ namespace OI2GameTheory
                         }
                         else if (vrstaIgre == 1)
                         {
+                            provjeraSedla.ukloniDuplikatneStrategije();
                             SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca);
@@ -166,6 +169,7 @@ namespace OI2GameTheory
                         }
                         else//kontradiktorna
                         {
+                            provjeraSedla.ukloniDuplikatneStrategije();
                             SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca);
@@ -174,11 +178,11 @@ namespace OI2GameTheory
                     }
                 }
        
-            //}
-            //catch
-            //{
-               // MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}         
+            }
+            catch
+            {
+               MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }         
         }
         private void btnModelZadatka_Click(object sender, EventArgs e)
         {

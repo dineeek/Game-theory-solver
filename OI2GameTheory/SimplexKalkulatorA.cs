@@ -208,7 +208,7 @@ namespace OI2GameTheory
                     {
                         najvecaVrijednostStupca = vrijednostStupca;
                         indexStupca = indexiVrijSupca[i];
-                        nazivSupca = prethodnaSimplexTablica.Columns[i + 3].ColumnName;
+                        nazivSupca = prethodnaSimplexTablica.Columns[indexStupca].ColumnName;
                     }
                 }
                 return (indexStupca, nazivSupca);

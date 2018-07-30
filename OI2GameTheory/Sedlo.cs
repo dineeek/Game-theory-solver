@@ -94,12 +94,83 @@ namespace OI2GameTheory
             }
         }
 
+        private void ukloniDuplikateA()
+        {          
+            foreach (var strategijaPrva in uneseniPodaci.igracA.ToList())
+            {
+                int brojacStrategijaA = 0;
+                int internHelp = 0; // za pomoc kod uspoređivanja da se izbjegne uspoređivanje istih
+                foreach (var strategijaDruga in uneseniPodaci.igracA.ToList())
+                {
+                    if (strategijaDruga.DobitakGubitakStrategije.SequenceEqual(strategijaPrva.DobitakGubitakStrategije))
+                    {
+                        internHelp++;
+
+                        if(internHelp >= 2)
+                        {
+                            uneseniPodaci.igracA.Remove(strategijaDruga);
+
+                            foreach (var strategijaB in uneseniPodaci.igracB.ToList())
+                            {
+                                List<int> pomoc = strategijaB.DobitakGubitakStrategije.ToList();
+                                pomoc.RemoveAt(brojacStrategijaA); //brise one brojeve koji su gore uklonjeni
+                                strategijaB.DobitakGubitakStrategije = pomoc.ToArray();
+                            }
+                            brojacStrategijaA--;
+                        }
+                    }
+                    brojacStrategijaA++;
+                }
+            }
+        }
+
+        private void ukloniDuplikateB()
+        {
+            foreach (var strategijaPrva in uneseniPodaci.igracB.ToList())
+            {
+                int brojacStrategijaB = 0;
+                int internHelp = 0; // za pomoc kod uspoređivanja da se izbjegne uspoređivanje istih
+                foreach (var strategijaDruga in uneseniPodaci.igracB.ToList())
+                {
+                    if (strategijaDruga.DobitakGubitakStrategije.SequenceEqual(strategijaPrva.DobitakGubitakStrategije))
+                    {
+                        internHelp++;
+
+                        if (internHelp >= 2)
+                        {
+                            uneseniPodaci.igracB.Remove(strategijaDruga);
+
+                            foreach (var strategijaB in uneseniPodaci.igracA.ToList())
+                            {
+                                List<int> pomoc = strategijaB.DobitakGubitakStrategije.ToList();
+                                pomoc.RemoveAt(brojacStrategijaB); //brise one brojeve koji su gore uklonjeni
+                                strategijaB.DobitakGubitakStrategije = pomoc.ToArray();
+                            }
+                            brojacStrategijaB--;
+                        }
+                    }
+                    brojacStrategijaB++;
+                }
+            }
+        }
+
         public void ukloniDominantneStrategije()
         {
             for(int i=0; i<uneseniPodaci.igracA.Count+uneseniPodaci.igracB.Count; i++)
             {
+                ukloniDuplikateA();
                 ukloniDominantneIgracaA();
+                ukloniDuplikateB();
                 ukloniDominantneIgracaB();
+            }
+        }
+
+        public void ukloniDuplikatneStrategije()
+        {
+            for (int i = 0; i < uneseniPodaci.igracA.Count + uneseniPodaci.igracB.Count; i++)
+            {
+                ukloniDuplikateA();
+                ukloniDuplikateB();
             }
         }
     }

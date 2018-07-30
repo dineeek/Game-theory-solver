@@ -191,7 +191,7 @@ namespace OI2GameTheory
             {
                 double internHelp1 = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 2][i].ToString());
                 
-                if (internHelp1 > 0.01)//0.000001
+                if (internHelp1 > 0.001)//0.01 0.000001
                 {
                     brojPozitivnihDj++;
                 }
@@ -202,7 +202,7 @@ namespace OI2GameTheory
             for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)//bez w varijabli
             {
                 double internHelp2 = Convert.ToDouble(prethodnaSimplexTablica.Rows[prethodnaSimplexTablica.Rows.Count - 3][i].ToString());
-                if (internHelp2 > 0.01)
+                if (internHelp2 > 0.001)//0.01 0.000001
                 {
                     brojPozitivnihZj++;
                 }
@@ -507,7 +507,7 @@ namespace OI2GameTheory
             for (int i = 3; i < novaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)//bez w varijabli
             {
                 double internHelp = Convert.ToDouble(novaSimplexTablica.Rows[novaSimplexTablica.Rows.Count - 2][i].ToString());
-                if (internHelp > 0.01)//0.000001
+                if (internHelp > 0.001)////0.01 0.000001
                 {
                     brojPozitivnihDj++;
                 }
@@ -518,7 +518,7 @@ namespace OI2GameTheory
             for (int i = 3; i < novaSimplexTablica.Columns.Count - (podaciStrategija.igracB.Count + 2); i++)//bez w varijabli
             {
                 double internHelp = Convert.ToDouble(novaSimplexTablica.Rows[novaSimplexTablica.Rows.Count - 3][i].ToString());
-                if (internHelp > 0.01)//0.000001
+                if (internHelp > 0.001)////0.01 0.000001
                 {
                     brojPozitivnihZj++;
                 }
@@ -593,10 +593,14 @@ namespace OI2GameTheory
 
                     if (!praznaCelija)
                     {
+
                         if ((broj % 1) != 0)
                             SimplexTabliceRazlomci.Rows[j][i] = RealToFraction(broj, 0.0001).N + "/" + RealToFraction(broj, 0.0001).D;
-                        if (broj < 0.01)
-                            SimplexTabliceRazlomci.Rows[j][i] = 0;
+                        
+                        if(j == SimplexTabliceRazlomci.Rows.Count - 2)
+                            if ((broj < -0.0000000001) || (broj > 0.0000000001))
+                                SimplexTabliceRazlomci.Rows[j][i] = 0;
+                        
                     }
                 }
             }
