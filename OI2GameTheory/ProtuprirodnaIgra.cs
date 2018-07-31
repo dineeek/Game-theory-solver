@@ -67,7 +67,7 @@ namespace OI2GameTheory
             else
             {
                 int brojPozitivnihB = 0;
-                //igracA
+                //igracB
                 foreach (var strategija in uneseniPodaci.igracA)
                 {
                     bool sviPozitivniB = strategija.DobitakGubitakStrategije.All(x => x >= 0);

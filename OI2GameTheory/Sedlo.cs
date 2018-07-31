@@ -28,8 +28,8 @@ namespace OI2GameTheory
                 varijableB.Add("Y" + (i + 1) + "");
             }
         }
-        
-        public (bool, int, int) ProvjeriSedlo()
+
+        public Tuple<bool, int, int> ProvjeriSedlo()
         {
             bool postojiSedlo = false;
 
@@ -53,7 +53,7 @@ namespace OI2GameTheory
             if (maximumMinimuma == minimumMaximuma)
                 postojiSedlo = true;
 
-            return (postojiSedlo, maximumMinimuma, minimumiReda.Min());
+            return new Tuple<bool, int, int>(postojiSedlo, maximumMinimuma, minimumiReda.Min());
         }
 
         private void ukloniDominantneIgracaA()

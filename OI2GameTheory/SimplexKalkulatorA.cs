@@ -31,18 +31,10 @@ namespace OI2GameTheory
         {
             podaciStrategija = podaci;
 
-            diferencija = Math.Abs(minDif) + 1;
-            diferencirajPodatke();
-
-            stvoriPocetnuTablicu();
-            pokreniSimplexPostupak();
-        }
-
-        public SimplexKalkulatorA(SpremanjeUnosa podaci)
-        {
-            podaciStrategija = podaci;
-
-            diferencija = 0;
+            if (minDif < 0)
+                diferencija = Math.Abs(minDif) + 1;
+            else
+                diferencija = 0;
             diferencirajPodatke();
 
             stvoriPocetnuTablicu();

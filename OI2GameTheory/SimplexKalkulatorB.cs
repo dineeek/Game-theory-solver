@@ -37,17 +37,6 @@ namespace OI2GameTheory
             pokreniSimplexPostupak();
         }
 
-        public SimplexKalkulatorB(SpremanjeUnosa podaci)
-        {
-            podaciStrategija = podaci;
-
-            diferencija = 0;
-            diferencirajPodatke();
-
-            stvoriPocetnuTablicu();
-            pokreniSimplexPostupak();
-        }
-
         private void diferencirajPodatke()
         {
             foreach(var strategija in podaciStrategija.igracB.ToList())//ne mora se i kroz strategije igraca B ići

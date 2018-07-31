@@ -62,8 +62,8 @@ namespace OI2GameTheory
 
         private void btnSimplex_Click(object sender, EventArgs e)
         {
-           try
-           {
+           //try
+           //{
                 if(rbIgracA.Checked == true)
                 {
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
@@ -71,8 +71,10 @@ namespace OI2GameTheory
                     //provjera postojanja sedla
                     Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
 
-                    bool postojiSedlo = provjeraSedla.ProvjeriSedlo().Item1;
-                    int rezultatIgre = provjeraSedla.ProvjeriSedlo().Item2;
+                    Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
+                    bool postojiSedlo = postojanjeSedla.Item1;
+                    int rezultatIgre = postojanjeSedla.Item2;
+
                     if (postojiSedlo)
                     {
                         MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -93,7 +95,7 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeA += str+" ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
                             {
-                                ispisA += "Uklonjene dominantne (i/ili duplikatne) strategije: \nIgrača A: " + uklonjeneStrategijeA + "\n";
+                                ispisA += "Igrač A: " + uklonjeneStrategijeA + "\n";
                             }
 
                             string uklonjeneStrategijeB = "";
@@ -101,14 +103,16 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeB += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
                             {
-                                ispisA += "Igrača B: " + uklonjeneStrategijeB;
+                                ispisA += "Igrač B: " + uklonjeneStrategijeB;
                             }
 
                             if(!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show(ispisA);
+                                MessageBox.Show("Uklonjene dominantne(i/ili duplikatne) strategije: \n"+ispisA);
 
-                            bool postojiSedloIntern = provjeraSedla.ProvjeriSedlo().Item1;
-                            int rezultatIgreIntern = provjeraSedla.ProvjeriSedlo().Item2;
+                            Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
+                            bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
+                            int rezultatIgreIntern = postojanjeSedlaIntern.Item2;
+
                             if (postojiSedloIntern)
                             {
                                 MessageBox.Show("Postoji sedlo nakon uklanjanja dominantnih strategija!\nVrijednost ove igre iznosi: " + rezultatIgreIntern, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -116,7 +120,7 @@ namespace OI2GameTheory
                             else
                             {
                                 //simplex metoda 
-                                SimplexKalkulatorA smplxCalcMI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                                SimplexKalkulatorA smplxCalcMI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, postojanjeSedlaIntern.Item3); //šalju se strategije bez onih dominantnih
                                 formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca);
                                 formaSimplexMetode.ShowDialog();
                             }
@@ -131,7 +135,7 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeA += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
                             {
-                                ispisA += "Uklonjene duplikatne strategije: \nIgrača A: " + uklonjeneStrategijeA + "\n";
+                                ispisA += "Igrač A: " + uklonjeneStrategijeA + "\n";
                             }
 
                             string uklonjeneStrategijeB = "";
@@ -139,13 +143,13 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeB += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
                             {
-                                ispisA += "Igrača B: " + uklonjeneStrategijeB;
+                                ispisA += "Igrač B: " + uklonjeneStrategijeB;
                             }
 
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show(ispisA);
+                                MessageBox.Show("Uklonjene duplikatne strategije: \n"+ispisA);
 
-                            SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci);
+                            SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca);
                             formaSimplexMetode.ShowDialog();
@@ -160,7 +164,7 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeA += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
                             {
-                                ispisB += "Uklonjene duplikatne strategije: \nIgrača A: " + uklonjeneStrategijeA + "\n";
+                                ispisB += "Igrač A: " + uklonjeneStrategijeA + "\n";
                             }
 
                             string uklonjeneStrategijeB = "";
@@ -168,11 +172,11 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeB += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
                             {
-                                ispisB += "Igrača B: " + uklonjeneStrategijeB;
+                                ispisB += "Igrač B: " + uklonjeneStrategijeB;
                             }
 
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show(ispisB);
+                                MessageBox.Show("Uklonjene duplikatne strategije: \n"+ispisB);
 
                             SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -189,8 +193,10 @@ namespace OI2GameTheory
                     //provjera postojanja sedla
                     Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
 
-                    bool postojiSedlo = provjeraSedla.ProvjeriSedlo().Item1;
-                    int rezultatIgre = provjeraSedla.ProvjeriSedlo().Item2;
+                    Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
+                    bool postojiSedlo = postojanjeSedla.Item1;
+                    int rezultatIgre = postojanjeSedla.Item2;
+
                     if (postojiSedlo)
                     {
                         MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -211,7 +217,7 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeA += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
                             {
-                                ispisB += "Uklonjene dominantne (i/ili duplikatne) strategije: \nIgrača A: " + uklonjeneStrategijeA + "\n";
+                                ispisB += "Igrač A: " + uklonjeneStrategijeA + "\n";
                             }
 
                             string uklonjeneStrategijeB = "";
@@ -219,16 +225,18 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeB += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
                             {
-                                ispisB += "Igrača B: " + uklonjeneStrategijeB;
+                                ispisB += "Igrač B: " + uklonjeneStrategijeB;
                             }
 
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show(ispisB);
+                                MessageBox.Show("Uklonjene dominantne(i/ili duplikatne) strategije: \n"+ispisB);
 
                             Sedlo provjeraSedlaIntern = new Sedlo(provjeraSedla.uneseniPodaci);
 
-                            bool postojiSedloIntern = provjeraSedla.ProvjeriSedlo().Item1;
-                            int rezultatIgreIntern = provjeraSedla.ProvjeriSedlo().Item2;
+                            Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
+                            bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
+                            int rezultatIgreIntern = postojanjeSedlaIntern.Item2;
+
                             if (postojiSedloIntern)
                             {
                                 MessageBox.Show("Postoji sedlo nakon uklanjanja dominantnih strategija!\nVrijednost ove igre iznosi: " + rezultatIgreIntern, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -236,7 +244,7 @@ namespace OI2GameTheory
                             else
                             {
                                 //simplex metoda 
-                                SimplexKalkulatorB smplxCalcMI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3); //šalju se strategije bez onih dominantnih
+                                SimplexKalkulatorB smplxCalcMI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, postojanjeSedlaIntern.Item3); //šalju se strategije bez onih dominantnih
                                 formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca);
                                 formaSimplexMetode.ShowDialog();
                             }
@@ -251,7 +259,7 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeA += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
                             {
-                                ispisB += "Uklonjene duplikatne strategije: \nIgrača A: " + uklonjeneStrategijeA + "\n";
+                                ispisB += "Igrač A: " + uklonjeneStrategijeA + "\n";
                             }
 
                             string uklonjeneStrategijeB = "";
@@ -259,13 +267,13 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeB += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
                             {
-                                ispisB += "Igrača B: " + uklonjeneStrategijeB;
+                                ispisB += "Igrač B: " + uklonjeneStrategijeB;
                             }
 
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show(ispisB);
+                                MessageBox.Show("Uklonjene duplikatne strategije: \n"+ ispisB);
 
-                            SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci);
+                            SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca);
                             formaSimplexMetode.ShowDialog();
@@ -280,7 +288,7 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeA += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
                             {
-                                ispisB += "Uklonjene duplikatne strategije: \nIgrača A: " + uklonjeneStrategijeA + "\n";
+                                ispisB += "Igrač A: " + uklonjeneStrategijeA + "\n";
                             }
 
                             string uklonjeneStrategijeB = "";
@@ -288,11 +296,11 @@ namespace OI2GameTheory
                                 uklonjeneStrategijeB += str + " ";
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
                             {
-                                ispisB += "Igrača B: " + uklonjeneStrategijeB;
+                                ispisB += "Igrač B: " + uklonjeneStrategijeB;
                             }
 
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show(ispisB);
+                                MessageBox.Show("Uklonjene duplikatne strategije: \n"+ispisB);
 
                             SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -302,11 +310,11 @@ namespace OI2GameTheory
                     }
                 }
        
-            }
-            catch
-            {
-               MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }         
+            //}
+            //catch
+            //{
+               //MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}         
         }
         private void btnModelZadatka_Click(object sender, EventArgs e)
         {
