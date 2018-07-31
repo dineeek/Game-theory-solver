@@ -9,10 +9,24 @@ namespace OI2GameTheory
     public class Sedlo
     {
         public SpremanjeUnosa uneseniPodaci;
+        public List<string> varijableA = new List<string>();
+        public List<string> varijableB = new List<string>();
+        public List<string> varijableAInverted = new List<string>();
+        public List<string> varijableBInverted = new List<string>();
 
         public Sedlo(SpremanjeUnosa podaci)
         {
             uneseniPodaci = podaci;
+
+            for (int i = 0; i < uneseniPodaci.igracA.Count; i++)
+            {
+                varijableA.Add("X" + (i + 1) + "");
+            }
+ 
+            for (int i = 0; i < uneseniPodaci.igracB.Count; i++)
+            {
+                varijableB.Add("Y" + (i + 1) + "");
+            }
         }
         
         public (bool, int, int) ProvjeriSedlo()
@@ -54,6 +68,9 @@ namespace OI2GameTheory
                 {
                     uneseniPodaci.igracA.Remove(strategija);
 
+                    varijableAInverted.Add(varijableA[brojacStrategijaA]);
+                    varijableA.RemoveAt(brojacStrategijaA);
+
                     //brisanje kod igracaB
                     foreach (var strategijaB in uneseniPodaci.igracB.ToList())
                     {
@@ -80,6 +97,9 @@ namespace OI2GameTheory
                 if (sviPozitivni)
                 {
                     uneseniPodaci.igracB.Remove(strategija);
+
+                    varijableBInverted.Add(varijableB[brojacStrategijaB]);
+                    varijableB.RemoveAt(brojacStrategijaB);
 
                     //brisanje kod igracaA
                     foreach (var strategijA in uneseniPodaci.igracA.ToList())
@@ -110,6 +130,9 @@ namespace OI2GameTheory
                         {
                             uneseniPodaci.igracA.Remove(strategijaDruga);
 
+                            varijableAInverted.Add(varijableA[brojacStrategijaA]);
+                            varijableA.RemoveAt(brojacStrategijaA);
+
                             foreach (var strategijaB in uneseniPodaci.igracB.ToList())
                             {
                                 List<int> pomoc = strategijaB.DobitakGubitakStrategije.ToList();
@@ -139,6 +162,9 @@ namespace OI2GameTheory
                         if (internHelp >= 2)
                         {
                             uneseniPodaci.igracB.Remove(strategijaDruga);
+
+                            varijableBInverted.Add(varijableB[brojacStrategijaB]);
+                            varijableB.RemoveAt(brojacStrategijaB);
 
                             foreach (var strategijaB in uneseniPodaci.igracA.ToList())
                             {
