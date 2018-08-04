@@ -17,23 +17,15 @@ namespace OI2GameTheory
         private List<string> sveVarijableYCrtano = new List<string>();//y'
         private List<string> sveVarijableU = new List<string>();//u - dopunske varijable
 
-        public IzgradnjaModelaA(SpremanjeUnosa podaci)
+        public IzgradnjaModelaA(SpremanjeUnosa podaci, int minDif)
         {
             upisaniPodaci = podaci;
-            Sedlo s = new Sedlo(podaci);
-            diferencija = Math.Abs(s.ProvjeriSedlo().Item3)+1;
+            //Sedlo s = new Sedlo(podaci);
 
-            stvoriOriginalniOblik();
-            stvoriDiferenciraniOblik();
-            supstituiraj();
-            stvoriKanonskiOblik();
-        }
-
-        public IzgradnjaModelaA(SpremanjeUnosa podaci, int dif)
-        {
-            upisaniPodaci = podaci;
-            Sedlo s = new Sedlo(podaci);
-            diferencija = 0;
+            if (minDif < 0)
+                diferencija = Math.Abs(minDif) + 1;
+            else
+                diferencija = 0;
 
             stvoriOriginalniOblik();
             stvoriDiferenciraniOblik();

@@ -62,8 +62,8 @@ namespace OI2GameTheory
 
         private void btnSimplex_Click(object sender, EventArgs e)
         {
-           //try
-           //{
+           try
+           {
                 if(rbIgracA.Checked == true)
                 {
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
@@ -310,11 +310,11 @@ namespace OI2GameTheory
                     }
                 }
        
-            //}
-            //catch
-            //{
-               //MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}         
+            }
+            catch
+            {
+               MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }         
         }
         private void btnModelZadatka_Click(object sender, EventArgs e)
         {
@@ -334,21 +334,23 @@ namespace OI2GameTheory
                     if (vrstaIgre == 0)
                     {
                         provjeraSedla.ukloniDominantneStrategije();
-                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci);
+                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelMI = new FormaModela(modelZadatka.DohvatiZapisModela());
                         modelMI.ShowDialog();
                     }
                     else if(vrstaIgre == 1)
                     {
-                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, 0);
+                        provjeraSedla.ukloniDuplikatneStrategije();
+                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelPI = new FormaModela(modelZadatka.DohvatiZapisModela());
                         modelPI.ShowDialog();
                     }
                     else
                     {
-                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci);
+                        provjeraSedla.ukloniDuplikatneStrategije();
+                        modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelKI = new FormaModela(modelZadatka.DohvatiZapisModela());
                         modelKI.ShowDialog();
@@ -368,21 +370,23 @@ namespace OI2GameTheory
                     if (vrstaIgre == 0)
                     {
                         provjeraSedla.ukloniDominantneStrategije();
-                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci);
+                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelMI = new FormaModela(modelZadatka.DohvatiZapisModela());
                         modelMI.ShowDialog();
                     }
                     else if (vrstaIgre == 1)
                     {
-                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, 0);
+                        provjeraSedla.ukloniDuplikatneStrategije();
+                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelPI = new FormaModela(modelZadatka.DohvatiZapisModela());
                         modelPI.ShowDialog();
                     }
                     else
                     {
-                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci);
+                        provjeraSedla.ukloniDuplikatneStrategije();
+                        modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelKI = new FormaModela(modelZadatka.DohvatiZapisModela());
                         modelKI.ShowDialog();

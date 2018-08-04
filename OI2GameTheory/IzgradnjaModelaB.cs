@@ -18,23 +18,14 @@ namespace OI2GameTheory
         private List<string> sveVarijableU = new List<string>();//u - dopunske varijable - ovise o broju jednadzbi B
         private List<string> sveVarijableW = new List<string>();//w - artificijalne - ima ih isto kolko i u
 
-        public IzgradnjaModelaB(SpremanjeUnosa podaci)
+        public IzgradnjaModelaB(SpremanjeUnosa podaci, int minDif)
         {
             upisaniPodaci = podaci;
-            Sedlo s = new Sedlo(podaci);
-            diferencija = Math.Abs(s.ProvjeriSedlo().Item3)+1;
 
-            stvoriOriginalniOblik();
-            stvoriDiferenciraniOblik();
-            supstituiraj();
-            stvoriKanonskiOblik();
-        }
-
-        public IzgradnjaModelaB(SpremanjeUnosa podaci, int dif)
-        {
-            upisaniPodaci = podaci;
-            Sedlo s = new Sedlo(podaci);
-            diferencija = 0;
+            if (minDif < 0)
+                diferencija = Math.Abs(minDif) + 1;
+            else
+                diferencija = 0;
 
             stvoriOriginalniOblik();
             stvoriDiferenciraniOblik();
