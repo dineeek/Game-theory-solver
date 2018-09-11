@@ -417,7 +417,7 @@ namespace OI2GameTheory
                             else
                                 rezultat = internHelp.ToString();
 
-                            postupakIzracuna += broj1Razlomak + " - " + broj2Razlomak + " * " + broj3Razlomak +" = "+ rezultat + Environment.NewLine + Environment.NewLine; 
+                            postupakIzracuna += broj1Razlomak + " - (" + broj2Razlomak + " * " + broj3Razlomak +") = "+ rezultat + Environment.NewLine + Environment.NewLine; 
                         }
                     }
                 }

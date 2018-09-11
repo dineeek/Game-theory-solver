@@ -92,6 +92,7 @@
             // 
             // btnIzracun
             // 
+            this.btnIzracun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIzracun.Location = new System.Drawing.Point(1139, 579);
             this.btnIzracun.Name = "btnIzracun";
             this.btnIzracun.Size = new System.Drawing.Size(99, 23);

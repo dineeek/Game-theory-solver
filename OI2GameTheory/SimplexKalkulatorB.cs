@@ -455,10 +455,15 @@ namespace OI2GameTheory
                             //broj1 - (broj2/stozerni) * broj3 = internHelp - ISPIS POSTUPKA
                             double broj1 = (double)(Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i].ToString()));
                             double broj2 = (double)(Convert.ToDouble(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / (double)stozerniElement);
-                            double broj3 = (double)Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString());
+                            double broj3 = (double)Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString());                         
 
                             double internHelp = broj1 - (broj2 * broj3);
                             novaSimplexTablica.Rows[j][i] = Math.Round((double)internHelp, 6);
+
+                            if ((internHelp < -0.0000000001) || (internHelp < 0.0000000001))
+                            {
+                                internHelp = 0;
+                            }
 
                             string broj1Razlomak;
                             string broj2Razlomak;
@@ -471,21 +476,21 @@ namespace OI2GameTheory
                                 broj1Razlomak = broj1.ToString();
 
                             if ((broj2 % 1) != 0)
-                                broj2Razlomak = RealToFraction(broj2, 0.0001).N + "/" + RealToFraction(broj2, 0.0001).D;
+                               broj2Razlomak = RealToFraction(broj2, 0.0001).N + "/" + RealToFraction(broj2, 0.0001).D;
                             else
-                                broj2Razlomak = broj2.ToString();
+                               broj2Razlomak = broj2.ToString();
 
                             if ((broj3 % 1) != 0)
-                                broj3Razlomak = RealToFraction(broj3, 0.0001).N + "/" + RealToFraction(broj3, 0.0001).D;
+                               broj3Razlomak = RealToFraction(broj3, 0.0001).N + "/" + RealToFraction(broj3, 0.0001).D;
                             else
-                                broj3Razlomak = broj3.ToString();
-
+                               broj3Razlomak = broj3.ToString();
+                          
                             if ((internHelp % 1) != 0)
                                 rezultat = RealToFraction(internHelp, 0.0001).N + "/" + RealToFraction(internHelp, 0.0001).D;
                             else
                                 rezultat = internHelp.ToString();
 
-                            postupakIzracuna += broj1Razlomak + " - " + broj2Razlomak + " * " + broj3Razlomak + " = " + rezultat + Environment.NewLine + Environment.NewLine;
+                            postupakIzracuna += broj1Razlomak + " - (" + broj2Razlomak + " * " + broj3Razlomak + ") = " + rezultat + Environment.NewLine + Environment.NewLine;
                             
                         }
                     }
@@ -639,7 +644,7 @@ namespace OI2GameTheory
                             SimplexTabliceRazlomci.Rows[j][i] = RealToFraction(broj, 0.0001).N + "/" + RealToFraction(broj, 0.0001).D;
                         
                         if(j == SimplexTabliceRazlomci.Rows.Count - 2)
-                            if ((broj < -0.0000000001) || (broj > 0.0000000001))
+                            if ((broj < -0.0000000001) || (broj < 0.0000000001))
                                 SimplexTabliceRazlomci.Rows[j][i] = 0;
                         
                     }
