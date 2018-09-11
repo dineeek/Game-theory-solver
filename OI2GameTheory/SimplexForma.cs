@@ -17,8 +17,9 @@ namespace OI2GameTheory
         private List<int> indexiVodecihRedaka;
         private int brojRedaka1Tablice;
         private int brojStupaca1Tablice;
+        private string postupakIzracuna;
 
-        public SimplexForma(DataTable simplexica, string zakljucak, List<int> stupci, List<int> redci, int brojRed, int brojStup)
+        public SimplexForma(DataTable simplexica, string zakljucak, List<int> stupci, List<int> redci, int brojRed, int brojStup, string postupak)
         {
             InitializeComponent();
             simplexTablica = simplexica;
@@ -28,6 +29,7 @@ namespace OI2GameTheory
             indexiVodecihRedaka = redci;
             brojRedaka1Tablice = brojRed;
             brojStupaca1Tablice = brojStup;
+            postupakIzracuna = postupak;
         }
 
         private void SimplexForma_Load(object sender, EventArgs e)
@@ -107,6 +109,12 @@ namespace OI2GameTheory
             {
                 stupac.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+        }
+
+        private void btnIzracun_Click(object sender, EventArgs e)
+        {
+            FormaIzracuna frmIzracun = new FormaIzracuna(postupakIzracuna);
+            frmIzracun.ShowDialog();
         }
     }
 }

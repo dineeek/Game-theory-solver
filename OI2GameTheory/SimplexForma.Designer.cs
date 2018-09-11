@@ -33,6 +33,7 @@
             this.txtRjesenje = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnIzracun = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimplexTablica)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,6 +90,16 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Rješenje zadatka: ";
             // 
+            // btnIzracun
+            // 
+            this.btnIzracun.Location = new System.Drawing.Point(1139, 579);
+            this.btnIzracun.Name = "btnIzracun";
+            this.btnIzracun.Size = new System.Drawing.Size(99, 23);
+            this.btnIzracun.TabIndex = 4;
+            this.btnIzracun.Text = "Prikaz izračuna";
+            this.btnIzracun.UseVisualStyleBackColor = true;
+            this.btnIzracun.Click += new System.EventHandler(this.btnIzracun_Click);
+            // 
             // SimplexForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -96,6 +107,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1251, 700);
+            this.Controls.Add(this.btnIzracun);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRjesenje);
@@ -119,5 +131,6 @@
         private System.Windows.Forms.TextBox txtRjesenje;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnIzracun;
     }
 }

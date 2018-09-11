@@ -25,7 +25,7 @@ namespace OI2GameTheory
         public List<int> indexiVodecihRedaka = new List<int>();
         public int brojRedaka;
         public int brojStupaca;
-        int test = 1;
+        public string postupakIzracuna;
 
         public SimplexKalkulatorA(SpremanjeUnosa podaci, int minDif)
         {
@@ -367,24 +367,65 @@ namespace OI2GameTheory
             }
         }
 
+        //TU DODATI ZA PRIKAZ IZRAČUNA
         private void simplexAlgoritam(int indexStupca, int indexRedka, double stozerniElement)
         {
             //od index 2 do count-2
             for (int i = 2; i < novaSimplexTablica.Columns.Count - 1; i++)//stupci
             {
+                postupakIzracuna += novaSimplexTablica.Columns[i].ColumnName + Environment.NewLine + Environment.NewLine;
+
                 if(i != indexStupca)
                 {
                     for (int j = 0; j < novaSimplexTablica.Rows.Count - 1; j++)//redci
                     {
                         if(j != indexRedka)
                         {
-                            double internHelp = (double) (Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i].ToString()) - ((double)((double)(Convert.ToDouble(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / (double) stozerniElement) * Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString()))));
+                            //double internHelp = (double) (Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i].ToString()) - ((double)((double)(Convert.ToDouble(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / (double) stozerniElement) * Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString()))));
+                            //novaSimplexTablica.Rows[j][i] = Math.Round((double)internHelp, 6);
+
+                            //broj1 - (broj2/stozerni) * broj3 = internHelp - ISPIS POSTUPKA
+                            double broj1 = (double)(Convert.ToDouble(prethodnaSimplexTablica.Rows[j][i].ToString()));
+                            double broj2 = (double)(Convert.ToDouble(prethodnaSimplexTablica.Rows[indexRedka][i].ToString()) / (double)stozerniElement);
+                            double broj3 = (double) Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString());
+
+                            double internHelp = broj1 - (broj2 * broj3);
                             novaSimplexTablica.Rows[j][i] = Math.Round((double)internHelp, 6);
+
+                            string broj1Razlomak;
+                            string broj2Razlomak;
+                            string broj3Razlomak;
+                            string rezultat;
+
+                            if ((broj1 % 1) != 0)
+                                broj1Razlomak = RealToFraction(broj1, 0.0001).N + "/" + RealToFraction(broj1, 0.0001).D;
+                            else
+                                broj1Razlomak = broj1.ToString();
+
+                            if ((broj2 % 1) != 0)
+                                broj2Razlomak = RealToFraction(broj2, 0.0001).N + "/" + RealToFraction(broj2, 0.0001).D;
+                            else
+                                broj2Razlomak = broj2.ToString();
+
+                            if ((broj3 % 1) != 0)
+                                broj3Razlomak = RealToFraction(broj3, 0.0001).N + "/" + RealToFraction(broj3, 0.0001).D;
+                            else
+                                broj3Razlomak = broj3.ToString();
+
+                            if ((internHelp % 1) != 0)
+                                rezultat = RealToFraction(internHelp, 0.0001).N + "/" + RealToFraction(internHelp, 0.0001).D;
+                            else
+                                rezultat = internHelp.ToString();
+
+                            postupakIzracuna += broj1Razlomak + " - " + broj2Razlomak + " * " + broj3Razlomak +" = "+ rezultat + Environment.NewLine + Environment.NewLine; 
                         }
                     }
                 }
             }
         }
+
+        int brojIteracija = 2;
+        int help = 1;
         private void pokreniSimplexPostupak()
         {
             brojRedaka = prethodnaSimplexTablica.Rows.Count;
@@ -418,6 +459,12 @@ namespace OI2GameTheory
 
             izracunajElementeVodecegRedka(indexStupca, indexRedka, stozerniElement, nazivVodecegStupca);
 
+            if (help == 1) // za prikaz postupka izracunavanja 
+            {
+                postupakIzracuna += "--------------------1. ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;
+                help++;
+            }
+
             simplexAlgoritam(indexStupca, indexRedka, stozerniElement);
 
             SimplexTablice.Merge(novaSimplexTablica); //prije if-a obavezno
@@ -439,7 +486,10 @@ namespace OI2GameTheory
                 prethodnaSimplexTablica = new DataTable();
                 prethodnaSimplexTablica = novaSimplexTablica.Copy();//da naslijedi strukturu samo
                 novaSimplexTablica = new DataTable();
-                test++;
+
+                postupakIzracuna += "--------------------" + brojIteracija + ". ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;
+                brojIteracija++;
+
                 pokreniSimplexPostupak();
             }
             else

@@ -20,7 +20,6 @@ namespace OI2GameTheory
         public IzgradnjaModelaA(SpremanjeUnosa podaci, int minDif)
         {
             upisaniPodaci = podaci;
-            //Sedlo s = new Sedlo(podaci);
 
             if (minDif < 0)
                 diferencija = Math.Abs(minDif) + 1;
