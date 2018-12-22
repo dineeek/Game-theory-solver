@@ -8,7 +8,7 @@ using System.Data.Common;
 
 namespace OI2GameTheory
 {
-    public class SimplexKalkulatorB // standardi problem LP za maximum - za igracA
+    public class SimplexKalkulatorB // standardi problem LP za minimum- za igracB
     {
         private SpremanjeUnosa podaciStrategija;
         private int diferencija;

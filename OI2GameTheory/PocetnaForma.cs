@@ -53,6 +53,9 @@ namespace OI2GameTheory
                 }
             }
 
+            //isključena modifikacija prvog stupca
+            dgvMatrica.Columns[0].ReadOnly = true;
+
             foreach (DataGridViewColumn stupac in dgvMatrica.Columns)
             {
                 stupac.SortMode = DataGridViewColumnSortMode.NotSortable;
