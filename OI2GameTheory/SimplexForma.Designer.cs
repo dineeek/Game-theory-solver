@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimplexForma));
             this.dgvSimplexTablica = new System.Windows.Forms.DataGridView();
             this.txtRjesenje = new System.Windows.Forms.TextBox();
@@ -47,6 +48,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSimplexTablica.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSimplexTablica.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSimplexTablica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSimplexTablica.Location = new System.Drawing.Point(12, 26);
             this.dgvSimplexTablica.Name = "dgvSimplexTablica";
@@ -93,12 +102,13 @@
             // btnIzracun
             // 
             this.btnIzracun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIzracun.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnIzracun.Location = new System.Drawing.Point(1139, 579);
             this.btnIzracun.Name = "btnIzracun";
             this.btnIzracun.Size = new System.Drawing.Size(99, 23);
             this.btnIzracun.TabIndex = 4;
             this.btnIzracun.Text = "Prikaz izračuna";
-            this.btnIzracun.UseVisualStyleBackColor = true;
+            this.btnIzracun.UseVisualStyleBackColor = false;
             this.btnIzracun.Click += new System.EventHandler(this.btnIzracun_Click);
             // 
             // SimplexForma

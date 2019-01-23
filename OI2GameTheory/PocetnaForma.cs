@@ -110,7 +110,7 @@ namespace OI2GameTheory
                             }
 
                             if(!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show("Uklonjene dominantne(i/ili duplikatne) strategije: \n"+ispisA);
+                                MessageBox.Show("Uklonjene dominantne (i/ili duplikatne) strategije: \n"+ispisA);
 
                             Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
                             bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
@@ -232,7 +232,7 @@ namespace OI2GameTheory
                             }
 
                             if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show("Uklonjene dominantne(i/ili duplikatne) strategije: \n"+ispisB);
+                                MessageBox.Show("Uklonjene dominantne (i/ili duplikatne) strategije: \n"+ispisB);
 
                             Sedlo provjeraSedlaIntern = new Sedlo(provjeraSedla.uneseniPodaci);
 

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PocetnaForma));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,8 +41,8 @@
             this.btnSimplex = new System.Windows.Forms.Button();
             this.btnModelZadatka = new System.Windows.Forms.Button();
             this.gbOdabirIgraca = new System.Windows.Forms.GroupBox();
-            this.rbIgracA = new System.Windows.Forms.RadioButton();
             this.rbIgracB = new System.Windows.Forms.RadioButton();
+            this.rbIgracA = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrica)).BeginInit();
             this.gbOdabirIgraca.SuspendLayout();
             this.SuspendLayout();
@@ -102,12 +104,13 @@
             // 
             // btnGenerirajMatricu
             // 
+            this.btnGenerirajMatricu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnGenerirajMatricu.Location = new System.Drawing.Point(253, 74);
             this.btnGenerirajMatricu.Name = "btnGenerirajMatricu";
             this.btnGenerirajMatricu.Size = new System.Drawing.Size(117, 25);
             this.btnGenerirajMatricu.TabIndex = 5;
             this.btnGenerirajMatricu.Text = "Generiraj matricu";
-            this.btnGenerirajMatricu.UseVisualStyleBackColor = true;
+            this.btnGenerirajMatricu.UseVisualStyleBackColor = false;
             this.btnGenerirajMatricu.Click += new System.EventHandler(this.btnGenerirajMatricu_Click);
             // 
             // dgvMatrica
@@ -118,11 +121,23 @@
             this.dgvMatrica.AllowUserToResizeRows = false;
             this.dgvMatrica.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMatrica.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMatrica.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMatrica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMatrica.Location = new System.Drawing.Point(15, 104);
             this.dgvMatrica.MultiSelect = false;
             this.dgvMatrica.Name = "dgvMatrica";
-            this.dgvMatrica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvMatrica.RowHeadersVisible = false;
+            this.dgvMatrica.RowHeadersWidth = 10;
+            this.dgvMatrica.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvMatrica.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMatrica.Size = new System.Drawing.Size(355, 259);
             this.dgvMatrica.TabIndex = 6;
             this.dgvMatrica.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvMatrica_DataError);
@@ -130,24 +145,26 @@
             // 
             // btnSimplex
             // 
+            this.btnSimplex.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSimplex.Enabled = false;
             this.btnSimplex.Location = new System.Drawing.Point(114, 366);
             this.btnSimplex.Name = "btnSimplex";
             this.btnSimplex.Size = new System.Drawing.Size(93, 23);
             this.btnSimplex.TabIndex = 8;
             this.btnSimplex.Text = "Simplex metoda";
-            this.btnSimplex.UseVisualStyleBackColor = true;
+            this.btnSimplex.UseVisualStyleBackColor = false;
             this.btnSimplex.Click += new System.EventHandler(this.btnSimplex_Click);
             // 
             // btnModelZadatka
             // 
+            this.btnModelZadatka.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnModelZadatka.Enabled = false;
             this.btnModelZadatka.Location = new System.Drawing.Point(15, 366);
             this.btnModelZadatka.Name = "btnModelZadatka";
             this.btnModelZadatka.Size = new System.Drawing.Size(93, 23);
             this.btnModelZadatka.TabIndex = 7;
             this.btnModelZadatka.Text = "Model zadatka";
-            this.btnModelZadatka.UseVisualStyleBackColor = true;
+            this.btnModelZadatka.UseVisualStyleBackColor = false;
             this.btnModelZadatka.Click += new System.EventHandler(this.btnModelZadatka_Click);
             // 
             // gbOdabirIgraca
@@ -162,6 +179,16 @@
             this.gbOdabirIgraca.TabStop = false;
             this.gbOdabirIgraca.Text = "Simplex postupak";
             // 
+            // rbIgracB
+            // 
+            this.rbIgracB.AutoSize = true;
+            this.rbIgracB.Location = new System.Drawing.Point(15, 37);
+            this.rbIgracB.Name = "rbIgracB";
+            this.rbIgracB.Size = new System.Drawing.Size(78, 17);
+            this.rbIgracB.TabIndex = 1;
+            this.rbIgracB.Text = "za igrača B";
+            this.rbIgracB.UseVisualStyleBackColor = true;
+            // 
             // rbIgracA
             // 
             this.rbIgracA.AutoSize = true;
@@ -173,16 +200,6 @@
             this.rbIgracA.TabStop = true;
             this.rbIgracA.Text = "za igrača A";
             this.rbIgracA.UseVisualStyleBackColor = true;
-            // 
-            // rbIgracB
-            // 
-            this.rbIgracB.AutoSize = true;
-            this.rbIgracB.Location = new System.Drawing.Point(15, 37);
-            this.rbIgracB.Name = "rbIgracB";
-            this.rbIgracB.Size = new System.Drawing.Size(78, 17);
-            this.rbIgracB.TabIndex = 1;
-            this.rbIgracB.Text = "za igrača B";
-            this.rbIgracB.UseVisualStyleBackColor = true;
             // 
             // PocetnaForma
             // 
