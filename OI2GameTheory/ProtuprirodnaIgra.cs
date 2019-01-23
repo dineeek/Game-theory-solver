@@ -34,13 +34,13 @@ namespace OI2GameTheory
             if (protuprirodnost)
 
             {
-                System.Windows.Forms.MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
+                //System.Windows.Forms.MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
                 vrstaIgre = 1;
                 return vrstaIgre;
             }
             else if((brojStrategijaA - brojUklonjenihIgracA) <= 1 || ((brojStrategijaB - brojUklonjenihIgracB) <= 1))//kontradiktorna
             {
-                System.Windows.Forms.MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");
+                //System.Windows.Forms.MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//to preseliti tam
                 vrstaIgre = 2;
                 return vrstaIgre;
             }

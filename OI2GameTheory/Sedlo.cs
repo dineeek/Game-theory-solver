@@ -11,8 +11,10 @@ namespace OI2GameTheory
         public SpremanjeUnosa uneseniPodaci;
         public List<string> varijableA = new List<string>();
         public List<string> varijableB = new List<string>();
-        public List<string> varijableAInverted = new List<string>();
-        public List<string> varijableBInverted = new List<string>();
+        public List<string> varijableAInvertedDominantne = new List<string>();
+        public List<string> varijableAInvertedDuplikatne = new List<string>();
+        public List<string> varijableBInvertedDominantne = new List<string>();
+        public List<string> varijableBInvertedDuplikatne = new List<string>();
 
         public Sedlo(SpremanjeUnosa podaci)
         {
@@ -68,7 +70,7 @@ namespace OI2GameTheory
                 {
                     uneseniPodaci.igracA.Remove(strategija);
 
-                    varijableAInverted.Add(varijableA[brojacStrategijaA]);
+                    varijableAInvertedDominantne.Add(varijableA[brojacStrategijaA]);
                     varijableA.RemoveAt(brojacStrategijaA);
 
                     //brisanje kod igracaB
@@ -98,7 +100,7 @@ namespace OI2GameTheory
                 {
                     uneseniPodaci.igracB.Remove(strategija);
 
-                    varijableBInverted.Add(varijableB[brojacStrategijaB]);
+                    varijableBInvertedDominantne.Add(varijableB[brojacStrategijaB]);
                     varijableB.RemoveAt(brojacStrategijaB);
 
                     //brisanje kod igracaA
@@ -130,7 +132,7 @@ namespace OI2GameTheory
                         {
                             uneseniPodaci.igracA.Remove(strategijaDruga);
 
-                            varijableAInverted.Add(varijableA[brojacStrategijaA]);
+                            varijableAInvertedDuplikatne.Add(varijableA[brojacStrategijaA]);
                             varijableA.RemoveAt(brojacStrategijaA);
 
                             foreach (var strategijaB in uneseniPodaci.igracB.ToList())
@@ -163,7 +165,7 @@ namespace OI2GameTheory
                         {
                             uneseniPodaci.igracB.Remove(strategijaDruga);
 
-                            varijableBInverted.Add(varijableB[brojacStrategijaB]);
+                            varijableBInvertedDuplikatne.Add(varijableB[brojacStrategijaB]);
                             varijableB.RemoveAt(brojacStrategijaB);
 
                             foreach (var strategijaB in uneseniPodaci.igracA.ToList())
