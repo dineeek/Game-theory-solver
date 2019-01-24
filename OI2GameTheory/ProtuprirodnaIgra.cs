@@ -34,13 +34,11 @@ namespace OI2GameTheory
             if (protuprirodnost)
 
             {
-                //System.Windows.Forms.MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
                 vrstaIgre = 1;
                 return vrstaIgre;
             }
             else if((brojStrategijaA - brojUklonjenihIgracA) <= 1 || ((brojStrategijaB - brojUklonjenihIgracB) <= 1))//kontradiktorna
             {
-                //System.Windows.Forms.MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//to preseliti tam
                 vrstaIgre = 2;
                 return vrstaIgre;
             }
@@ -55,7 +53,7 @@ namespace OI2GameTheory
             //igracA
             foreach(var strategija in uneseniPodaci.igracA)
             {
-                bool sviNegativniA = strategija.DobitakGubitakStrategije.All(x => x < 0);
+                bool sviNegativniA = strategija.DobitakGubitakStrategije.All(x => x <= 0);
 
                 if (sviNegativniA)
                     brojNegativnihA++;

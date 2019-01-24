@@ -12,10 +12,11 @@ namespace OI2GameTheory
 {
     public partial class FormaModela : Form
     {
-        public FormaModela(string model)
+        public FormaModela(string uklonjeneStrategije, string model)
         {
             InitializeComponent();
-            txtModel.Text = model;
+            txtModel.Text = uklonjeneStrategije + Environment.NewLine;
+            txtModel.Text += Environment.NewLine + model;
         }
     }
 }

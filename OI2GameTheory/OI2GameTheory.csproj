@@ -113,7 +113,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProtuprirodnaIgra.cs" />
-    <Compile Include="Sedlo.cs" />
+    <Compile Include="SedloDominacija.cs" />
     <Compile Include="SimplexForma.cs">
       <SubType>Form</SubType>
     </Compile>

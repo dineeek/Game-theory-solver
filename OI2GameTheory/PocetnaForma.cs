@@ -72,7 +72,7 @@ namespace OI2GameTheory
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
                 
                     //provjera postojanja sedla
-                    Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+                    SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
 
                     Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
                     bool postojiSedlo = postojanjeSedla.Item1;
@@ -90,51 +90,9 @@ namespace OI2GameTheory
                         {
                             provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantne i duplikatne strategije te ih eliminira
 
-                            Sedlo provjeraSedlaIntern = new Sedlo(provjeraSedla.uneseniPodaci);
-
-                            string uklonjeneStrategijeA1 = "";
-                            string ispisADominantne = "";
-                            string ispisADuplikatne = "";
-                            foreach (var str in provjeraSedla.varijableAInvertedDominantne)
-                                uklonjeneStrategijeA1 += str+" ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA1))
-                            {
-                                ispisADominantne += "Igrač A: " + uklonjeneStrategijeA1 + "\n";
-                            }
-
-                            string uklonjeneStrategijeA2 = "";
-                            foreach (var str in provjeraSedla.varijableAInvertedDuplikatne)
-                                uklonjeneStrategijeA2 += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA2))
-                            {
-                                ispisADuplikatne += "Igrač A: " + uklonjeneStrategijeA2 + "\n";
-                            }
-
-                            string uklonjeneStrategijeB1 = "";
-                            foreach (var str in provjeraSedla.varijableBInvertedDominantne)
-                                uklonjeneStrategijeB1 += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeB1))
-                            {
-                                ispisADominantne += "Igrač B: " + uklonjeneStrategijeB1;
-                            }
-
-                            string uklonjeneStrategijeB2 = "";
-                            foreach (var str in provjeraSedla.varijableBInvertedDuplikatne)
-                                uklonjeneStrategijeB2 += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeB2))
-                            {
-                                ispisADuplikatne += "Igrač B: " + uklonjeneStrategijeB2;
-                            }
-
-                            if ((!String.IsNullOrEmpty(uklonjeneStrategijeA1) || !String.IsNullOrEmpty(uklonjeneStrategijeB1)) && (String.IsNullOrEmpty(uklonjeneStrategijeA2) && String.IsNullOrEmpty(uklonjeneStrategijeB2)))
-                                MessageBox.Show("Uklonjene dominantne strategije: \n" + ispisADominantne);
-
-                            else if((String.IsNullOrEmpty(uklonjeneStrategijeA1) && String.IsNullOrEmpty(uklonjeneStrategijeB1)) && (!String.IsNullOrEmpty(uklonjeneStrategijeA2) || !String.IsNullOrEmpty(uklonjeneStrategijeB2)))
-                                MessageBox.Show("Uklonjene duplikatne strategije: \n" + ispisADuplikatne);
-
-                            else if ((!String.IsNullOrEmpty(uklonjeneStrategijeA1) || !String.IsNullOrEmpty(uklonjeneStrategijeA2)) && (!String.IsNullOrEmpty(uklonjeneStrategijeB1) || !String.IsNullOrEmpty(uklonjeneStrategijeB2)))
-                                MessageBox.Show("Uklonjene dominantne strategije: \n"+ ispisADominantne + "\n\n"+ "Uklonjene duplikatne strategije: \n" + ispisADuplikatne);
-
+                            string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaA();
+                            if (!String.IsNullOrEmpty(uklonjeneStrategije))
+                                MessageBox.Show(uklonjeneStrategije);
 
                             Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
                             bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
@@ -152,31 +110,15 @@ namespace OI2GameTheory
                                 formaSimplexMetode.ShowDialog();
                             }
                         }
-                        else if (vrstaIgre == 1)
+                        else if (vrstaIgre == 1) //NE MOŽE SE RIJEŠAVATI SIMPLEKSOM!!!! NEKI KRITERIJ ODABRATI
                         {
                             MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
 
                             provjeraSedla.ukloniDuplikatneStrategije();
 
-                            string uklonjeneStrategijeA = "";
-                            string ispisA = "";
-                            foreach (var str in provjeraSedla.varijableAInvertedDuplikatne)
-                                uklonjeneStrategijeA += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
-                            {
-                                ispisA += "Igrač A: " + uklonjeneStrategijeA + "\n";
-                            }
-
-                            string uklonjeneStrategijeB = "";
-                            foreach (var str in provjeraSedla.varijableBInvertedDuplikatne)
-                                uklonjeneStrategijeB += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
-                            {
-                                ispisA += "Igrač B: " + uklonjeneStrategijeB;
-                            }
-
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show("Uklonjene duplikatne strategije: \n"+ispisA);
+                            string uklonjeneStrategije = provjeraSedla.IspisUklonjenihDuplikatnihA();
+                            if (!String.IsNullOrEmpty(uklonjeneStrategije))
+                                MessageBox.Show(uklonjeneStrategije);
 
                             SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -189,26 +131,10 @@ namespace OI2GameTheory
                             
                             provjeraSedla.ukloniDuplikatneStrategije();
 
-                            string uklonjeneStrategijeA = "";
-                            string ispisB = "";
-                            foreach (var str in provjeraSedla.varijableAInvertedDuplikatne)
-                                uklonjeneStrategijeA += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
-                            {
-                                ispisB += "Igrač A: " + uklonjeneStrategijeA + "\n";
-                            }
-
-                            string uklonjeneStrategijeB = "";
-                            foreach (var str in provjeraSedla.varijableBInvertedDuplikatne)
-                                uklonjeneStrategijeB += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
-                            {
-                                ispisB += "Igrač B: " + uklonjeneStrategijeB;
-                            }
-
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show("Uklonjene duplikatne strategije: \n"+ispisB);
-                             
+                            string uklonjeneStrategije = provjeraSedla.IspisUklonjenihDuplikatnihA();
+                            if (!String.IsNullOrEmpty(uklonjeneStrategije))
+                                MessageBox.Show(uklonjeneStrategije);
+                                                         
                             SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
@@ -222,7 +148,7 @@ namespace OI2GameTheory
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
                     //provjera postojanja sedla
-                    Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+                    SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
 
                     Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
                     bool postojiSedlo = postojanjeSedla.Item1;
@@ -242,51 +168,9 @@ namespace OI2GameTheory
                         {
                             provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
 
-                            string uklonjeneStrategijeA1 = "";
-                            string ispisBDominantne = "";
-                            string ispisBDuplikatne = "";
-
-                            foreach (var str in provjeraSedla.varijableAInvertedDominantne)
-                                uklonjeneStrategijeA1 += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA1))
-                            {
-                                ispisBDominantne += "Igrač A: " + uklonjeneStrategijeA1 + "\n";
-                            }
-
-                            string uklonjeneStrategijeA2 = "";
-                            foreach (var str in provjeraSedla.varijableAInvertedDuplikatne)
-                                uklonjeneStrategijeA2 += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA2))
-                            {
-                                ispisBDuplikatne += "Igrač A: " + uklonjeneStrategijeA2 + "\n";
-                            }
-
-                            string uklonjeneStrategijeB1 = "";
-                            foreach (var str in provjeraSedla.varijableBInvertedDominantne)
-                                uklonjeneStrategijeB1 += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeB1))
-                            {
-                                ispisBDominantne += "Igrač B: " + uklonjeneStrategijeB1;
-                            }
-
-                            string uklonjeneStrategijeB2 = "";
-                            foreach (var str in provjeraSedla.varijableBInvertedDuplikatne)
-                                uklonjeneStrategijeB2 += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeB2))
-                            {
-                                ispisBDuplikatne += "Igrač B: " + uklonjeneStrategijeB2;
-                            }
-
-                            if ((!String.IsNullOrEmpty(uklonjeneStrategijeA1) || !String.IsNullOrEmpty(uklonjeneStrategijeB1)) && (String.IsNullOrEmpty(uklonjeneStrategijeA2) && String.IsNullOrEmpty(uklonjeneStrategijeB2)))
-                                MessageBox.Show("Uklonjene dominantne strategije: \n" + ispisBDominantne);
-
-                            else if ((String.IsNullOrEmpty(uklonjeneStrategijeA1) && String.IsNullOrEmpty(uklonjeneStrategijeB1)) && (!String.IsNullOrEmpty(uklonjeneStrategijeA2) || !String.IsNullOrEmpty(uklonjeneStrategijeB2)))
-                                MessageBox.Show("Uklonjene duplikatne strategije: \n" + ispisBDuplikatne);
-
-                            else if ((!String.IsNullOrEmpty(uklonjeneStrategijeA1) || !String.IsNullOrEmpty(uklonjeneStrategijeA2)) && (!String.IsNullOrEmpty(uklonjeneStrategijeB1) || !String.IsNullOrEmpty(uklonjeneStrategijeB2)))
-                                MessageBox.Show("Uklonjene dominantne strategije: \n" + ispisBDominantne + "\n\n" + "Uklonjene duplikatne strategije: \n" + ispisBDuplikatne);
-
-                            Sedlo provjeraSedlaIntern = new Sedlo(provjeraSedla.uneseniPodaci);
+                            string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaB();
+                            if (!String.IsNullOrEmpty(uklonjeneStrategije))
+                                MessageBox.Show(uklonjeneStrategije);
 
                             Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
                             bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
@@ -310,25 +194,9 @@ namespace OI2GameTheory
                             MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
                             provjeraSedla.ukloniDuplikatneStrategije();
 
-                            string uklonjeneStrategijeA = "";
-                            string ispisB = "";
-                            foreach (var str in provjeraSedla.varijableAInvertedDuplikatne)
-                                uklonjeneStrategijeA += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
-                            {
-                                ispisB += "Igrač A: " + uklonjeneStrategijeA + "\n";
-                            }
-
-                            string uklonjeneStrategijeB = "";
-                            foreach (var str in provjeraSedla.varijableBInvertedDuplikatne)
-                                uklonjeneStrategijeB += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
-                            {
-                                ispisB += "Igrač B: " + uklonjeneStrategijeB;
-                            }
-
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show("Uklonjene duplikatne strategije: \n"+ ispisB);
+                            string uklonjeneStrategije = provjeraSedla.IspisUklonjenihDuplikatnihB();
+                            if (!String.IsNullOrEmpty(uklonjeneStrategije))
+                                MessageBox.Show(uklonjeneStrategije);
 
                             SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -341,25 +209,9 @@ namespace OI2GameTheory
 
                             provjeraSedla.ukloniDuplikatneStrategije();
 
-                            string uklonjeneStrategijeA = "";
-                            string ispisB = "";
-                            foreach (var str in provjeraSedla.varijableAInvertedDuplikatne)
-                                uklonjeneStrategijeA += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
-                            {
-                                ispisB += "Igrač A: " + uklonjeneStrategijeA + "\n";
-                            }
-
-                            string uklonjeneStrategijeB = "";
-                            foreach (var str in provjeraSedla.varijableBInvertedDuplikatne)
-                                uklonjeneStrategijeB += str + " ";
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
-                            {
-                                ispisB += "Igrač B: " + uklonjeneStrategijeB;
-                            }
-
-                            if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                                MessageBox.Show("Uklonjene duplikatne strategije: \n"+ispisB);
+                            string uklonjeneStrategije = provjeraSedla.IspisUklonjenihDuplikatnihB();
+                            if (!String.IsNullOrEmpty(uklonjeneStrategije))
+                                MessageBox.Show(uklonjeneStrategije);
 
                             SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -384,7 +236,7 @@ namespace OI2GameTheory
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
                     //provjera postojanja sedla
-                    Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+                    SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
               
                     ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
                     IzgradnjaModelaA modelZadatka;
@@ -393,25 +245,30 @@ namespace OI2GameTheory
                     if (vrstaIgre == 0)
                     {
                         provjeraSedla.ukloniDominantneStrategije();
+                        string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaA();                  
                         modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
-                        FormaModela modelMI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        FormaModela modelMI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
                         modelMI.ShowDialog();
                     }
                     else if(vrstaIgre == 1)
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
+                        string uklonjeneStrategije = "Unesena je protuprirodna igra!" + Environment.NewLine + "Ne uklanjam dominantne strategije." + Environment.NewLine;
+                        uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihA();
                         modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
-                        FormaModela modelPI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        FormaModela modelPI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
                         modelPI.ShowDialog();
                     }
                     else
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
+                        string uklonjeneStrategije = "Unesena je kontradiktorna igra!"+Environment.NewLine+"Ne uklanjam dominantne strategije." + Environment.NewLine;
+                        uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihA();
                         modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
-                        FormaModela modelKI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        FormaModela modelKI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
                         modelKI.ShowDialog();
                     }
                 }
@@ -420,7 +277,7 @@ namespace OI2GameTheory
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
                     //provjera postojanja sedla
-                    Sedlo provjeraSedla = new Sedlo(uneseniDobiciGubitci);
+                    SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
 
                     ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
                     IzgradnjaModelaB modelZadatka;
@@ -429,25 +286,30 @@ namespace OI2GameTheory
                     if (vrstaIgre == 0)
                     {
                         provjeraSedla.ukloniDominantneStrategije();
+                        string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaB();
                         modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
-                        FormaModela modelMI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        FormaModela modelMI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
                         modelMI.ShowDialog();
                     }
                     else if (vrstaIgre == 1)
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
+                        string uklonjeneStrategije = "Unesena je protuprirodna igra!"+Environment.NewLine+"Ne uklanjam dominantne strategije." + Environment.NewLine;
+                        uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihB();
                         modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
-                        FormaModela modelPI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        FormaModela modelPI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
                         modelPI.ShowDialog();
                     }
                     else
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
+                        string uklonjeneStrategije = "Unesena je kontradiktorna igra!" + Environment.NewLine + "Ne uklanjam dominantne strategije."+Environment.NewLine;
+                        uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihB();
                         modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
-                        FormaModela modelKI = new FormaModela(modelZadatka.DohvatiZapisModela());
+                        FormaModela modelKI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
                         modelKI.ShowDialog();
                     }
                 }
