@@ -8,7 +8,7 @@ namespace OI2GameTheory
 {
     public class ProtuprirodnaKontradiktornaIgra
     {
-        private SpremanjeUnosa uneseniPodaci;
+        public SpremanjeUnosa uneseniPodaci;
 
         public List<string> varijableA = new List<string>();
         public List<string> varijableB = new List<string>();

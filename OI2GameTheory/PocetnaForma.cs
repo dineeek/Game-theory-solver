@@ -246,7 +246,11 @@ namespace OI2GameTheory
                     if (vrstaIgre == 0)
                     {
                         provjeraSedla.ukloniDominantneStrategije();
-                        string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaA();                  
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
+
+                        string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaA();
+                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
+
                         modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelMI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
@@ -255,8 +259,15 @@ namespace OI2GameTheory
                     else if(vrstaIgre == 1)
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
-                        string uklonjeneStrategije = "Unesena igra postaje PROTUPRIRODNA igra nakon uklanjanja dominantnih strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + "Kod izrade modela ne uklanjam dominantne strategije." + Environment.NewLine;
+
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
+
+                        string uklonjeneStrategije = "Unesena igra postaje PROTUPRIRODNA igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + Environment.NewLine + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uklanjam dominantne strategije. ";
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihA();
+
+                        matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
+
                         modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelPI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
@@ -265,8 +276,15 @@ namespace OI2GameTheory
                     else
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
-                        string uklonjeneStrategije = "Unesena igra postaje KONTRADIKTORNA igra nakon uklanjanja dominantnih strategija:"+ protuprirodnost.IspisUklonjenihStrategijaIgraca() + "Kod izrade modela ne uklanjam dominantne strategije." + Environment.NewLine;
+
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
+
+                        string uklonjeneStrategije = "Unesena igra postaje KONTRADIKTORNA igra nakon uklanjanja strategija:"+ protuprirodnost.IspisUklonjenihStrategijaIgraca() + Environment.NewLine + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uklanjam dominantne strategije. ";
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihA();
+
+                        matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
+
                         modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelKI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
@@ -287,7 +305,11 @@ namespace OI2GameTheory
                     if (vrstaIgre == 0)
                     {
                         provjeraSedla.ukloniDominantneStrategije();
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
+
                         string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaB();
+                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
+
                         modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelMI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
@@ -296,8 +318,15 @@ namespace OI2GameTheory
                     else if (vrstaIgre == 1)
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
-                        string uklonjeneStrategije = "Unesena igra postaje PROTUPRIRODNA igra nakon uklanjanja dominantnih strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + "Kod izrade modela ne uklanjam dominantne strategije." + Environment.NewLine;
+
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
+
+                        string uklonjeneStrategije = "Unesena igra postaje PROTUPRIRODNA igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + Environment.NewLine + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uklanjam dominantne strategije. ";
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihB();
+
+                        matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
+
                         modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelPI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());
@@ -306,8 +335,15 @@ namespace OI2GameTheory
                     else
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
-                        string uklonjeneStrategije = "Unesena igra postaje KONTRADIKTORNA igra nakon uklanjanja dominantnih strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + "Kod izrade modela ne uklanjam dominantne strategije." + Environment.NewLine;
+
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
+
+                        string uklonjeneStrategije = "Unesena igra postaje KONTRADIKTORNA igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + Environment.NewLine + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uklanjam dominantne strategije. ";
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihB();
+
+                        matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
+
                         modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         FormaModela modelKI = new FormaModela(uklonjeneStrategije, modelZadatka.DohvatiZapisModela());

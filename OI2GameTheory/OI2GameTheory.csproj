@@ -104,6 +104,7 @@
     <Compile Include="IzgradnjaModelaA.cs" />
     <Compile Include="KalkulatorZakljuckaB.cs" />
     <Compile Include="KalkulatorZakljuckaA.cs" />
+    <Compile Include="MatricnaIgra.cs" />
     <Compile Include="PocetnaForma.cs">
       <SubType>Form</SubType>
     </Compile>
