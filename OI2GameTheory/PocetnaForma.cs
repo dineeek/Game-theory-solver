@@ -84,15 +84,16 @@ namespace OI2GameTheory
                     }
                     else
                     {
-                        ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                        ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
                         int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
                         if (vrstaIgre == 0)
                         {
                             provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantne i duplikatne strategije te ih eliminira
-
+                            /*
                             string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaA();
                             if (!String.IsNullOrEmpty(uklonjeneStrategije))
                                 MessageBox.Show(uklonjeneStrategije);
+                            */
 
                             Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
                             bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
@@ -115,11 +116,11 @@ namespace OI2GameTheory
                             MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
 
                             provjeraSedla.ukloniDuplikatneStrategije();
-
+                            /*
                             string uklonjeneStrategije = provjeraSedla.IspisUklonjenihDuplikatnihA();
                             if (!String.IsNullOrEmpty(uklonjeneStrategije))
                                 MessageBox.Show(uklonjeneStrategije);
-
+                            */
                             SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca, smplxCalcPI.postupakIzracuna);
@@ -130,11 +131,11 @@ namespace OI2GameTheory
                             MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
                             
                             provjeraSedla.ukloniDuplikatneStrategije();
-
+                            /*
                             string uklonjeneStrategije = provjeraSedla.IspisUklonjenihDuplikatnihA();
                             if (!String.IsNullOrEmpty(uklonjeneStrategije))
                                 MessageBox.Show(uklonjeneStrategije);
-                                                         
+                            */                             
                             SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
@@ -160,18 +161,18 @@ namespace OI2GameTheory
                     }
                     else
                     {
-                        ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                        ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
 
                         int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
 
                         if (vrstaIgre == 0)
                         {
                             provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
-
+                            /*
                             string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaB();
                             if (!String.IsNullOrEmpty(uklonjeneStrategije))
                                 MessageBox.Show(uklonjeneStrategije);
-
+                            */
                             Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
                             bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
                             int rezultatIgreIntern = postojanjeSedlaIntern.Item2;
@@ -193,11 +194,11 @@ namespace OI2GameTheory
 
                             MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
                             provjeraSedla.ukloniDuplikatneStrategije();
-
+                            /*
                             string uklonjeneStrategije = provjeraSedla.IspisUklonjenihDuplikatnihB();
                             if (!String.IsNullOrEmpty(uklonjeneStrategije))
                                 MessageBox.Show(uklonjeneStrategije);
-
+                            */
                             SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca, smplxCalcPI.postupakIzracuna);
@@ -208,11 +209,11 @@ namespace OI2GameTheory
                             MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
 
                             provjeraSedla.ukloniDuplikatneStrategije();
-
+                            /*
                             string uklonjeneStrategije = provjeraSedla.IspisUklonjenihDuplikatnihB();
                             if (!String.IsNullOrEmpty(uklonjeneStrategije))
                                 MessageBox.Show(uklonjeneStrategije);
-
+                            */
                             SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                             formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
@@ -238,7 +239,7 @@ namespace OI2GameTheory
                     //provjera postojanja sedla
                     SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
               
-                    ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                    ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
                     IzgradnjaModelaA modelZadatka;
                     int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
 
@@ -254,7 +255,7 @@ namespace OI2GameTheory
                     else if(vrstaIgre == 1)
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
-                        string uklonjeneStrategije = "Unesena je protuprirodna igra!" + Environment.NewLine + "Ne uklanjam dominantne strategije." + Environment.NewLine;
+                        string uklonjeneStrategije = "Unesena igra postaje PROTUPRIRODNA igra nakon uklanjanja dominantnih strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + "Kod izrade modela ne uklanjam dominantne strategije." + Environment.NewLine;
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihA();
                         modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -264,7 +265,7 @@ namespace OI2GameTheory
                     else
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
-                        string uklonjeneStrategije = "Unesena je kontradiktorna igra!"+Environment.NewLine+"Ne uklanjam dominantne strategije." + Environment.NewLine;
+                        string uklonjeneStrategije = "Unesena igra postaje KONTRADIKTORNA igra nakon uklanjanja dominantnih strategija:"+ protuprirodnost.IspisUklonjenihStrategijaIgraca() + "Kod izrade modela ne uklanjam dominantne strategije." + Environment.NewLine;
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihA();
                         modelZadatka = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -279,7 +280,7 @@ namespace OI2GameTheory
                     //provjera postojanja sedla
                     SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
 
-                    ProtuprirodnaIgra protuprirodnost = new ProtuprirodnaIgra(new SpremanjeUnosa(dgvMatrica));
+                    ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
                     IzgradnjaModelaB modelZadatka;
                     int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
 
@@ -295,7 +296,7 @@ namespace OI2GameTheory
                     else if (vrstaIgre == 1)
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
-                        string uklonjeneStrategije = "Unesena je protuprirodna igra!"+Environment.NewLine+"Ne uklanjam dominantne strategije." + Environment.NewLine;
+                        string uklonjeneStrategije = "Unesena igra postaje PROTUPRIRODNA igra nakon uklanjanja dominantnih strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + "Kod izrade modela ne uklanjam dominantne strategije." + Environment.NewLine;
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihB();
                         modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -305,7 +306,7 @@ namespace OI2GameTheory
                     else
                     {
                         provjeraSedla.ukloniDuplikatneStrategije();
-                        string uklonjeneStrategije = "Unesena je kontradiktorna igra!" + Environment.NewLine + "Ne uklanjam dominantne strategije."+Environment.NewLine;
+                        string uklonjeneStrategije = "Unesena igra postaje KONTRADIKTORNA igra nakon uklanjanja dominantnih strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + "Kod izrade modela ne uklanjam dominantne strategije." + Environment.NewLine;
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihB();
                         modelZadatka = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 

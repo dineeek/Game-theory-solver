@@ -15,6 +15,10 @@ namespace OI2GameTheory
         public FormaModela(string uklonjeneStrategije, string model)
         {
             InitializeComponent();
+
+            if (String.IsNullOrEmpty(uklonjeneStrategije))
+                uklonjeneStrategije = "Ne postoji niti jedna dominantna ili duplikatna strategija!";
+
             txtModel.Text = uklonjeneStrategije + Environment.NewLine;
             txtModel.Text += Environment.NewLine + model;
         }

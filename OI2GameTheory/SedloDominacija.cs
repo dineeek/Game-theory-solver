@@ -66,7 +66,7 @@ namespace OI2GameTheory
             int brojacStrategijaA = 0;
             foreach (var strategija in uneseniPodaci.igracA.ToList())
             {
-                bool sviNegativni = strategija.DobitakGubitakStrategije.All(x => x < 0);
+                bool sviNegativni = strategija.DobitakGubitakStrategije.All(x => x <= 0);
 
                 if (sviNegativni)
                 {
@@ -74,6 +74,7 @@ namespace OI2GameTheory
 
                     varijableAInvertedDominantne.Add(varijableA[brojacStrategijaA], kronoloskiBrojUklanjanja);
                     kronoloskiBrojUklanjanja++;
+
                     varijableA.RemoveAt(brojacStrategijaA);
 
                     //brisanje kod igracaB
@@ -105,6 +106,7 @@ namespace OI2GameTheory
 
                     varijableBInvertedDominantne.Add(varijableB[brojacStrategijaB], kronoloskiBrojUklanjanja);
                     kronoloskiBrojUklanjanja++;
+
                     varijableB.RemoveAt(brojacStrategijaB);
 
                     //brisanje kod igracaA
