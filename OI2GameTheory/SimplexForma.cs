@@ -109,6 +109,8 @@ namespace OI2GameTheory
             {
                 stupac.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+
+            dgvSimplexTablica.DoubleBuffered(true);
         }
 
         private void btnIzracun_Click(object sender, EventArgs e)
