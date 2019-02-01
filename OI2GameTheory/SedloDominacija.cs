@@ -327,7 +327,7 @@ namespace OI2GameTheory
             }
 
             if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                return ("Uklonjene duplikatne strategije:" + Environment.NewLine + ispisA + Environment.NewLine);
+                return ("Uklonjene duplikatne strategije:" + Environment.NewLine + ispisA);
             else
                 return "";
         }
@@ -352,7 +352,7 @@ namespace OI2GameTheory
             }
 
             if (!String.IsNullOrEmpty(uklonjeneStrategijeA) || !String.IsNullOrEmpty(uklonjeneStrategijeB))
-                return ("Uklonjene duplikatne strategije:" + Environment.NewLine + ispisB + Environment.NewLine);
+                return ("Uklonjene duplikatne strategije:" + Environment.NewLine + ispisB);
             else
              return "";
         }

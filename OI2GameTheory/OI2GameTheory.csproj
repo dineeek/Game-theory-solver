@@ -105,6 +105,7 @@
     <Compile Include="IzgradnjaModelaA.cs" />
     <Compile Include="KalkulatorZakljuckaB.cs" />
     <Compile Include="KalkulatorZakljuckaA.cs" />
+    <Compile Include="KriterijiProtuprirodnosti.cs" />
     <Compile Include="MatricnaIgra.cs" />
     <Compile Include="PocetnaForma.cs">
       <SubType>Form</SubType>
@@ -173,8 +174,6 @@
   <ItemGroup>
     <Content Include="bearPaw.ico" />
     <None Include="Resources\smplxPoz.jpg" />
-    <None Include="Resources\wallpaper.jpg" />
-    <None Include="Resources\mramor.jpg" />
     <None Include="Resources\pozadina.jpg" />
   </ItemGroup>
   <ItemGroup>
