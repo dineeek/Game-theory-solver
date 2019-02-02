@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>bearPaw.ico</ApplicationIcon>
+    <ApplicationIcon>GameTheorySolver.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>B92CB4B1CCDA1BC48ACBE92D435A2DF69D8096EC</ManifestCertificateThumbprint>
@@ -172,7 +172,9 @@
     <None Include="Resources\poz2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bearPaw.ico" />
+    <Content Include="Resources\bearPaw.ico" />
+    <Content Include="GameTheorySolver.ico" />
+    <None Include="Resources\GameTheorySolver.png" />
     <None Include="Resources\smplxPoz.jpg" />
     <None Include="Resources\pozadina.jpg" />
   </ItemGroup>

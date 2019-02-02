@@ -223,7 +223,7 @@
             this.MaximizeBox = false;
             this.Name = "PocetnaForma";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Teorija igara";
+            this.Text = "Game Theory Solver";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrica)).EndInit();
             this.gbOdabirIgraca.ResumeLayout(false);
             this.gbOdabirIgraca.PerformLayout();

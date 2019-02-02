@@ -63,6 +63,16 @@ namespace OI2GameTheory.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GameTheorySolver {
+            get {
+                object obj = ResourceManager.GetObject("GameTheorySolver", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap poz {
             get {
                 object obj = ResourceManager.GetObject("poz", resourceCulture);
