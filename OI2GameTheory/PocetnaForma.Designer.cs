@@ -52,7 +52,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(231, 371);
+            this.label1.Location = new System.Drawing.Point(271, 346);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 13);
             this.label1.TabIndex = 0;
@@ -63,7 +63,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(12, 28);
+            this.label2.Location = new System.Drawing.Point(21, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 13);
             this.label2.TabIndex = 1;
@@ -74,7 +74,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(12, 59);
+            this.label3.Location = new System.Drawing.Point(21, 54);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 2;
@@ -82,22 +82,22 @@
             // 
             // txtStrA
             // 
-            this.txtStrA.Location = new System.Drawing.Point(133, 25);
+            this.txtStrA.Location = new System.Drawing.Point(142, 20);
             this.txtStrA.Mask = "00000";
             this.txtStrA.Name = "txtStrA";
             this.txtStrA.PromptChar = ' ';
-            this.txtStrA.Size = new System.Drawing.Size(100, 20);
+            this.txtStrA.Size = new System.Drawing.Size(69, 20);
             this.txtStrA.TabIndex = 3;
             this.txtStrA.ValidatingType = typeof(int);
             this.txtStrA.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtStrA_MouseClick);
             // 
             // txtStrB
             // 
-            this.txtStrB.Location = new System.Drawing.Point(133, 56);
+            this.txtStrB.Location = new System.Drawing.Point(142, 51);
             this.txtStrB.Mask = "00000";
             this.txtStrB.Name = "txtStrB";
             this.txtStrB.PromptChar = ' ';
-            this.txtStrB.Size = new System.Drawing.Size(100, 20);
+            this.txtStrB.Size = new System.Drawing.Size(69, 20);
             this.txtStrB.TabIndex = 4;
             this.txtStrB.ValidatingType = typeof(int);
             this.txtStrB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtStrB_MouseClick);
@@ -105,9 +105,11 @@
             // btnGenerirajMatricu
             // 
             this.btnGenerirajMatricu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGenerirajMatricu.Location = new System.Drawing.Point(253, 74);
+            this.btnGenerirajMatricu.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerirajMatricu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnGenerirajMatricu.Location = new System.Drawing.Point(328, 30);
             this.btnGenerirajMatricu.Name = "btnGenerirajMatricu";
-            this.btnGenerirajMatricu.Size = new System.Drawing.Size(117, 25);
+            this.btnGenerirajMatricu.Size = new System.Drawing.Size(82, 43);
             this.btnGenerirajMatricu.TabIndex = 5;
             this.btnGenerirajMatricu.Text = "Generiraj matricu";
             this.btnGenerirajMatricu.UseVisualStyleBackColor = false;
@@ -130,7 +132,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvMatrica.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMatrica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatrica.Location = new System.Drawing.Point(15, 104);
+            this.dgvMatrica.Location = new System.Drawing.Point(19, 79);
             this.dgvMatrica.MultiSelect = false;
             this.dgvMatrica.Name = "dgvMatrica";
             this.dgvMatrica.RowHeadersVisible = false;
@@ -138,7 +140,7 @@
             this.dgvMatrica.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvMatrica.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvMatrica.Size = new System.Drawing.Size(355, 259);
+            this.dgvMatrica.Size = new System.Drawing.Size(391, 259);
             this.dgvMatrica.TabIndex = 6;
             this.dgvMatrica.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvMatrica_DataError);
             this.dgvMatrica.SizeChanged += new System.EventHandler(this.dgvMatrica_SizeChanged);
@@ -147,7 +149,7 @@
             // 
             this.btnSimplex.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSimplex.Enabled = false;
-            this.btnSimplex.Location = new System.Drawing.Point(114, 366);
+            this.btnSimplex.Location = new System.Drawing.Point(118, 341);
             this.btnSimplex.Name = "btnSimplex";
             this.btnSimplex.Size = new System.Drawing.Size(93, 23);
             this.btnSimplex.TabIndex = 8;
@@ -159,11 +161,11 @@
             // 
             this.btnModelZadatka.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnModelZadatka.Enabled = false;
-            this.btnModelZadatka.Location = new System.Drawing.Point(15, 366);
+            this.btnModelZadatka.Location = new System.Drawing.Point(19, 341);
             this.btnModelZadatka.Name = "btnModelZadatka";
             this.btnModelZadatka.Size = new System.Drawing.Size(93, 23);
             this.btnModelZadatka.TabIndex = 7;
-            this.btnModelZadatka.Text = "Model zadatka";
+            this.btnModelZadatka.Text = "Model problema";
             this.btnModelZadatka.UseVisualStyleBackColor = false;
             this.btnModelZadatka.Click += new System.EventHandler(this.btnModelZadatka_Click);
             // 
@@ -172,9 +174,9 @@
             this.gbOdabirIgraca.BackColor = System.Drawing.Color.Transparent;
             this.gbOdabirIgraca.Controls.Add(this.rbIgracB);
             this.gbOdabirIgraca.Controls.Add(this.rbIgracA);
-            this.gbOdabirIgraca.Location = new System.Drawing.Point(253, 12);
+            this.gbOdabirIgraca.Location = new System.Drawing.Point(217, 13);
             this.gbOdabirIgraca.Name = "gbOdabirIgraca";
-            this.gbOdabirIgraca.Size = new System.Drawing.Size(117, 60);
+            this.gbOdabirIgraca.Size = new System.Drawing.Size(105, 60);
             this.gbOdabirIgraca.TabIndex = 9;
             this.gbOdabirIgraca.TabStop = false;
             this.gbOdabirIgraca.Text = "Simplex postupak";
@@ -193,7 +195,7 @@
             // 
             this.rbIgracA.AutoSize = true;
             this.rbIgracA.Checked = true;
-            this.rbIgracA.Location = new System.Drawing.Point(15, 20);
+            this.rbIgracA.Location = new System.Drawing.Point(15, 16);
             this.rbIgracA.Name = "rbIgracA";
             this.rbIgracA.Size = new System.Drawing.Size(78, 17);
             this.rbIgracA.TabIndex = 0;
@@ -206,7 +208,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.poz;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(385, 391);
+            this.ClientSize = new System.Drawing.Size(422, 367);
             this.Controls.Add(this.gbOdabirIgraca);
             this.Controls.Add(this.btnModelZadatka);
             this.Controls.Add(this.btnSimplex);
