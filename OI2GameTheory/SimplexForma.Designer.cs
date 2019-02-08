@@ -103,7 +103,9 @@
             // btnIzracun
             // 
             this.btnIzracun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIzracun.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnIzracun.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnIzracun.FlatAppearance.BorderSize = 0;
+            this.btnIzracun.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.btnIzracun.Location = new System.Drawing.Point(1139, 579);
             this.btnIzracun.Name = "btnIzracun";
             this.btnIzracun.Size = new System.Drawing.Size(99, 23);

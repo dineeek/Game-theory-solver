@@ -17,7 +17,7 @@ namespace OI2GameTheory
         private List<int> indexiVodecihRedaka;
         private int brojRedaka1Tablice;
         private int brojStupaca1Tablice;
-        private string postupakIzracuna;
+        public string postupakIzracuna;
 
         public SimplexForma(DataTable simplexica, string zakljucak, List<int> stupci, List<int> redci, int brojRed, int brojStup, string postupak)
         {
@@ -118,5 +118,16 @@ namespace OI2GameTheory
             FormaIzracuna frmIzracun = new FormaIzracuna(postupakIzracuna);
             frmIzracun.ShowDialog();
         }
+
+        public DataGridView DohvatiTabliceIteracije()
+        {
+            return dgvSimplexTablica;
+        }
+
+        public String DohvatiRjesenjeProblema()
+        {
+            return txtRjesenje.Text;
+        }
     }
+
 }

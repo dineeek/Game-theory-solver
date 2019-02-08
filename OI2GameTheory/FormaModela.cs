@@ -22,5 +22,10 @@ namespace OI2GameTheory
             txtModel.Text = uklonjeneStrategije + Environment.NewLine;
             txtModel.Text += Environment.NewLine + model;
         }
+
+        public string DohvatiModelProblema()
+        {
+            return txtModel.Text;
+        }
     }
 }

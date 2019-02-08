@@ -459,6 +459,7 @@ namespace OI2GameTheory
 
             izracunajElementeVodecegRedka(indexStupca, indexRedka, stozerniElement, nazivVodecegStupca);
 
+            postupakIzracuna += "Postupak izračuna za igrača A: " + Environment.NewLine;
             if (help == 1) // za prikaz postupka izracunavanja 
             {
                 postupakIzracuna += "--------------------1. ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;

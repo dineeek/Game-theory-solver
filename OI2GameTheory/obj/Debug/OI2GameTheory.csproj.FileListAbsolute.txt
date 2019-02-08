@@ -1,4 +1,3 @@
-C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe
 C:\Users\Korisnik\Desktop\GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe.config
 C:\Users\Korisnik\Desktop\GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe.manifest
 C:\Users\Korisnik\Desktop\GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.application
@@ -23,8 +22,11 @@ C:\Users\Korisnik\Desktop\GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.pdb
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe.config
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe.manifest
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.application
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.exe
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.pdb
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\System.ValueTuple.dll
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\System.ValueTuple.xml
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csprojAssemblyReference.cache
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.FormaIzracuna.resources
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.FormaModela.resources
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.PocetnaForma.resources
@@ -38,5 +40,5 @@ C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.appli
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csproj.CopyComplete
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.exe
 C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.pdb
-C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.csprojAssemblyReference.cache
-C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\OI2GameTheory.pdb
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\itextsharp.dll
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\bin\Debug\itextsharp.xml
