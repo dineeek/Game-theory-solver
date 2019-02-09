@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormaIzracuna));
             this.txtIzracun = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtIzracun
@@ -55,12 +56,23 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Postupak simplex algoritma:";
             // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(628, 545);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 2;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
             // FormaIzracuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.smplxPoz;
-            this.ClientSize = new System.Drawing.Size(706, 548);
+            this.ClientSize = new System.Drawing.Size(706, 568);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtIzracun);
             this.DoubleBuffered = true;
@@ -77,5 +89,6 @@
 
         private System.Windows.Forms.TextBox txtIzracun;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnOK;
     }
 }

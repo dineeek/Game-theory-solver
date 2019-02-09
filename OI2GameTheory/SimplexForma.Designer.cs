@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnIzracun = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimplexTablica)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,6 +115,16 @@
             this.btnIzracun.UseVisualStyleBackColor = false;
             this.btnIzracun.Click += new System.EventHandler(this.btnIzracun_Click);
             // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(1163, 677);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 5;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
             // SimplexForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,6 +132,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1251, 700);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnIzracun);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -146,5 +158,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnIzracun;
+        private System.Windows.Forms.Button btnOK;
     }
 }

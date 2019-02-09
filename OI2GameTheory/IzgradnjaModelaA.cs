@@ -52,7 +52,7 @@ namespace OI2GameTheory
             }
 
 
-            zapisModela = "ORIGINALNI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
+            zapisModela += "Igrač A"+Environment.NewLine+"ORIGINALNI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
             for(int i=1; i<= sveVarijableY.Count; i++)
             {

@@ -27,5 +27,10 @@ namespace OI2GameTheory
         {
             return txtModel.Text;
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

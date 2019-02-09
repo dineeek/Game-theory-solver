@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormaModela));
             this.txtModel = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtModel
@@ -44,7 +45,7 @@
             this.txtModel.Multiline = true;
             this.txtModel.Name = "txtModel";
             this.txtModel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtModel.Size = new System.Drawing.Size(840, 610);
+            this.txtModel.Size = new System.Drawing.Size(840, 600);
             this.txtModel.TabIndex = 0;
             this.txtModel.TabStop = false;
             // 
@@ -62,12 +63,23 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Model problema:";
             // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(752, 625);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 2;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
             // FormaModela
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.smplxPoz;
-            this.ClientSize = new System.Drawing.Size(844, 635);
+            this.ClientSize = new System.Drawing.Size(844, 648);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtModel);
             this.DoubleBuffered = true;
@@ -85,5 +97,6 @@
 
         private System.Windows.Forms.TextBox txtModel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnOK;
     }
 }

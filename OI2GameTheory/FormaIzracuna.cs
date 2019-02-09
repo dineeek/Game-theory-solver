@@ -17,5 +17,10 @@ namespace OI2GameTheory
             InitializeComponent();
             txtIzracun.Text = postupak;
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -426,6 +426,7 @@ namespace OI2GameTheory
 
         int brojIteracija = 2;
         int help = 1;
+        
         private void pokreniSimplexPostupak()
         {
             brojRedaka = prethodnaSimplexTablica.Rows.Count;
@@ -459,9 +460,10 @@ namespace OI2GameTheory
 
             izracunajElementeVodecegRedka(indexStupca, indexRedka, stozerniElement, nazivVodecegStupca);
 
-            postupakIzracuna += "Postupak izračuna za igrača A: " + Environment.NewLine;
+            //postupakIzracuna += "Postupak izračuna za igrača A: " + Environment.NewLine;
             if (help == 1) // za prikaz postupka izracunavanja 
             {
+                postupakIzracuna += "Postupak izračuna za igrača A: " + Environment.NewLine;
                 postupakIzracuna += "--------------------1. ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;
                 help++;
             }

@@ -460,11 +460,12 @@ namespace OI2GameTheory
                             double internHelp = broj1 - (broj2 * broj3);
                             novaSimplexTablica.Rows[j][i] = Math.Round((double)internHelp, 6);
 
-                            if ((internHelp < -0.0000000001) || (internHelp < 0.0000000001))
+                            if ((internHelp > -0.0000000001) && (internHelp < 0.0000000001))
                             {
                                 internHelp = 0;
                             }
-
+                            
+                            internHelp = Math.Round((double)internHelp, 6);
                             string broj1Razlomak;
                             string broj2Razlomak;
                             string broj3Razlomak;
@@ -533,9 +534,10 @@ namespace OI2GameTheory
 
             izracunajElementeVodecegRedka(indexStupca, indexRedka, stozerniElement, nazivVodecegStupca);
 
-            postupakIzracuna += "Postupak izračuna za igrača B: " + Environment.NewLine;
+            //postupakIzracuna += "Postupak izračuna za igrača B: " + Environment.NewLine;
             if (help == 1) // za prikaz postupka izracunavanja 
             {
+                postupakIzracuna += "Postupak izračuna za igrača B: " + Environment.NewLine;
                 postupakIzracuna += "--------------------1. ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;
                 help++;
             }
@@ -590,7 +592,6 @@ namespace OI2GameTheory
                 prethodnaSimplexTablica = new DataTable();
                 prethodnaSimplexTablica = novaSimplexTablica.Copy();//da naslijedi strukturu samo
                 novaSimplexTablica = new DataTable();
-                //System.Windows.Forms.MessageBox.Show("Stupac: "+indexStupca + " Redak: "+indexRedka);
 
                 postupakIzracuna += "--------------------" + brojIteracija + ". ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;
                 brojIteracija++;

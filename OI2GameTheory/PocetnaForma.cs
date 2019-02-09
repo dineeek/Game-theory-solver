@@ -17,6 +17,8 @@ namespace OI2GameTheory
     public partial class PocetnaForma : Form
     {
         private SpremanjeUnosa uneseniDobiciGubitci = null;
+        private int igrac = 0;
+
         public PocetnaForma()
         {
             InitializeComponent();
@@ -73,14 +75,15 @@ namespace OI2GameTheory
                 }
             }
         }
+
         private SimplexForma formaSimplexMetode;
-        private int zastavicaA, zastavicaB = 0;
         private void btnSimplex_Click(object sender, EventArgs e)
         {
             try
             {
                 if (rbIgracA.Checked == true)
                 {
+                    igrac = 1;
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
                     //provjera postojanja sedla
@@ -124,8 +127,6 @@ namespace OI2GameTheory
 
                                 ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
                                 ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                                zastavicaA = 1;
-                                zastavicaB = 0;
                             }
                         }
                         else if (vrstaIgre == 1)
@@ -145,8 +146,6 @@ namespace OI2GameTheory
 
                             ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
                             ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                            zastavicaA = 1;
-                            zastavicaB = 0;
                         }
                         else//kontradiktorna
                         {
@@ -165,14 +164,13 @@ namespace OI2GameTheory
 
                             ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
                             ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                            zastavicaA = 1;
-                            zastavicaB = 0;
                         }
                     }
                 }
 
                 else //igracB.Check == true;
                 {
+                    igrac = 2;
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
                     //provjera postojanja sedla
@@ -217,8 +215,6 @@ namespace OI2GameTheory
 
                                 ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
                                 ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                                zastavicaA = 0;
-                                zastavicaB = 1;
                             }
                         }
                         else if (vrstaIgre == 1)
@@ -238,8 +234,6 @@ namespace OI2GameTheory
 
                             ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
                             ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                            zastavicaA = 0;
-                            zastavicaB = 1;
                         }
                         else//kontradiktorna
                         {
@@ -258,8 +252,6 @@ namespace OI2GameTheory
 
                             ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
                             ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                            zastavicaA = 0;
-                            zastavicaB = 1;
                         }
                     }
                 }
@@ -294,7 +286,7 @@ namespace OI2GameTheory
                     if (vrstaIgre == 0)
                     {
                         provjeraSedla.ukloniDominantneStrategije();
-                        MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
 
                         string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaA();
                         uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();//prikaz matricne igre
@@ -305,7 +297,6 @@ namespace OI2GameTheory
                         formaModela.ShowDialog();
 
                         ispisModelaZadatkaToolStripMenuItem.Enabled = true;
-                        modelZadatkaB = null;
                     }
                     else if (vrstaIgre == 1) // izračun po 3 kriterija
                     {
@@ -327,7 +318,6 @@ namespace OI2GameTheory
                         formaModela.ShowDialog();
 
                         ispisModelaZadatkaToolStripMenuItem.Enabled = true;
-                        modelZadatkaB = null;
                     }
                     else
                     {
@@ -347,7 +337,6 @@ namespace OI2GameTheory
                         formaModela.ShowDialog();
 
                         ispisModelaZadatkaToolStripMenuItem.Enabled = true;
-                        modelZadatkaB = null;
                     }
                 }
                 else //igracB.Check == true;
@@ -364,7 +353,7 @@ namespace OI2GameTheory
                     if (vrstaIgre == 0)
                     {
                         provjeraSedla.ukloniDominantneStrategije();
-                        MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
 
                         string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaB();
                         uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
@@ -375,7 +364,6 @@ namespace OI2GameTheory
                         formaModela.ShowDialog();
 
                         ispisModelaZadatkaToolStripMenuItem.Enabled = true;
-                        modelZadatkaA = null;
                     }
                     else if (vrstaIgre == 1) // izračun po 3 kriterija
                     {
@@ -384,7 +372,7 @@ namespace OI2GameTheory
                         MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
                         KriterijiProtuprirodnosti kriteriji = new KriterijiProtuprirodnosti(protuprirodnost.uneseniPodaci, 2); //rjesavanje po kriterijima
 
-                        string uklonjeneStrategije = "Unesena igra je protuprirodna ili postaje protuprirodna igra nakon uklanjanja strategija" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + kriteriji.IspisiVrijednostiKriterija() + Environment.NewLine + "Kod izrade modela ne uklanjam dominantne strategije. ";
+                        string uklonjeneStrategije = "Unesena igra je protuprirodna ili postaje protuprirodna igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + kriteriji.IspisiVrijednostiKriterija() + Environment.NewLine + "Kod izrade modela ne uklanjam dominantne strategije. ";
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihB();
 
                         matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
@@ -396,7 +384,6 @@ namespace OI2GameTheory
                         formaModela.ShowDialog();
 
                         ispisModelaZadatkaToolStripMenuItem.Enabled = true;
-                        modelZadatkaA = null;
                     }
                     else
                     {
@@ -416,7 +403,6 @@ namespace OI2GameTheory
                         formaModela.ShowDialog();
 
                         ispisModelaZadatkaToolStripMenuItem.Enabled = true;
-                        modelZadatkaA = null;
                     }
                 }
             }
@@ -469,68 +455,22 @@ namespace OI2GameTheory
 
         private void izlazToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
-        private void exportDGVtoPDF(DataGridView dgv, string nazivDatoteke)
-        {
-            BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1250, BaseFont.EMBEDDED);
-            PdfPTable pdfTablica = new PdfPTable(dgv.Columns.Count);
-            pdfTablica.DefaultCell.Padding = 3;
-            pdfTablica.WidthPercentage = 100;
-            pdfTablica.HorizontalAlignment = Element.ALIGN_MIDDLE;
-            pdfTablica.DefaultCell.BorderWidth = 1;
-
-            iTextSharp.text.Font text = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
-
-            //dodavanje zaglavlja
-            foreach (DataGridViewColumn zaglavlje in dgv.Columns)
-            {
-                PdfPCell celija = new PdfPCell(new Phrase(zaglavlje.HeaderText, text));
-                //celija.BackgroundColor = new iTextSharp.text.BaseColor(240, 240, 240);
-                pdfTablica.AddCell(celija);
-            }
-
-            //dodavanje redova
-            foreach (DataGridViewRow red in dgv.Rows)
-            {
-                foreach (DataGridViewCell celija in red.Cells)
-                {
-                    pdfTablica.AddCell(new Phrase(celija.Value.ToString(), text));
-                }
-            }
-
-            var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = nazivDatoteke;
-            saveFileDialog.DefaultExt = ".pdf";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                    {
-                        Document dokument = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-                        PdfWriter.GetInstance(dokument, stream);
-                        dokument.Open();
-                        dokument.Add(pdfTablica);
-                        dokument.Close();
-                        stream.Close();
-                    }
-                }
-
-                catch
-                {
-                    MessageBox.Show("Ugasite trenutačno upaljeni PDF dokument i pokušajte ponovno!");
-                }
-            }
-        }
         private void ispisTablicaIteracijaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
+                btnSimplex.PerformClick();
+
                 DGVPrinter printer = new DGVPrinter();
-                printer.Title = "Tablice iteracije: ";//zaglavlje
+
+                if(igrac == 1)
+                    printer.Title = "Tablice iteracija igrača A: ";//zaglavlje
+                else
+                    printer.Title = "Tablice iteracija igrača B: ";//zaglavlje
+
                 printer.TitleAlignment = StringAlignment.Near;
                 printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
                 printer.PageNumbers = true;
@@ -542,19 +482,10 @@ namespace OI2GameTheory
                 printer.FooterAlignment = StringAlignment.Near;
                 printer.printDocument.DefaultPageSettings.Landscape = true;
 
-                if (rbIgracA.Checked == true && zastavicaA == 1)
-                {
-                    printer.Footer = this.formaSimplexMetode.DohvatiRjesenjeProblema();
-                    printer.PrintDataGridView(formaSimplexMetode.DohvatiTabliceIteracije());
-                }
+                //btnSimplex.PerformClick();
 
-                else if (rbIgracB.Checked == true && zastavicaB == 1)
-                {
-                    printer.Footer = this.formaSimplexMetode.DohvatiRjesenjeProblema();
-                    printer.PrintDataGridView(formaSimplexMetode.DohvatiTabliceIteracije());
-                }
-                else
-                    MessageBox.Show("Pritisnite prvo gumb Simplex metoda za odabranog igrača!");
+                printer.Footer = this.formaSimplexMetode.DohvatiRjesenjeProblema();
+                printer.PrintDataGridView(formaSimplexMetode.DohvatiTabliceIteracije());
             }
             catch
             {
@@ -577,39 +508,20 @@ namespace OI2GameTheory
                 BaseFont bf = BaseFont.CreateFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 12);
 
-                if (rbIgracA.Checked == true && zastavicaA == 1)
-                {
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                        {
-                            Document dokument = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-                            PdfWriter.GetInstance(dokument, stream);
-                            dokument.Open();
-                            dokument.Add(new Phrase(this.formaSimplexMetode.postupakIzracuna, f));
-                            dokument.Close();
-                            stream.Close();
-                        }
-                    }
-                }
+                btnSimplex.PerformClick();
 
-                else if (rbIgracB.Checked == true && zastavicaB == 1)
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
                     {
-                        using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                        {
-                            Document dokument = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-                            PdfWriter.GetInstance(dokument, stream);
-                            dokument.Open();
-                            dokument.Add(new Phrase(this.formaSimplexMetode.postupakIzracuna, f));
-                            dokument.Close();
-                            stream.Close();
-                        }
+                        Document dokument = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+                        PdfWriter.GetInstance(dokument, stream);
+                        dokument.Open();
+                        dokument.Add(new Phrase(this.formaSimplexMetode.postupakIzracuna, f));
+                        dokument.Close();
+                        stream.Close();
                     }
                 }
-                else
-                    MessageBox.Show("Pritisnite prvo gumb Simplex metoda za odabranog igrača!");
             }
 
             catch
@@ -637,40 +549,21 @@ namespace OI2GameTheory
                 BaseFont bf = BaseFont.CreateFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 12);
 
-                if (rbIgracA.Checked == true && modelZadatkaA != null)
+                btnModelZadatka.PerformClick();
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
                     {
-                        using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                        {
-                            Document dokument = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-                            PdfWriter.GetInstance(dokument, stream);
-                            dokument.Open();
-                            string modelA = "Model unesenog problema: " + Environment.NewLine + formaModela.DohvatiModelProblema();
-                            dokument.Add(new Phrase(modelA, f));
-                            dokument.Close();
-                            stream.Close();
-                        }
+                        Document dokument = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+                        PdfWriter.GetInstance(dokument, stream);
+                        dokument.Open();
+                        string modelA = "Model unesenog problema: " + Environment.NewLine + formaModela.DohvatiModelProblema();
+                        dokument.Add(new Phrase(modelA, f));
+                        dokument.Close();
+                        stream.Close();
                     }
-                }
-                else if (rbIgracB.Checked == true && modelZadatkaB != null)
-                {
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                        {
-                            Document dokument = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-                            PdfWriter.GetInstance(dokument, stream);
-                            dokument.Open();
-                            string modelB = "Model unesenog problema: " + Environment.NewLine + formaModela.DohvatiModelProblema();
-                            dokument.Add(new Phrase(modelB, f));
-                            dokument.Close();
-                            stream.Close();
-                        }
-                    }
-                }
-                else
-                    MessageBox.Show("Pritisnite prvo gumb Model problema za odabranog igrača!");
+                }               
             }
             catch
             {
