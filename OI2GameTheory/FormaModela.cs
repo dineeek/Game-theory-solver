@@ -12,20 +12,11 @@ namespace OI2GameTheory
 {
     public partial class FormaModela : Form
     {
-        public FormaModela(string uklonjeneStrategije, string model)
+        public FormaModela(string model)
         {
             InitializeComponent();
 
-            if (String.IsNullOrEmpty(uklonjeneStrategije))
-                uklonjeneStrategije = "Ne postoji niti jedna dominantna ili duplikatna strategija!";
-
-            txtModel.Text = uklonjeneStrategije + Environment.NewLine;
-            txtModel.Text += Environment.NewLine + model;
-        }
-
-        public string DohvatiModelProblema()
-        {
-            return txtModel.Text;
+            txtModel.Text = model;
         }
 
         private void btnOK_Click(object sender, EventArgs e)

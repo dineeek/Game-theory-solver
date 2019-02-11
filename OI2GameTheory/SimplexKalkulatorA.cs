@@ -18,7 +18,7 @@ namespace OI2GameTheory
         private DataTable novaSimplexTablica = new DataTable();
 
         public DataTable SimplexTablice = new DataTable(); //svi postupci
-        public DataTable SimplexTabliceRazlomci = new DataTable(); //svi postupci
+        public DataTable SimplexTabliceRazlomci = new DataTable(); //iteracije u razlomcima
         public string Zakljucak = "";
 
         public List<int> indexiVodecihStupaca = new List<int>();
@@ -223,8 +223,8 @@ namespace OI2GameTheory
 
             for (int i = 0; i<prethodnaSimplexTablica.Rows.Count-2; i++) // djeljenik može biti negativan, djelitelj ne
             {
-                djeljenik = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]);
-                djelitelj = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][indexStupca]);
+                djeljenik = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]);//kolicina
+                djelitelj = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][indexStupca]);//vodeci stupac
 
                 internHelp = (double) djeljenik/djelitelj;              
                 rezultati[i] = internHelp;
@@ -274,7 +274,6 @@ namespace OI2GameTheory
                     {
                         for (int j = 0; j < indexiIstihRezultata.Length; j++)//pomicanje po redcima
                         {
-                            //System.Windows.Forms.MessageBox.Show(indexiIstihRezultata[j].ToString());
                             double djeljenikIntern = Convert.ToDouble(prethodnaSimplexTablica.Rows[indexiIstihRezultata[j]][i]);
                             double djeliteljIntern = Convert.ToDouble(prethodnaSimplexTablica.Rows[indexiIstihRezultata[j]][indexStupca]);
 
@@ -523,7 +522,6 @@ namespace OI2GameTheory
 
                 KalkulatorZakljuckaA zakljucak = new KalkulatorZakljuckaA(novaSimplexTablica, podaciStrategija, diferencija);
                 Zakljucak = zakljucak.DohvatiZakljucak();
-
                 
                 //pretvaranje decimalni u razlomke
                 SimplexTabliceRazlomci = SimplexTablice.Copy();
@@ -555,7 +553,7 @@ namespace OI2GameTheory
             }
         }
 
-        //PRETVARANJE double U RAZLOMKE
+        //PRETVARANJE U RAZLOMKE
         public struct Fraction
         {
             public Fraction(int n, int d)
