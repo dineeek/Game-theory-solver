@@ -322,7 +322,7 @@ namespace OI2GameTheory
             bool postojeIsteMinVrijednostiRez = false;
             for(int i=0; i<rezultati.Length; i++)
             {
-                if (najmanji == rezultati[i])
+                if (Math.Round(najmanji,4) == Math.Round(rezultati[i],4))
                     brojacIstihMin++;
             }
 
@@ -336,7 +336,7 @@ namespace OI2GameTheory
             int pomocniBrojac1 = 0;
             for (int i = 0; i < rezultati.Length; i++)
             {
-                if (najmanji == rezultati[i])
+                if (Math.Round(najmanji, 4) == Math.Round(rezultati[i], 4))
                 {
                     indexiIstihRezultata[pomocniBrojac1] = i;
                     pomocniBrojac1++;
@@ -358,11 +358,13 @@ namespace OI2GameTheory
                             double djeljenikIntern = Convert.ToDouble(prethodnaSimplexTablica.Rows[indexiIstihRezultata[j]][i]);
                             double djeliteljIntern = Convert.ToDouble(prethodnaSimplexTablica.Rows[indexiIstihRezultata[j]][indexStupca]);
 
+
                             if (djeliteljIntern > 0)
                                 degeneracija[j] = (double)djeljenikIntern / djeliteljIntern;
                             else
-                                degeneracija[j] = Convert.ToDouble(999999 + j);
+                                degeneracija[j] = double.MaxValue; //Convert.ToDouble(999999 + j); /// u slučaju da je u vodećem stupcu 0 ili minus
 
+                            //System.Windows.Forms.MessageBox.Show(degeneracija[j].ToString());
                         }
 
                         double najmanjiDegene = degeneracija.Min();
@@ -375,7 +377,7 @@ namespace OI2GameTheory
                                 brojacIstihUDeg++;
                         }
 
-                        if (brojacIstihUDeg >= 2) // u slučaju da postoje isti koji nisu minimalni
+                        if (brojacIstihUDeg >= 2) 
                         {
                             postojiJednistveniMin = false;
                         }
@@ -458,12 +460,14 @@ namespace OI2GameTheory
                             double broj3 = (double)Convert.ToDouble(prethodnaSimplexTablica.Rows[j][indexStupca].ToString());                         
 
                             double internHelp = broj1 - (broj2 * broj3);
-                            novaSimplexTablica.Rows[j][i] = Math.Round((double)internHelp, 6);
 
-                            if ((internHelp > -0.0000000001) && (internHelp < 0.0000000001))
+                            if ((internHelp >= -0.00001) && (internHelp <= 0.00001))
                             {
                                 internHelp = 0;
                             }
+
+                            novaSimplexTablica.Rows[j][i] = Math.Round((double)internHelp, 6);
+
                             
                             internHelp = Math.Round((double)internHelp, 6);
                             string broj1Razlomak;

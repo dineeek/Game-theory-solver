@@ -78,7 +78,13 @@ namespace OI2GameTheory
                             if (i == indexiVodecihStupaca[brojacIndexa2])
                             {
                                 for(int j = 0; j<brojRedaka1Tablice-1; j++)
-                                    dgvSimplexTablica.Rows[red.Index+j].Cells[i].Style.BackColor = Color.LightSeaGreen;
+                                {
+                                    if(j == indexiVodecihRedaka[brojacIndexa2])
+                                        dgvSimplexTablica.Rows[red.Index + j].Cells[i].Style.BackColor = Color.YellowGreen;
+                                    else
+                                        dgvSimplexTablica.Rows[red.Index+j].Cells[i].Style.BackColor = Color.LightSeaGreen;
+                                }
+
                                 brojacIndexa2++;
                                 break;
                             }
@@ -98,7 +104,7 @@ namespace OI2GameTheory
             {
                 if (i == brojRedovaIteracije)
                 {
-                    dgvSimplexTablica.Rows[i].DefaultCellStyle.BackColor = Color.Lavender;
+                    dgvSimplexTablica.Rows[i].DefaultCellStyle.BackColor = Color.LightSlateGray;
                     brojRedovaIteracije += brojRedova;
                     brojIteracija++;
                 }
