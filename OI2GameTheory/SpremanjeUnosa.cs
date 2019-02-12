@@ -22,7 +22,7 @@ namespace OI2GameTheory
             odrediDobitkeGubitkeIgraca();
         }
 
-        private void odrediDobitkeGubitkeIgraca()
+        private void odrediDobitkeGubitkeIgraca()//MJENJATI
         {
             //igrac A
             for (int i = 0; i<matricaUnosa.Rows.Count; i++)// 1. je zaglavlje 

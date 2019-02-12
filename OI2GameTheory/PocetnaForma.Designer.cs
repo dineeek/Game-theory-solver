@@ -48,10 +48,10 @@
             this.novaIgraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.izlazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodatnoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ispisModelaZadatkaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ispisTablicaIteracijaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ispisPostupkaIzračunaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomoćToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ispisModelaZadatkaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrica)).BeginInit();
             this.gbOdabirIgraca.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -62,7 +62,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(271, 363);
+            this.label1.Location = new System.Drawing.Point(289, 363);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 13);
             this.label1.TabIndex = 0;
@@ -117,7 +117,7 @@
             this.btnGenerirajMatricu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnGenerirajMatricu.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerirajMatricu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnGenerirajMatricu.Location = new System.Drawing.Point(328, 47);
+            this.btnGenerirajMatricu.Location = new System.Drawing.Point(346, 47);
             this.btnGenerirajMatricu.Name = "btnGenerirajMatricu";
             this.btnGenerirajMatricu.Size = new System.Drawing.Size(82, 43);
             this.btnGenerirajMatricu.TabIndex = 5;
@@ -150,7 +150,7 @@
             this.dgvMatrica.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvMatrica.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvMatrica.Size = new System.Drawing.Size(391, 259);
+            this.dgvMatrica.Size = new System.Drawing.Size(409, 259);
             this.dgvMatrica.TabIndex = 6;
             this.dgvMatrica.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvMatrica_DataError);
             this.dgvMatrica.SizeChanged += new System.EventHandler(this.dgvMatrica_SizeChanged);
@@ -186,10 +186,10 @@
             this.gbOdabirIgraca.Controls.Add(this.rbIgracA);
             this.gbOdabirIgraca.Location = new System.Drawing.Point(217, 30);
             this.gbOdabirIgraca.Name = "gbOdabirIgraca";
-            this.gbOdabirIgraca.Size = new System.Drawing.Size(105, 60);
+            this.gbOdabirIgraca.Size = new System.Drawing.Size(123, 60);
             this.gbOdabirIgraca.TabIndex = 9;
             this.gbOdabirIgraca.TabStop = false;
-            this.gbOdabirIgraca.Text = "Simplex postupak";
+            this.gbOdabirIgraca.Text = "Simpleks postupak";
             // 
             // rbIgracB
             // 
@@ -222,7 +222,7 @@
             this.pomoćToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(423, 24);
+            this.menuStrip.Size = new System.Drawing.Size(445, 24);
             this.menuStrip.TabIndex = 10;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -259,6 +259,13 @@
             this.dodatnoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.dodatnoToolStripMenuItem.Text = "Dodatno";
             // 
+            // ispisModelaZadatkaToolStripMenuItem
+            // 
+            this.ispisModelaZadatkaToolStripMenuItem.Name = "ispisModelaZadatkaToolStripMenuItem";
+            this.ispisModelaZadatkaToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.ispisModelaZadatkaToolStripMenuItem.Text = "Ispis modela problema";
+            this.ispisModelaZadatkaToolStripMenuItem.Click += new System.EventHandler(this.ispisModelaZadatkaToolStripMenuItem_Click);
+            // 
             // ispisTablicaIteracijaToolStripMenuItem
             // 
             this.ispisTablicaIteracijaToolStripMenuItem.Name = "ispisTablicaIteracijaToolStripMenuItem";
@@ -280,19 +287,12 @@
             this.pomoćToolStripMenuItem.Text = "Pomoć";
             this.pomoćToolStripMenuItem.Click += new System.EventHandler(this.pomoćToolStripMenuItem_Click);
             // 
-            // ispisModelaZadatkaToolStripMenuItem
-            // 
-            this.ispisModelaZadatkaToolStripMenuItem.Name = "ispisModelaZadatkaToolStripMenuItem";
-            this.ispisModelaZadatkaToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.ispisModelaZadatkaToolStripMenuItem.Text = "Ispis modela problema";
-            this.ispisModelaZadatkaToolStripMenuItem.Click += new System.EventHandler(this.ispisModelaZadatkaToolStripMenuItem_Click);
-            // 
             // PocetnaForma
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.poz;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(423, 384);
+            this.ClientSize = new System.Drawing.Size(445, 384);
             this.Controls.Add(this.gbOdabirIgraca);
             this.Controls.Add(this.btnModelZadatka);
             this.Controls.Add(this.btnSimplex);
