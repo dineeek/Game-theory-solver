@@ -21,8 +21,14 @@ namespace OI2GameTheory
 
             odrediDobitkeGubitkeIgraca();
         }
-
-        private void odrediDobitkeGubitkeIgraca()//A i B su zamjenjeni
+        /// <summary>
+        /// Program bilježi na drugačiji način strategije matrice plaćanja za svakog igrača.
+        /// Za igrača A se spremaju reci.
+        /// Za igrača B se spremaju stupci.
+        /// U teoriji bi to trebalo biti suprotno - no ovdje je tako uzeto radi lakšeg savladavanja programiranja problema.
+        /// Ovaj alat se može promatrati da su strategije Y igrača A, a X igrača B.
+        /// </summary>
+        private void odrediDobitkeGubitkeIgraca()
         {
             //igrac A
             for (int i = 0; i<matricaUnosa.Rows.Count; i++)// 1. je zaglavlje 

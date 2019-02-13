@@ -128,8 +128,8 @@
     <Compile Include="SimplexForma.Designer.cs">
       <DependentUpon>SimplexForma.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimplexKalkulatorB.cs" />
     <Compile Include="SimplexKalkulatorA.cs" />
+    <Compile Include="SimplexKalkulatorB.cs" />
     <Compile Include="SpremanjeUnosa.cs" />
     <Compile Include="Strategija.cs" />
     <EmbeddedResource Include="FormaIzracuna.resx">

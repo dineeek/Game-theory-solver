@@ -76,171 +76,161 @@ namespace OI2GameTheory
             }
         }
 
-        private SimplexForma formaSimplexMetode;
-
-        private void simplexMetoda()
+        private SimplexForma simplexMetoda()
         {
+            if (rbIgracA.Checked == true)
+            {
+                igrac = 1;
+                uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
+                //provjera postojanja sedla
+                SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
+
+                Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
+                bool postojiSedlo = postojanjeSedla.Item1;
+                int rezultatIgre = postojanjeSedla.Item2;
+
+                if (postojiSedlo)
+                {
+                    if (rezultatIgre > 0)
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača B.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return null;
+                }
+                else
+                {
+                    ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
+
+                    int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
+
+                    if (vrstaIgre == 0)
+                    {
+                        provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
+
+                        Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
+                        bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
+                        int rezultatIgreIntern = postojanjeSedlaIntern.Item2;
+
+                        if (postojiSedloIntern)
+                        {
+                            MessageBox.Show("Postoji sedlo nakon uklanjanja dominantnih strategija!\nVrijednost ove igre iznosi: " + rezultatIgreIntern, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return null;
+                        }
+                        else
+                        {
+                            //simplex metoda 
+                            SimplexKalkulatorA smplxCalcMI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, postojanjeSedlaIntern.Item3); //šalju se strategije bez onih dominantnih
+                            return new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca, smplxCalcMI.postupakIzracuna);
+                        }
+                    }
+                    else if (vrstaIgre == 1)
+                    {
+
+                        MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
+                        provjeraSedla.ukloniDuplikatneStrategije();
+
+                        SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+
+                        return new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca, smplxCalcPI.postupakIzracuna);
+                    }
+                    else//kontradiktorna
+                    {
+                        MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
+
+                        provjeraSedla.ukloniDuplikatneStrategije();
+
+                        SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+
+                        return new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
+                    }
+                }
+            }
+
+            else //igracB.Check == true;
+            {
+                igrac = 2;
+                uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
+
+                //provjera postojanja sedla
+                SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
+
+                Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
+                bool postojiSedlo = postojanjeSedla.Item1;
+                int rezultatIgre = postojanjeSedla.Item2;
+
+                if (postojiSedlo)
+                {
+                    if (rezultatIgre > 0)
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača B.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return null;
+                }
+                else
+                {
+                    ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
+                    int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
+                    if (vrstaIgre == 0)
+                    {
+                        provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantne i duplikatne strategije te ih eliminira                          
+
+                        Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();//provjera sedla nakon uklanjanja strategija
+                        bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
+                        int rezultatIgreIntern = postojanjeSedlaIntern.Item2;
+
+                        if (postojiSedloIntern)
+                        {
+                            MessageBox.Show("Postoji sedlo nakon uklanjanja dominantnih strategija!\nVrijednost ove igre iznosi: " + rezultatIgreIntern, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return null;
+                        }
+                        else
+                        {
+                            //simplex metoda 
+                            SimplexKalkulatorB smplxCalcMI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, postojanjeSedlaIntern.Item3); //šalju se strategije bez onih dominantnih i duplikatnih
+                            return new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca, smplxCalcMI.postupakIzracuna);
+                        }
+                    }
+                    else if (vrstaIgre == 1)
+                    {
+                        MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
+
+                        provjeraSedla.ukloniDuplikatneStrategije();
+
+                        SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+
+                        return new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca, smplxCalcPI.postupakIzracuna);
+                    }
+                    else//kontradiktorna
+                    {
+                        MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
+
+                        provjeraSedla.ukloniDuplikatneStrategije();
+
+                        SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+
+                        return new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
+                    }
+                }
+            }
         }
 
         private void btnSimplex_Click(object sender, EventArgs e)
         {
             try
             {
-                if (rbIgracB.Checked == true)
+                if (rbIgracA.Checked == true)
                 {
-                    igrac = 1;
-                    uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
-
-                    //provjera postojanja sedla
-                    SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
-
-                    Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
-                    bool postojiSedlo = postojanjeSedla.Item1;
-                    int rezultatIgre = postojanjeSedla.Item2;
-
-                    if (postojiSedlo)
-                    {
-                        if(rezultatIgre > 0)
-                            MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre+" u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        else
-                            MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača B.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
-                        int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
-                        if (vrstaIgre == 0)
-                        {
-                            provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantne i duplikatne strategije te ih eliminira                          
-
-                            Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();//provjera sedla nakon uklanjanja strategija
-                            bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
-                            int rezultatIgreIntern = postojanjeSedlaIntern.Item2;
-
-                            if (postojiSedloIntern)
-                            {
-                                MessageBox.Show("Postoji sedlo nakon uklanjanja dominantnih strategija!\nVrijednost ove igre iznosi: " + rezultatIgreIntern, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                //simplex metoda 
-                                SimplexKalkulatorA smplxCalcMI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, postojanjeSedlaIntern.Item3); //šalju se strategije bez onih dominantnih i duplikatnih
-                                formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca, smplxCalcMI.postupakIzracuna);
-                                formaSimplexMetode.ShowDialog();
-
-                                ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                                ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                            }
-                        }
-                        else if (vrstaIgre == 1)
-                        {
-                            MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
-
-                            provjeraSedla.ukloniDuplikatneStrategije();
-
-                            SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
-
-                            formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca, smplxCalcPI.postupakIzracuna);
-                            formaSimplexMetode.ShowDialog();
-
-                            ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                            ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                        }
-                        else//kontradiktorna
-                        {
-                            MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
-
-                            provjeraSedla.ukloniDuplikatneStrategije();
-
-                            SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
-
-                            formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
-                            formaSimplexMetode.ShowDialog();
-
-                            ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                            ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                        }
-                    }
+                    simplexMetoda().ShowDialog();
+                    ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
+                    ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
                 }
 
                 else //igracB.Check == true;
                 {
-                    igrac = 2;
-                    uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
-
-                    //provjera postojanja sedla
-                    SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
-
-                    Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
-                    bool postojiSedlo = postojanjeSedla.Item1;
-                    int rezultatIgre = postojanjeSedla.Item2;
-
-                    if (postojiSedlo)
-                    {
-                        if (rezultatIgre > 0)
-                            MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        else
-                            MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača B.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
-
-                        int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
-
-                        if (vrstaIgre == 0)
-                        {
-                            provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
-
-                            Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
-                            bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
-                            int rezultatIgreIntern = postojanjeSedlaIntern.Item2;
-
-                            if (postojiSedloIntern)
-                            {
-                                MessageBox.Show("Postoji sedlo nakon uklanjanja dominantnih strategija!\nVrijednost ove igre iznosi: " + rezultatIgreIntern, "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                //simplex metoda 
-                                SimplexKalkulatorB smplxCalcMI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, postojanjeSedlaIntern.Item3); //šalju se strategije bez onih dominantnih
-                                formaSimplexMetode = new SimplexForma(smplxCalcMI.SimplexTabliceRazlomci, smplxCalcMI.Zakljucak, smplxCalcMI.indexiVodecihStupaca, smplxCalcMI.indexiVodecihRedaka, smplxCalcMI.brojRedaka, smplxCalcMI.brojStupaca, smplxCalcMI.postupakIzracuna);
-                                formaSimplexMetode.ShowDialog();
-
-                                ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                                ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                            }
-                        }
-                        else if (vrstaIgre == 1)
-                        {
-
-                            MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
-                            provjeraSedla.ukloniDuplikatneStrategije();
-
-                            SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
-
-                            formaSimplexMetode = new SimplexForma(smplxCalcPI.SimplexTabliceRazlomci, smplxCalcPI.Zakljucak, smplxCalcPI.indexiVodecihStupaca, smplxCalcPI.indexiVodecihRedaka, smplxCalcPI.brojRedaka, smplxCalcPI.brojStupaca, smplxCalcPI.postupakIzracuna);
-                            formaSimplexMetode.ShowDialog();
-
-                            ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                            ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                        }
-                        else//kontradiktorna
-                        {
-                            MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
-
-                            provjeraSedla.ukloniDuplikatneStrategije();
-
-                            SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
-
-                            formaSimplexMetode = new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
-                            formaSimplexMetode.ShowDialog();
-
-                            ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                            ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                        }
-                    }
+                    simplexMetoda().ShowDialog();
+                    ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
+                    ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
                 }
 
             }
@@ -326,7 +316,7 @@ namespace OI2GameTheory
 
                     }
                 }
-                else //igracA.Check == true;
+                else //igracB.Check == true;
                 {
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
@@ -469,13 +459,13 @@ namespace OI2GameTheory
         {
             try
             {
-                btnSimplex.PerformClick();
+                //btnSimplex.PerformClick();
                 DGVPrinter printer = new DGVPrinter();
 
                 if(igrac == 1)
-                    printer.Title = "Tablice iteracija igrača B: ";//zaglavlje
-                else
                     printer.Title = "Tablice iteracija igrača A: ";//zaglavlje
+                else
+                    printer.Title = "Tablice iteracija igrača B: ";//zaglavlje
 
                 printer.TitleAlignment = StringAlignment.Near;
                 printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
@@ -488,8 +478,8 @@ namespace OI2GameTheory
                 printer.FooterAlignment = StringAlignment.Near;
                 printer.printDocument.DefaultPageSettings.Landscape = true;
 
-                printer.Footer = this.formaSimplexMetode.DohvatiRjesenjeProblema();
-                printer.PrintDataGridView(formaSimplexMetode.DohvatiTabliceIteracije());
+                printer.Footer = this.simplexMetoda().DohvatiRjesenjeProblema();
+                printer.PrintDataGridView(simplexMetoda().DohvatiTabliceIteracije());
             }
             catch
             {
@@ -509,7 +499,7 @@ namespace OI2GameTheory
                 BaseFont bf = BaseFont.CreateFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 12);
 
-                btnSimplex.PerformClick();
+                //btnSimplex.PerformClick();
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -518,7 +508,7 @@ namespace OI2GameTheory
                         Document dokument = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
                         PdfWriter.GetInstance(dokument, stream);
                         dokument.Open();
-                        dokument.Add(new Phrase(this.formaSimplexMetode.postupakIzracuna, f));
+                        dokument.Add(new Phrase(this.simplexMetoda().postupakIzracuna, f));
                         dokument.Close();
                         stream.Close();
                     }
