@@ -87,7 +87,7 @@ namespace OI2GameTheory
         {
             try
             {
-                if (rbIgracA.Checked == true)
+                if (rbIgracB.Checked == true)
                 {
                     igrac = 1;
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
@@ -250,8 +250,8 @@ namespace OI2GameTheory
             }
         }
 
-        private IzgradnjaModelaA modelZadatkaA = null;
-        private IzgradnjaModelaB modelZadatkaB = null;
+        private IzgradnjaModelaB modelZadatkaA = null;
+        private IzgradnjaModelaA modelZadatkaB = null;
         private FormaModela formaModela;
 
         private string stvoriModelProblema()
@@ -275,7 +275,7 @@ namespace OI2GameTheory
                         string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaA();
                         uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();//prikaz matricne igre
 
-                        modelZadatkaA = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+                        IzgradnjaModelaA modelZadatkaA = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         if (String.IsNullOrEmpty(uklonjeneStrategije))
                             uklonjeneStrategije = "Ne postoji niti jedna dominantna ili duplikatna strategija!";
@@ -297,7 +297,7 @@ namespace OI2GameTheory
                         matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
                         uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
 
-                        modelZadatkaA = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+                        IzgradnjaModelaA modelZadatkaA = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         if (String.IsNullOrEmpty(uklonjeneStrategije))
                             uklonjeneStrategije = "Ne postoji niti jedna dominantna ili duplikatna strategija!";
@@ -317,7 +317,7 @@ namespace OI2GameTheory
                         matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
                         uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
 
-                        modelZadatkaA = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+                        IzgradnjaModelaA modelZadatkaA = new IzgradnjaModelaA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         if (String.IsNullOrEmpty(uklonjeneStrategije))
                             uklonjeneStrategije = "Ne postoji niti jedna dominantna ili duplikatna strategija!";
@@ -326,7 +326,7 @@ namespace OI2GameTheory
 
                     }
                 }
-                else //igracB.Check == true;
+                else //igracA.Check == true;
                 {
                     uneseniDobiciGubitci = new SpremanjeUnosa(dgvMatrica);
 
@@ -345,7 +345,7 @@ namespace OI2GameTheory
                         string uklonjeneStrategije = provjeraSedla.IspisUklonjenihStrategijaIgracaB();
                         uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
 
-                        modelZadatkaB = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+                        IzgradnjaModelaB modelZadatkaB = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         if (String.IsNullOrEmpty(uklonjeneStrategije))
                             uklonjeneStrategije = "Ne postoji niti jedna dominantna ili duplikatna strategija!";
@@ -365,7 +365,7 @@ namespace OI2GameTheory
                         matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
                         uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
 
-                        modelZadatkaB = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+                        IzgradnjaModelaB modelZadatkaB = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         if (String.IsNullOrEmpty(uklonjeneStrategije))
                             uklonjeneStrategije = "Ne postoji niti jedna dominantna ili duplikatna strategija!";
@@ -384,7 +384,7 @@ namespace OI2GameTheory
                         matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
                         uklonjeneStrategije += matricnaIgra.IspisMatricneIgre();
 
-                        modelZadatkaB = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
+                        IzgradnjaModelaB modelZadatkaB = new IzgradnjaModelaB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         if (String.IsNullOrEmpty(uklonjeneStrategije))
                             uklonjeneStrategije = "Ne postoji niti jedna dominantna ili duplikatna strategija!";
@@ -473,9 +473,9 @@ namespace OI2GameTheory
                 DGVPrinter printer = new DGVPrinter();
 
                 if(igrac == 1)
-                    printer.Title = "Tablice iteracija igrača A: ";//zaglavlje
-                else
                     printer.Title = "Tablice iteracija igrača B: ";//zaglavlje
+                else
+                    printer.Title = "Tablice iteracija igrača A: ";//zaglavlje
 
                 printer.TitleAlignment = StringAlignment.Near;
                 printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;

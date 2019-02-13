@@ -106,8 +106,8 @@
     <Compile Include="FormaModela.Designer.cs">
       <DependentUpon>FormaModela.cs</DependentUpon>
     </Compile>
-    <Compile Include="IzgradnjaModelaB.cs" />
     <Compile Include="IzgradnjaModelaA.cs" />
+    <Compile Include="IzgradnjaModelaB.cs" />
     <Compile Include="KalkulatorZakljuckaB.cs" />
     <Compile Include="KalkulatorZakljuckaA.cs" />
     <Compile Include="KriterijiProtuprirodnosti.cs" />

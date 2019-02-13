@@ -12,10 +12,11 @@ namespace OI2GameTheory
         private SpremanjeUnosa upisaniPodaci;
         private int diferencija;
         private string zapisModela = "";
-        private List<string> sveVarijableYB = new List<string>();//Y s crtom
-        private List<string> sveVarijableY = new List<string>();//obicni y
-        private List<string> sveVarijableYCrtano = new List<string>();//y'
-        private List<string> sveVarijableU = new List<string>();//u - dopunske varijable
+        private List<string> sveVarijableXA = new List<string>();//x s crtom x̄
+        private List<string> sveVarijableX = new List<string>();//obicni x
+        private List<string> sveVarijableXCrtano = new List<string>();//x'
+        private List<string> sveVarijableU = new List<string>();//u - dopunske varijable - ovise o broju jednadzbi B
+        private List<string> sveVarijableW = new List<string>();//w - artificijalne - ima ih isto kolko i u
 
         public IzgradnjaModelaA(SpremanjeUnosa podaci, int minDif)
         {
@@ -36,56 +37,57 @@ namespace OI2GameTheory
         {
             //stvaranje Y varijabli
             int brojacVarijabliB = 0;
-            foreach (var strategija in upisaniPodaci.igracB)
+            foreach (var strategija in upisaniPodaci.igracA)
             {
-                sveVarijableY.Add("y" + (brojacVarijabliB + 1));
-                sveVarijableYCrtano.Add("y'" + (brojacVarijabliB + 1));
-                sveVarijableYB.Add("Ῡ" + (brojacVarijabliB + 1));
+                sveVarijableX.Add("x" + (brojacVarijabliB + 1));
+                sveVarijableXCrtano.Add("x'" + (brojacVarijabliB + 1));
+                sveVarijableXA.Add("x̄" + (brojacVarijabliB + 1));
                 brojacVarijabliB++;
             }
 
             int brojacVarijabliA = 0;
-            foreach (var strategija in upisaniPodaci.igracA)
+            foreach (var strategija in upisaniPodaci.igracB)
             {
                 sveVarijableU.Add("u" + (brojacVarijabliA + 1));
+                sveVarijableW.Add("w" + (brojacVarijabliA + 1));
                 brojacVarijabliA++;
             }
 
 
-            zapisModela += "Igrač A"+Environment.NewLine+"ORIGINALNI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
+            zapisModela += "Igrač A" + Environment.NewLine + "ORIGINALNI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
-            for(int i=1; i<= sveVarijableY.Count; i++)
+            for(int i=1; i<= sveVarijableX.Count; i++)
             {
-                if(i != sveVarijableY.Count)
-                    zapisModela += sveVarijableY[i-1] + " + ";
+                if(i != sveVarijableX.Count)
+                    zapisModela += sveVarijableX[i-1] + " + ";
                 else
-                    zapisModela += sveVarijableY[i-1] + " -> max -> 1"+Environment.NewLine;
+                    zapisModela += sveVarijableX[i-1] + " -> min -> 1"+Environment.NewLine;
             }
 
             double sljedeciBroj = 0;
-            foreach (var strategija in upisaniPodaci.igracA)
+            foreach (var strategija in upisaniPodaci.igracB)
             {
                 for(int i=0; i<strategija.DobitakGubitakStrategije.Length; i++)
                 {
                     if ((i + 1) == strategija.DobitakGubitakStrategije.Length)
                     {
-                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableY[i] + " ≤ V" + Environment.NewLine;
+                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableX[i] + " ≥ V" + Environment.NewLine;
                     }
                     else
                     {
                         sljedeciBroj = strategija.DobitakGubitakStrategije[i + 1];
                         if (sljedeciBroj < 0)
                         {
-                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableY[i] + " ";
+                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableX[i] + " ";
                         }
                         else
                         {
-                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableY[i] + " + ";
+                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableX[i] + " + ";
                         }
                     }
                 }
             }
-            zapisModela += "y(i) ≥ 0";
+            zapisModela += "x(i) ≥ 0";
             zapisModela += Environment.NewLine + Environment.NewLine;
         }
 
@@ -95,43 +97,43 @@ namespace OI2GameTheory
             zapisModela += "Diferencija = " + diferencija + Environment.NewLine;
             zapisModela += "DIFERENCIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
-            for (int i = 1; i <= sveVarijableYCrtano.Count; i++)
+            for (int i = 1; i <= sveVarijableXCrtano.Count; i++)
             {
-                if (i != sveVarijableYCrtano.Count)
-                    zapisModela += sveVarijableYCrtano[i - 1] + " + ";
+                if (i != sveVarijableXCrtano.Count)
+                    zapisModela += sveVarijableXCrtano[i - 1] + " + ";
                 else
-                    zapisModela += sveVarijableYCrtano[i - 1] + " -> max -> 1" + Environment.NewLine;
+                    zapisModela += sveVarijableXCrtano[i - 1] + " -> min -> 1" + Environment.NewLine;
             }
 
             double sljedeciBroj = 0;
-            foreach (var strategija in upisaniPodaci.igracA)
+            foreach (var strategija in upisaniPodaci.igracB)
             {
                 for (int i = 0; i < strategija.DobitakGubitakStrategije.Length; i++)
                 {
                     if ((i + 1) == strategija.DobitakGubitakStrategije.Length)
                     {
-                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYCrtano[i] + " ≤ V'" + Environment.NewLine;
+                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXCrtano[i] + " ≥ V'" + Environment.NewLine;
                     }
                     else
                     {
                         sljedeciBroj = strategija.DobitakGubitakStrategije[i + 1];
                         if (sljedeciBroj < 0)
                         {
-                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYCrtano[i] + " ";
+                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXCrtano[i] + " ";
                         }
                         else
                         {
-                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYCrtano[i] + " + ";
+                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXCrtano[i] + " + ";
                         }
                     }
                 }
             }
-            zapisModela += "y'(i) ≥ 0";
+            zapisModela += "x'(i) ≥ 0";
             zapisModela += Environment.NewLine + Environment.NewLine;
         }
         private void diferencirajPodatke()
         {
-            foreach (var strategija in upisaniPodaci.igracA.ToList())//ne mora se i kroz strategije igraca B ići
+            foreach (var strategija in upisaniPodaci.igracB.ToList())//ne mora se i kroz strategije igraca A ići
             {
                 for (int i = 0; i < strategija.DobitakGubitakStrategije.Length; i++)
                 {
@@ -142,42 +144,42 @@ namespace OI2GameTheory
 
         private void supstituiraj()
         {
-            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "Ῡ = y'(i)/V'" + Environment.NewLine + Environment.NewLine;
+            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "x̄ = x'(i)/V'" + Environment.NewLine + Environment.NewLine;
 
             zapisModela += "SUPSTITUIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
-            for (int i = 1; i <= sveVarijableYB.Count; i++)
+            for (int i = 1; i <= sveVarijableXA.Count; i++)
             {
-                if (i != sveVarijableYB.Count)
-                    zapisModela += sveVarijableYB[i - 1] + " + ";
+                if (i != sveVarijableXA.Count)
+                    zapisModela += sveVarijableXA[i - 1] + " + ";
                 else
-                    zapisModela += sveVarijableYB[i - 1] + " -> max -> 1" + Environment.NewLine;
+                    zapisModela += sveVarijableXA[i - 1] + " -> min -> 1" + Environment.NewLine;
             }
 
             double sljedeciBroj = 0;
-            foreach (var strategija in upisaniPodaci.igracA)
+            foreach (var strategija in upisaniPodaci.igracB)
             {
                 for (int i = 0; i < strategija.DobitakGubitakStrategije.Length; i++)
                 {
                     if ((i + 1) == strategija.DobitakGubitakStrategije.Length)
                     {
-                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYB[i] + " ≤ 1" + Environment.NewLine;
+                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXA[i] + " ≥ 1" + Environment.NewLine;
                     }
                     else
                     {
                         sljedeciBroj = strategija.DobitakGubitakStrategije[i + 1];
                         if (sljedeciBroj < 0)
                         {
-                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYB[i] + " ";
+                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXA[i] + " ";
                         }
                         else
                         {
-                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYB[i] + " + ";
+                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXA[i] + " + ";
                         }
                     }
                 }
             }
-            zapisModela += "Ῡ(i) ≥ 0";
+            zapisModela += "x̄(i) ≥ 0";
             zapisModela += Environment.NewLine + Environment.NewLine;
         }
 
@@ -185,13 +187,13 @@ namespace OI2GameTheory
         {
             zapisModela += "KANONSKI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
-            for (int i = 1; i <= sveVarijableYB.Count; i++)
+            for (int i = 1; i <= sveVarijableXA.Count; i++)
             {
-                if (i != sveVarijableYB.Count)
-                    zapisModela += sveVarijableYB[i - 1] + " + ";
+                if (i != sveVarijableXA.Count)
+                    zapisModela += sveVarijableXA[i - 1] + " + ";
                 else
                 {
-                    zapisModela += sveVarijableYB[i - 1] + " + 0 * (";
+                    zapisModela += sveVarijableXA[i - 1] + " - 0 * (";
                 }
             }
             
@@ -200,35 +202,44 @@ namespace OI2GameTheory
                 if(i != sveVarijableU.Count)
                     zapisModela += sveVarijableU[i-1] + " + ";
                 else
-                    zapisModela += sveVarijableU[i-1] + ") -> max ->  1/V'" + Environment.NewLine;
-            }
+                    zapisModela += sveVarijableU[i-1] + ") + M * (";
+            } 
             
+            //w varijable
+            for (int i = 1; i <= sveVarijableW.Count; i++)
+            {
+                if (i != sveVarijableW.Count)
+                    zapisModela += sveVarijableW[i - 1] + " + ";
+                else
+                    zapisModela += sveVarijableW[i - 1] + ") -> min ->  1/V'" + Environment.NewLine;
+            }
+
             int brojReda = 0;
             double sljedeciBroj = 0;
-            foreach (var strategija in upisaniPodaci.igracA)
+            foreach (var strategija in upisaniPodaci.igracB)
             {
                 for (int i = 0; i < strategija.DobitakGubitakStrategije.Length; i++)
                 {
                     if ((i + 1) == strategija.DobitakGubitakStrategije.Length)
                     {
-                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYB[i] + " + "+sveVarijableU[brojReda]+" = 1" + Environment.NewLine;
+                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXA[i] + " - "+sveVarijableU[brojReda]+ " + " +sveVarijableW[brojReda]+" = 1" + Environment.NewLine;
                     }
                     else
                     {
                         sljedeciBroj = strategija.DobitakGubitakStrategije[i + 1];
                         if (sljedeciBroj < 0)
                         {
-                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYB[i] + " ";
+                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXA[i] + " ";
                         }
                         else
                         {
-                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYB[i] + " + ";
+                            zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXA[i] + " + ";
                         }
                     }
                 }
                 brojReda++;
             }
-            zapisModela += "Ῡ(i), u(i) ≥ 0";
+            zapisModela += "x̄(i), u(i), w(i) ≥ 0";
             zapisModela += Environment.NewLine + Environment.NewLine;
         }
 

@@ -50,7 +50,7 @@ namespace OI2GameTheory
                         {
                             if (i == indexiVodecihRedaka[brojacIndexa])
                             {
-                                dgvSimplexTablica.Rows[red.Index+i].DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                                dgvSimplexTablica.Rows[red.Index+i].DefaultCellStyle.BackColor = Color.LightGreen;
                                 brojacIndexa++;
                                 break;
                             }
@@ -80,9 +80,9 @@ namespace OI2GameTheory
                                 for(int j = 0; j<brojRedaka1Tablice-1; j++)
                                 {
                                     if(j == indexiVodecihRedaka[brojacIndexa2])
-                                        dgvSimplexTablica.Rows[red.Index + j].Cells[i].Style.BackColor = Color.YellowGreen;
+                                        dgvSimplexTablica.Rows[red.Index + j].Cells[i].Style.BackColor = Color.IndianRed;
                                     else
-                                        dgvSimplexTablica.Rows[red.Index+j].Cells[i].Style.BackColor = Color.LightSeaGreen;
+                                        dgvSimplexTablica.Rows[red.Index+j].Cells[i].Style.BackColor = Color.LightGreen;
                                 }
 
                                 brojacIndexa2++;

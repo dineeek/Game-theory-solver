@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aw/GC388rX3aANsdoEwdUqzVm41498v+1Owy1hyZG/w=</dsig:DigestValue>
+        <dsig:DigestValue>8xfgVxmEOVwq1LEevvlpgsuaRVH3Fu3vQDTx0bXNar0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -87,13 +87,13 @@
       <dsig:DigestValue>PjeQjfaHhUdtF8ZL75qzrIpx2k8Ldhurvw6UckXANOQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="OI2GameTheory.exe.config" size="189">
+  <file name="OI2GameTheory.exe.config" size="184">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>rl5/qDc7Jz+tB+BIbOv9iMGPlRe6YJwrjmU09dnlPcs=</dsig:DigestValue>
+      <dsig:DigestValue>gXPU0Xy3KObyxeLOgSTOfrD0WdxiCFvKq3hqvx9rN6c=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\bearPaw.ico" size="327662">

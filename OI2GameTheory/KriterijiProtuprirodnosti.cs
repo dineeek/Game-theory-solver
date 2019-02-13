@@ -66,7 +66,7 @@ namespace OI2GameTheory
                         internHelp += (double) vjerojatnostPojaveA * vrijednost;
                     }
 
-                    rezultat.Add(internHelp);
+                    rezultat.Add(Math.Round(internHelp,2));
                 }
             }
             else//igracB 
@@ -80,7 +80,7 @@ namespace OI2GameTheory
                     {
                         internHelp += (double) vjerojatnostPojaveB * vrijednost;
                     }
-                    rezultat.Add(internHelp);
+                    rezultat.Add(Math.Round(internHelp, 2));
                 }
             }
 
@@ -184,7 +184,7 @@ namespace OI2GameTheory
                     maxVrijednost = strategija.DobitakGubitakStrategije.Max();
                     minVrijednost = strategija.DobitakGubitakStrategije.Min();
 
-                    rezultat.Add((double)(alfa * maxVrijednost) + ((double)1 - alfa) * minVrijednost);
+                    rezultat.Add(Math.Round((double)(alfa * maxVrijednost) + ((double)1 - alfa) * minVrijednost,2));
                 }
             }
             else//igracB
@@ -195,7 +195,7 @@ namespace OI2GameTheory
                     maxVrijednost = strategija.DobitakGubitakStrategije.Max();
                     minVrijednost = strategija.DobitakGubitakStrategije.Min();
 
-                    rezultat.Add((double)(alfa * maxVrijednost) + ((double)1 - alfa) * minVrijednost);
+                    rezultat.Add(Math.Round((double)(alfa * maxVrijednost) + ((double)1 - alfa) * minVrijednost,2));
                 }
             }
 
