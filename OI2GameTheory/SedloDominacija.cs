@@ -33,12 +33,15 @@ namespace OI2GameTheory
             }
         }
 
+        public List<int> minimumiReda = new List<int>();
+        public List<int> maximumiStupca = new List<int>();
+
         public Tuple<bool, int, int> ProvjeriSedlo()
         {
             bool postojiSedlo = false;
 
-            List<int> minimumiReda = new List<int>();
-            List<int> maximumiStupca = new List<int>();
+            //List<int> minimumiReda = new List<int>();
+            //List<int> maximumiStupca = new List<int>();
             
             //min max reda
             foreach (var strategija in uneseniPodaci.igracA)

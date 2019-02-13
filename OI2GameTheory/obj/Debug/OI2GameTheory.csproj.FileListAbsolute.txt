@@ -65,3 +65,4 @@ C:\Users\dinkl\Desktop\GameTheory-master\OI2GameTheory\obj\Debug\OI2GameTheory.a
 C:\Users\dinkl\Desktop\GameTheory-master\OI2GameTheory\obj\Debug\OI2GameTheory.csproj.CopyComplete
 C:\Users\dinkl\Desktop\GameTheory-master\OI2GameTheory\obj\Debug\OI2GameTheory.exe
 C:\Users\dinkl\Desktop\GameTheory-master\OI2GameTheory\obj\Debug\OI2GameTheory.pdb
+C:\Users\dinkl\Desktop\OI2GameTheory\OI2GameTheory\obj\Debug\OI2GameTheory.FormaSedla.resources

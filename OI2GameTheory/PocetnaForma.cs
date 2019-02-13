@@ -86,21 +86,7 @@ namespace OI2GameTheory
                 //provjera postojanja sedla
                 SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
 
-                Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
-                bool postojiSedlo = postojanjeSedla.Item1;
-                int rezultatIgre = postojanjeSedla.Item2;
-
-                if (postojiSedlo)
-                {
-                    if (rezultatIgre > 0)
-                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else
-                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača B.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return null;
-                }
-                else
-                {
-                    ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
+                ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
 
                     int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
 
@@ -144,7 +130,6 @@ namespace OI2GameTheory
 
                         return new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
                     }
-                }
             }
 
             else //igracB.Check == true;
@@ -219,18 +204,44 @@ namespace OI2GameTheory
         {
             try
             {
+                SimplexForma simplexForma = simplexMetoda();
+
                 if (rbIgracA.Checked == true)
                 {
-                    simplexMetoda().ShowDialog();
-                    ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                    ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
+                    if(simplexForma == null)
+                    {
+                        SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
+                        provjeraSedla.ProvjeriSedlo();
+                        provjeraSedla.ukloniDominantneStrategije();
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                        formaSedla.ShowDialog();
+                    }
+                    else
+                    {
+                        simplexForma.ShowDialog();
+                        ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
+                        ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
+                    }  
                 }
 
                 else //igracB.Check == true;
                 {
-                    simplexMetoda().ShowDialog();
-                    ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                    ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
+                    if (simplexForma == null)
+                    {
+                        SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
+                        provjeraSedla.ProvjeriSedlo();
+                        provjeraSedla.ukloniDominantneStrategije();
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                        formaSedla.ShowDialog();
+                    }
+                    else
+                    {
+                        simplexForma.ShowDialog();
+                        ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
+                        ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
+                    }
                 }
 
             }
@@ -240,8 +251,6 @@ namespace OI2GameTheory
             }
         }
 
-        private IzgradnjaModelaB modelZadatkaA = null;
-        private IzgradnjaModelaA modelZadatkaB = null;
         private FormaModela formaModela;
 
         private string stvoriModelProblema()

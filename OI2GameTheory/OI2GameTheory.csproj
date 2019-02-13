@@ -106,6 +106,12 @@
     <Compile Include="FormaModela.Designer.cs">
       <DependentUpon>FormaModela.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormaSedla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaSedla.Designer.cs">
+      <DependentUpon>FormaSedla.cs</DependentUpon>
+    </Compile>
     <Compile Include="IzgradnjaModelaA.cs" />
     <Compile Include="IzgradnjaModelaB.cs" />
     <Compile Include="KalkulatorZakljuckaB.cs" />
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormaModela.resx">
       <DependentUpon>FormaModela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaSedla.resx">
+      <DependentUpon>FormaSedla.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PocetnaForma.resx">
       <DependentUpon>PocetnaForma.cs</DependentUpon>
