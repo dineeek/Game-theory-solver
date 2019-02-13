@@ -541,7 +541,7 @@ namespace OI2GameTheory
             //postupakIzracuna += "Postupak izračuna za igrača B: " + Environment.NewLine;
             if (help == 1) // za prikaz postupka izracunavanja 
             {
-                postupakIzracuna += "Postupak izračuna za igrača B: " + Environment.NewLine;
+                postupakIzracuna += "Postupak izračuna za igrača A: " + Environment.NewLine;
                 postupakIzracuna += "--------------------1. ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;
                 help++;
             }

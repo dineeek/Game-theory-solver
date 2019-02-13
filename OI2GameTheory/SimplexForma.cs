@@ -35,7 +35,7 @@ namespace OI2GameTheory
         private void SimplexForma_Load(object sender, EventArgs e)
         {
             dgvSimplexTablica.DataSource = simplexTablica;
-
+            
             //bojanje vodećih redova
             int brojac = 0;
             int trenutniRedak = brojRedaka1Tablice;
@@ -117,6 +117,7 @@ namespace OI2GameTheory
             }
 
             dgvSimplexTablica.DoubleBuffered(true);
+            
         }
 
         private void btnIzracun_Click(object sender, EventArgs e)

@@ -76,8 +76,16 @@ namespace OI2GameTheory
             }
         }
 
+        private bool nerijesenRezultat;
+        private bool protuprirodnaIgra;
+        private bool kontradiktornaIgra;
+
         private SimplexForma simplexMetoda()
         {
+            nerijesenRezultat = false;
+            protuprirodnaIgra = false;
+            kontradiktornaIgra = false;
+
             if (rbIgracA.Checked == true)
             {
                 igrac = 1;
@@ -86,7 +94,34 @@ namespace OI2GameTheory
                 //provjera postojanja sedla
                 SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
 
-                ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
+                Tuple<bool, int, int> postojanjeSedla = provjeraSedla.ProvjeriSedlo();
+                bool postojiSedlo = postojanjeSedla.Item1;
+                int rezultatIgre = postojanjeSedla.Item2;
+
+                if (postojiSedlo)
+                {
+                    ProtuprirodnaKontradiktornaIgra protuprirodnostSedla = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
+                    int vrstaIgre = protuprirodnostSedla.ProvjeriProtuprirodnost();
+
+                    if (vrstaIgre == 1)
+                        protuprirodnaIgra = true;
+                    else if (vrstaIgre == 2)
+                        kontradiktornaIgra = true;
+
+                    if (rezultatIgre > 0)
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else if (rezultatIgre == 0)
+                    {
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " - neriješeno.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        nerijesenRezultat = true;
+                    }
+                    else
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " u korist igrača B.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return null;
+                }
+                else
+                {
+                    ProtuprirodnaKontradiktornaIgra protuprirodnost = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
 
                     int vrstaIgre = protuprirodnost.ProvjeriProtuprirodnost();
 
@@ -112,7 +147,7 @@ namespace OI2GameTheory
                     }
                     else if (vrstaIgre == 1)
                     {
-
+                        protuprirodnaIgra = true;
                         MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
                         provjeraSedla.ukloniDuplikatneStrategije();
 
@@ -122,14 +157,15 @@ namespace OI2GameTheory
                     }
                     else//kontradiktorna
                     {
+                        kontradiktornaIgra = true;
                         MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
-
                         provjeraSedla.ukloniDuplikatneStrategije();
 
                         SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
                         return new SimplexForma(smplxCalcKI.SimplexTabliceRazlomci, smplxCalcKI.Zakljucak, smplxCalcKI.indexiVodecihStupaca, smplxCalcKI.indexiVodecihRedaka, smplxCalcKI.brojRedaka, smplxCalcKI.brojStupaca, smplxCalcKI.postupakIzracuna);
                     }
+                }
             }
 
             else //igracB.Check == true;
@@ -146,10 +182,23 @@ namespace OI2GameTheory
 
                 if (postojiSedlo)
                 {
+                    ProtuprirodnaKontradiktornaIgra protuprirodnostSedla = new ProtuprirodnaKontradiktornaIgra(new SpremanjeUnosa(dgvMatrica));
+                    int vrstaIgre = protuprirodnostSedla.ProvjeriProtuprirodnost();
+
+                    if (vrstaIgre == 1)
+                        protuprirodnaIgra = true;
+                    else if (vrstaIgre == 2)
+                        kontradiktornaIgra = true;
+
                     if (rezultatIgre > 0)
-                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else if (rezultatIgre == 0)
+                    {
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " - neriješeno.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        nerijesenRezultat = true;
+                    }
                     else
-                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi: " + rezultatIgre + " u korist igrača B.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " u korist igrača B.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return null;
                 }
                 else
@@ -178,8 +227,8 @@ namespace OI2GameTheory
                     }
                     else if (vrstaIgre == 1)
                     {
+                        protuprirodnaIgra = true;
                         MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
-
                         provjeraSedla.ukloniDuplikatneStrategije();
 
                         SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
@@ -188,8 +237,8 @@ namespace OI2GameTheory
                     }
                     else//kontradiktorna
                     {
+                        kontradiktornaIgra = true;
                         MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
-
                         provjeraSedla.ukloniDuplikatneStrategije();
 
                         SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
@@ -200,11 +249,13 @@ namespace OI2GameTheory
             }
         }
 
+        private SimplexForma simplexForma;
+
         private void btnSimplex_Click(object sender, EventArgs e)
         {
             try
             {
-                SimplexForma simplexForma = simplexMetoda();
+                simplexForma = simplexMetoda();
 
                 if (rbIgracA.Checked == true)
                 {
@@ -212,10 +263,32 @@ namespace OI2GameTheory
                     {
                         SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
                         provjeraSedla.ProvjeriSedlo();
-                        provjeraSedla.ukloniDominantneStrategije();
-                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                        FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                        formaSedla.ShowDialog();
+                        if (nerijesenRezultat == true)
+                        {
+                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                            formaSedla.ShowDialog();
+                        }
+
+                        else if (protuprirodnaIgra == true)
+                        {
+                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                            formaSedla.ShowDialog();
+                        }
+                        else if(kontradiktornaIgra == true)
+                        {
+                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                            formaSedla.ShowDialog();
+                        }
+                        else
+                        {
+                            provjeraSedla.ukloniDominantneStrategije();
+                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                            formaSedla.ShowDialog();
+                        }                                        
                     }
                     else
                     {
@@ -231,10 +304,32 @@ namespace OI2GameTheory
                     {
                         SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
                         provjeraSedla.ProvjeriSedlo();
-                        provjeraSedla.ukloniDominantneStrategije();
-                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                        FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                        formaSedla.ShowDialog();
+                        if (nerijesenRezultat == true)
+                        {
+                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                            formaSedla.ShowDialog();
+                        }
+
+                        else if (protuprirodnaIgra == true)
+                        {
+                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                            formaSedla.ShowDialog();
+                        }
+                        else if (kontradiktornaIgra == true)
+                        {
+                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                            formaSedla.ShowDialog();
+                        }
+                        else
+                        {
+                            provjeraSedla.ukloniDominantneStrategije();
+                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                            formaSedla.ShowDialog();
+                        }
                     }
                     else
                     {
@@ -468,7 +563,8 @@ namespace OI2GameTheory
         {
             try
             {
-                //btnSimplex.PerformClick();
+                btnSimplex.PerformClick();
+                
                 DGVPrinter printer = new DGVPrinter();
 
                 if(igrac == 1)
@@ -480,15 +576,15 @@ namespace OI2GameTheory
                 printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
                 printer.PageNumbers = true;
                 printer.PageNumberInHeader = false;
-                printer.PorportionalColumns = false;
+                printer.PorportionalColumns = true;
                 printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.DataWidth;
                 printer.HeaderCellAlignment = StringAlignment.Near;
                 printer.FooterSpacing = 10;
                 printer.FooterAlignment = StringAlignment.Near;
                 printer.printDocument.DefaultPageSettings.Landscape = true;
 
-                printer.Footer = this.simplexMetoda().DohvatiRjesenjeProblema();
-                printer.PrintDataGridView(simplexMetoda().DohvatiTabliceIteracije());
+                printer.Footer = simplexForma.DohvatiRjesenjeProblema();
+                printer.PrintDataGridView(simplexForma.DohvatiTabliceIteracije());
             }
             catch
             {

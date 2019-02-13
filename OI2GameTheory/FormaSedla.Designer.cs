@@ -39,13 +39,13 @@
             this.txtSedlo.Location = new System.Drawing.Point(12, 25);
             this.txtSedlo.Multiline = true;
             this.txtSedlo.Name = "txtSedlo";
-            this.txtSedlo.Size = new System.Drawing.Size(615, 442);
+            this.txtSedlo.Size = new System.Drawing.Size(494, 381);
             this.txtSedlo.TabIndex = 0;
             this.txtSedlo.TabStop = false;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(552, 468);
+            this.btnOk.Location = new System.Drawing.Point(431, 412);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 1;
@@ -68,7 +68,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.smplxPoz;
-            this.ClientSize = new System.Drawing.Size(639, 492);
+            this.ClientSize = new System.Drawing.Size(521, 441);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtSedlo);

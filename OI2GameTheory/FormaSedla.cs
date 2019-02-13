@@ -41,18 +41,20 @@ namespace OI2GameTheory
             foreach (var min in minimumiReda)
                 matricaPlacanja += min.ToString()+ " ";
 
-            matricaPlacanja += Environment.NewLine + "Maksimum minimuma reda: " + maximumMinimumaReda;
+            matricaPlacanja += Environment.NewLine + "Maksimum minimuma reda - MAXMIN: " + maximumMinimumaReda;
 
             matricaPlacanja += Environment.NewLine + Environment.NewLine + "Maksimumi stupca: ";
             foreach (var max in maximumiStupca)
                 matricaPlacanja += max.ToString() + " ";
 
-            matricaPlacanja += Environment.NewLine + "Minimum maksimuma stupca: " + minimumMaximumaStupca;
+            matricaPlacanja += Environment.NewLine + "Minimum maksimuma stupca - MINMAX: " + minimumMaximumaStupca;
 
             matricaPlacanja += Environment.NewLine + Environment.NewLine + "Kako je MAXMIN reda = MINMAX stupca postoji sedlo.";
 
             if(minimumMaximumaStupca > 0)
                 matricaPlacanja += Environment.NewLine + Environment.NewLine + "Vrijednost ove igre iznosi "+minimumMaximumaStupca+" u korist igrača A.";
+            else if(minimumMaximumaStupca == 0)
+                matricaPlacanja += Environment.NewLine + Environment.NewLine + "Vrijednost ove igre iznosi " + minimumMaximumaStupca + ". Uvijek se odigrava remi - neriješen rezultat.";
             else
                 matricaPlacanja += Environment.NewLine + Environment.NewLine + "Vrijednost ove igre iznosi " + minimumMaximumaStupca + " u korist igrača B.";
 
