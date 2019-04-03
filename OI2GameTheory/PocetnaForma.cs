@@ -257,89 +257,45 @@ namespace OI2GameTheory
             {
                 simplexForma = simplexMetoda();
 
-                if (rbIgracA.Checked == true)
+                if (simplexForma == null)
                 {
-                    if(simplexForma == null)
+                    SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
+                    provjeraSedla.ProvjeriSedlo();
+                    if (nerijesenRezultat == true)
                     {
-                        SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
-                        provjeraSedla.ProvjeriSedlo();
-                        if (nerijesenRezultat == true)
-                        {
-                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                            formaSedla.ShowDialog();
-                        }
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                        formaSedla.ShowDialog();
+                    }
 
-                        else if (protuprirodnaIgra == true)
-                        {
-                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                            formaSedla.ShowDialog();
-                        }
-                        else if(kontradiktornaIgra == true)
-                        {
-                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                            formaSedla.ShowDialog();
-                        }
-                        else
-                        {
-                            provjeraSedla.ukloniDominantneStrategije();
-                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                            formaSedla.ShowDialog();
-                        }                                        
+                    else if (protuprirodnaIgra == true)
+                    {
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                        formaSedla.ShowDialog();
+                    }
+                    else if (kontradiktornaIgra == true)
+                    {
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                        formaSedla.ShowDialog();
                     }
                     else
                     {
-                        simplexForma.ShowDialog();
-                        ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                        ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                    }  
+                        provjeraSedla.ukloniDominantneStrategije();
+                        MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
+                        FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
+                        formaSedla.ShowDialog();
+                    }
                 }
-
-                else //igracB.Check == true;
+                else
                 {
-                    if (simplexForma == null)
-                    {
-                        SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
-                        provjeraSedla.ProvjeriSedlo();
-                        if (nerijesenRezultat == true)
-                        {
-                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                            formaSedla.ShowDialog();
-                        }
-
-                        else if (protuprirodnaIgra == true)
-                        {
-                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                            formaSedla.ShowDialog();
-                        }
-                        else if (kontradiktornaIgra == true)
-                        {
-                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                            formaSedla.ShowDialog();
-                        }
-                        else
-                        {
-                            provjeraSedla.ukloniDominantneStrategije();
-                            MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
-                            FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                            formaSedla.ShowDialog();
-                        }
-                    }
-                    else
-                    {
-                        simplexForma.ShowDialog();
-                        ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
-                        ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
-                    }
+                    simplexForma.ShowDialog();
+                    ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
+                    ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
                 }
-
             }
+
             catch
             {
                 MessageBox.Show("Unesite gubitke i dobitke strategija pojedinih igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -117,7 +117,6 @@ namespace OI2GameTheory
             }
 
             dgvSimplexTablica.DoubleBuffered(true);
-            
         }
 
         private void btnIzracun_Click(object sender, EventArgs e)

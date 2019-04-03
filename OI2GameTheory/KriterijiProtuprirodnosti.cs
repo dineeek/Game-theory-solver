@@ -110,7 +110,7 @@ namespace OI2GameTheory
                     tablicaZaljenjaB.Add(new Strategija(pomocnaListaB));
                 }
 
-                for(int i=0; i < tablicaZaljenjaB.Count(); i++)
+                for(int i=0; i < uneseniPodaci.igracA.Count(); i++) ////tablicaZaljenjaB.Count()
                 {
                     int[] pomocnaListaA = new int[uneseniPodaci.igracB.Count()];
 
@@ -147,7 +147,7 @@ namespace OI2GameTheory
                     tablicaZaljenjaA.Add(new Strategija(pomocnaListaA));
                 }
 
-                for (int i = 0; i < tablicaZaljenjaA.Count(); i++)
+                for (int i = 0; i < uneseniPodaci.igracB.Count(); i++) //tablicaZaljenjaA.Count()
                 {
                     int[] pomocnaListaB = new int[uneseniPodaci.igracA.Count()];
 
@@ -162,7 +162,7 @@ namespace OI2GameTheory
                     tablicaZaljenjaB.Add(new Strategija(pomocnaListaB));
                 }
 
-                //po recima uzeti max
+                //po stupcima uzeti max
                 foreach (var strategija in tablicaZaljenjaB)
                 {
                     rezultat.Add(strategija.DobitakGubitakStrategije.Max());
@@ -248,24 +248,24 @@ namespace OI2GameTheory
                 {
                     laplace += varijableB[i] + ": " + vrijednostiLaplace[i] + "  ";
                 }
-                maxVrijednost = vrijednostiLaplace.Max();
-                maxIndex = vrijednostiLaplace.IndexOf(maxVrijednost);
+                maxVrijednost = vrijednostiLaplace.Min();//Max je bil, ali se okreće tablica tj. igrač
+                maxIndex = vrijednostiLaplace.LastIndexOf(maxVrijednost);
                 laplaceOdabir = varijableB[maxIndex];
 
                 for (int i = 0; i < vrijednostiSavage.Count; i++)
                 {
                     savage += varijableB[i] + ": " + vrijednostiSavage[i] + "  ";
                 }
-                maxVrijednost = vrijednostiSavage.Min();
-                maxIndex = vrijednostiSavage.IndexOf(maxVrijednost);
+                maxVrijednost = vrijednostiSavage.Max();//Min
+                maxIndex = vrijednostiSavage.LastIndexOf(maxVrijednost);
                 savageOdabir = varijableB[maxIndex];
 
                 for (int i = 0; i < vrijednostiHurwicz.Count; i++)
                 {
                     hurwicz += varijableB[i] + ": " + vrijednostiHurwicz[i] + "  ";
                 }
-                maxVrijednost = vrijednostiLaplace.Max();
-                maxIndex = vrijednostiLaplace.IndexOf(maxVrijednost);
+                maxVrijednost = vrijednostiLaplace.Min();//max
+                maxIndex = vrijednostiLaplace.LastIndexOf(maxVrijednost);
                 hurwiczOdabir = varijableB[maxIndex];
 
             }
