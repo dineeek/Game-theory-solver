@@ -40,7 +40,7 @@ namespace OI2GameTheory
             {
                 sveVarijableY.Add("y" + (brojacVarijabliB + 1));
                 sveVarijableYCrtano.Add("y'" + (brojacVarijabliB + 1));
-                sveVarijableYB.Add("Ῡ" + (brojacVarijabliB + 1));
+                sveVarijableYB.Add("ȳ" + (brojacVarijabliB + 1));
                 brojacVarijabliB++;
             }
 
@@ -142,7 +142,7 @@ namespace OI2GameTheory
 
         private void supstituiraj()
         {
-            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "Ῡ = y'(i)/V'" + Environment.NewLine + Environment.NewLine;
+            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "ȳ = y'(i)/V'" + Environment.NewLine + Environment.NewLine;
 
             zapisModela += "SUPSTITUIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
@@ -228,7 +228,7 @@ namespace OI2GameTheory
                 }
                 brojReda++;
             }
-            zapisModela += "Ῡ(i), u(i) ≥ 0";
+            zapisModela += "ȳ(i), u(i) ≥ 0";
             zapisModela += Environment.NewLine + Environment.NewLine;
         }
 

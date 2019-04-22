@@ -122,7 +122,7 @@ namespace OI2GameTheory
         private void btnIzracun_Click(object sender, EventArgs e)
         {
             FormaIzracuna frmIzracun = new FormaIzracuna(postupakIzracuna);
-            frmIzracun.ShowDialog();
+            frmIzracun.Show();
         }
 
         public DataGridView DohvatiTabliceIteracije()

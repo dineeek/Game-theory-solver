@@ -59,8 +59,11 @@
             this.dgvSimplexTablica.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSimplexTablica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSimplexTablica.Location = new System.Drawing.Point(12, 26);
+            this.dgvSimplexTablica.MultiSelect = false;
             this.dgvSimplexTablica.Name = "dgvSimplexTablica";
+            this.dgvSimplexTablica.ReadOnly = true;
             this.dgvSimplexTablica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvSimplexTablica.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSimplexTablica.Size = new System.Drawing.Size(1226, 552);
             this.dgvSimplexTablica.TabIndex = 0;
             // 
