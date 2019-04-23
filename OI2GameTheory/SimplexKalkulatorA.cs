@@ -8,7 +8,7 @@ using System.Data.Common;
 
 namespace OI2GameTheory
 {
-    public class SimplexKalkulatorA // standardi problem LP za minimum- za igracB
+    public class SimplexKalkulatorA // standardi problem LP za max
     {
         private SpremanjeUnosa podaciStrategija;
         private int diferencija;
@@ -620,7 +620,7 @@ namespace OI2GameTheory
 
                 }
 
-                KalkulatorZakljuckaB zakljucak = new KalkulatorZakljuckaB(novaSimplexTablica, podaciStrategija, diferencija);
+                KalkulatorZakljuckaA zakljucak = new KalkulatorZakljuckaA(novaSimplexTablica, podaciStrategija, diferencija);
                 Zakljucak = zakljucak.DohvatiZakljucak();
 
                 //pretvaranje decimalni u razlomke

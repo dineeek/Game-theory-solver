@@ -114,8 +114,8 @@
     </Compile>
     <Compile Include="IzgradnjaModelaA.cs" />
     <Compile Include="IzgradnjaModelaB.cs" />
-    <Compile Include="KalkulatorZakljuckaB.cs" />
     <Compile Include="KalkulatorZakljuckaA.cs" />
+    <Compile Include="KalkulatorZakljuckaB.cs" />
     <Compile Include="KriterijiProtuprirodnosti.cs" />
     <Compile Include="MatricnaIgra.cs" />
     <Compile Include="PocetnaForma.cs">

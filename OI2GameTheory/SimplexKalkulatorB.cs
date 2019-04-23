@@ -8,7 +8,7 @@ using System.Data.Common;
 
 namespace OI2GameTheory
 {
-    public class SimplexKalkulatorB // standardi problem LP za maximum - za igracA
+    public class SimplexKalkulatorB // standardi problem LP za min
     {
         private SpremanjeUnosa podaciStrategija;
         private int diferencija;
@@ -60,7 +60,7 @@ namespace OI2GameTheory
             pocetnaSimplexTablica.Columns.Add("Kol", typeof(string));
 
             for(int i=0; i<podaciStrategija.igracB.Count; i++)
-                pocetnaSimplexTablica.Columns.Add("Ῡ" + (i + 1) + "", typeof(string)); //Ῡ - supstitucija za yi/v'
+                pocetnaSimplexTablica.Columns.Add("ȳ" + (i + 1) + "", typeof(string)); //ȳ - supstitucija za yi/v'
 
             for (int i = 0; i < podaciStrategija.igracA.Count; i++)
                 pocetnaSimplexTablica.Columns.Add("u" + (i + 1) + "", typeof(string)); //dopunske varijable - ovise o broju jednadzbi tj. igracu 
@@ -82,7 +82,7 @@ namespace OI2GameTheory
 
                 for (int j = 0; j < strategijaA.DobitakGubitakStrategije.Length; j++)
                 {
-                    noviRedak["Ῡ" + (j + 1) + ""] = strategijaA.DobitakGubitakStrategije[j];
+                    noviRedak["ȳ" + (j + 1) + ""] = strategijaA.DobitakGubitakStrategije[j];
                     internKontrol += strategijaA.DobitakGubitakStrategije[j];
                 }
 
@@ -110,7 +110,7 @@ namespace OI2GameTheory
 
             for (int i = 0; i < podaciStrategija.igracB.Count; i++)
             {
-                redakZjCj["Ῡ" + (i + 1) + ""] = -1;
+                redakZjCj["ȳ" + (i + 1) + ""] = -1;
             }
 
             for (int i = 0; i < podaciStrategija.igracA.Count; i++)
@@ -520,7 +520,7 @@ namespace OI2GameTheory
 
                 }
 
-                KalkulatorZakljuckaA zakljucak = new KalkulatorZakljuckaA(novaSimplexTablica, podaciStrategija, diferencija);
+                KalkulatorZakljuckaB zakljucak = new KalkulatorZakljuckaB(novaSimplexTablica, podaciStrategija, diferencija);
                 Zakljucak = zakljucak.DohvatiZakljucak();
                 
                 //pretvaranje decimalni u razlomke

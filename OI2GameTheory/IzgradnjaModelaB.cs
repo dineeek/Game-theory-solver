@@ -142,7 +142,7 @@ namespace OI2GameTheory
 
         private void supstituiraj()
         {
-            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "ȳ = y'(i)/V'" + Environment.NewLine + Environment.NewLine;
+            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "ȳ(i) = y'(i)/V'" + Environment.NewLine + Environment.NewLine;
 
             zapisModela += "SUPSTITUIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
 
@@ -151,7 +151,7 @@ namespace OI2GameTheory
                 if (i != sveVarijableYB.Count)
                     zapisModela += sveVarijableYB[i - 1] + " + ";
                 else
-                    zapisModela += sveVarijableYB[i - 1] + " -> max -> 1" + Environment.NewLine;
+                    zapisModela += sveVarijableYB[i - 1] + " -> max -> 1/V'" + Environment.NewLine;
             }
 
             double sljedeciBroj = 0;

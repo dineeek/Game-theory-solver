@@ -30,48 +30,48 @@ namespace OI2GameTheory
 
         private void IzracunajZakljucak()
         {
-            VCrtano = (double) 1 / Convert.ToDouble(zadnjaTablica.Rows[zadnjaTablica.Rows.Count - 2][2]);
+            VCrtano = (double) 1 / Convert.ToDouble(zadnjaTablica.Rows[zadnjaTablica.Rows.Count - 3][2]);
             V = Math.Round((double) VCrtano - diferencija,2); //V' - D
 
             //postoci strategija igraca
             igracAPostoci = new double[podaciStrategija.igracA.Count];
             igracBPostoci = new double[podaciStrategija.igracB.Count];
 
-            int brojacA = 0;
-            for(int i=2+podaciStrategija.igracB.Count+1; i< zadnjaTablica.Columns.Count-2; i++)
+            int brojacB = 0;
+            for(int i=2+podaciStrategija.igracA.Count+1; i<zadnjaTablica.Columns.Count-(podaciStrategija.igracB.Count + 2); i++)
             {
-                igracAPostoci[brojacA] = Convert.ToDouble(zadnjaTablica.Rows[zadnjaTablica.Rows.Count - 2][i]) * VCrtano;
-                brojacA++;
+                igracBPostoci[brojacB] = Convert.ToDouble(zadnjaTablica.Rows[zadnjaTablica.Rows.Count - 3][i]) * VCrtano;
+                brojacB++;
             }
 
-            List<string> sveVarijableB = new List<string>();
-            int brojacVarijabliB = 0;
-            foreach (var strategija in podaciStrategija.igracB)
+            List<string> sveVarijableA = new List<string>();
+            int brojacVarijabliA = 0;
+            foreach (var strategija in podaciStrategija.igracA)
             {
-                sveVarijableB.Add("Ῡ" + (brojacVarijabliB + 1));
-                brojacVarijabliB++;
+                sveVarijableA.Add("x̄" + (brojacVarijabliA + 1));
+                brojacVarijabliA++;
             }
 
-            List<string> varijableBUTablici = new List<string>();
-            for (int i = 0; i <= zadnjaTablica.Rows.Count - 3; i++)
-                varijableBUTablici.Add(zadnjaTablica.Rows[i][1].ToString());
+            List<string> varijableAUTablici = new List<string>();
+            for (int i = 0; i <= zadnjaTablica.Rows.Count - 4; i++)
+                varijableAUTablici.Add(zadnjaTablica.Rows[i][1].ToString());
 
 
             //provjera podudaranja
-            int brojacB = 0;
-            foreach(var varijabla in sveVarijableB)
+            int brojacA = 0;
+            foreach(var varijabla in sveVarijableA)
             {
-                for (int i=0; i<varijableBUTablici.Count; i++)
+                for (int i=0; i< varijableAUTablici.Count; i++)
                 {
                     if (varijabla == (zadnjaTablica.Rows[i][1].ToString()))
                     {
-                        igracBPostoci[brojacB] = (double) Convert.ToDouble(zadnjaTablica.Rows[i][2]) * VCrtano;
+                        igracAPostoci[brojacA] = (double) Convert.ToDouble(zadnjaTablica.Rows[i][2]) * VCrtano;
                         break;
                     }                     
                     else
-                        igracBPostoci[brojacB] = 0;
+                        igracAPostoci[brojacA] = 0;
                 }
-                brojacB++;
+                brojacA++;
             }
      }
 
@@ -82,7 +82,7 @@ namespace OI2GameTheory
             int brojacA = 1;
             foreach (var vjerojatnost in igracAPostoci)
             {
-                zakljucak += "X" + brojacA + " = " + Math.Round((vjerojatnost * 100), 2, MidpointRounding.AwayFromZero) + "%   ";
+                zakljucak += "X" + brojacA + " = " + Math.Round((vjerojatnost * 100), 2, MidpointRounding.ToEven) + "%   ";
                 brojacA++;
             }
 
@@ -92,7 +92,7 @@ namespace OI2GameTheory
             int brojacB = 1;
             foreach (var vjerojatnost in igracBPostoci)
             {
-                zakljucak += "Y" + brojacB + " = " + Math.Round((vjerojatnost * 100), 2, MidpointRounding.AwayFromZero) + "%   ";
+                zakljucak += "Y" + brojacB + " = " + Math.Round((vjerojatnost * -100), 2, MidpointRounding.ToEven) + "%   ";
                 brojacB++;
             }
 
