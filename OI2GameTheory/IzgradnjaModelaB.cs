@@ -100,7 +100,7 @@ namespace OI2GameTheory
                 if (i != sveVarijableYCrtano.Count)
                     zapisModela += sveVarijableYCrtano[i - 1] + " + ";
                 else
-                    zapisModela += sveVarijableYCrtano[i - 1] + " -> max -> 1" + Environment.NewLine;
+                    zapisModela += sveVarijableYCrtano[i - 1] + " -> max -> 1 * /(1/V')" + Environment.NewLine; // * /(1/V')
             }
 
             double sljedeciBroj = 0;
@@ -110,7 +110,7 @@ namespace OI2GameTheory
                 {
                     if ((i + 1) == strategija.DobitakGubitakStrategije.Length)
                     {
-                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYCrtano[i] + " ≤ V'" + Environment.NewLine;
+                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableYCrtano[i] + " ≤ V' * /(1/V')" + Environment.NewLine; // * /(1/V')
                     }
                     else
                     {
@@ -177,7 +177,7 @@ namespace OI2GameTheory
                     }
                 }
             }
-            zapisModela += "Ῡ(i) ≥ 0";
+            zapisModela += "ȳ(i) ≥ 0";
             zapisModela += Environment.NewLine + Environment.NewLine;
         }
 

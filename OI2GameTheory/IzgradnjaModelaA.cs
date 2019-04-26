@@ -15,8 +15,8 @@ namespace OI2GameTheory
         private List<string> sveVarijableXA = new List<string>();//x s crtom x̄
         private List<string> sveVarijableX = new List<string>();//obicni x
         private List<string> sveVarijableXCrtano = new List<string>();//x'
-        private List<string> sveVarijableU = new List<string>();//u - dopunske varijable - ovise o broju jednadzbi B
-        private List<string> sveVarijableW = new List<string>();//w - artificijalne - ima ih isto kolko i u
+        private List<string> sveVarijableU = new List<string>();//u - dopunske varijable - ovise o broju jednadzbi A
+        private List<string> sveVarijableW = new List<string>();//w - artificijalne - ima ih isto kolko i dopunskih U
 
         public IzgradnjaModelaA(SpremanjeUnosa podaci, int minDif)
         {
@@ -102,7 +102,7 @@ namespace OI2GameTheory
                 if (i != sveVarijableXCrtano.Count)
                     zapisModela += sveVarijableXCrtano[i - 1] + " + ";
                 else
-                    zapisModela += sveVarijableXCrtano[i - 1] + " -> min -> 1" + Environment.NewLine;
+                    zapisModela += sveVarijableXCrtano[i - 1] + " -> min -> 1 * /(1/V')" + Environment.NewLine;// * /(1/V')
             }
 
             double sljedeciBroj = 0;
@@ -112,7 +112,7 @@ namespace OI2GameTheory
                 {
                     if ((i + 1) == strategija.DobitakGubitakStrategije.Length)
                     {
-                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXCrtano[i] + " ≥ V'" + Environment.NewLine;
+                        zapisModela += strategija.DobitakGubitakStrategije[i] + "" + sveVarijableXCrtano[i] + " ≥ V' * /(1/V')" + Environment.NewLine;// * /(1/V')
                     }
                     else
                     {

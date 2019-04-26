@@ -44,6 +44,7 @@
             this.txtModel.Location = new System.Drawing.Point(3, 24);
             this.txtModel.Multiline = true;
             this.txtModel.Name = "txtModel";
+            this.txtModel.ReadOnly = true;
             this.txtModel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtModel.Size = new System.Drawing.Size(840, 600);
             this.txtModel.TabIndex = 0;

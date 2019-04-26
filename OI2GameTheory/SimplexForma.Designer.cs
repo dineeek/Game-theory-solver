@@ -88,9 +88,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 13);
+            this.label1.Size = new System.Drawing.Size(156, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Simplex tablice iteracija: ";
+            this.label1.Text = "Simpleks tablice iteracija: ";
             // 
             // label2
             // 
@@ -107,12 +107,13 @@
             // btnIzracun
             // 
             this.btnIzracun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIzracun.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnIzracun.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnIzracun.FlatAppearance.BorderSize = 0;
+            this.btnIzracun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnIzracun.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.btnIzracun.Location = new System.Drawing.Point(1139, 579);
+            this.btnIzracun.Location = new System.Drawing.Point(1119, 579);
             this.btnIzracun.Name = "btnIzracun";
-            this.btnIzracun.Size = new System.Drawing.Size(99, 23);
+            this.btnIzracun.Size = new System.Drawing.Size(119, 23);
             this.btnIzracun.TabIndex = 4;
             this.btnIzracun.Text = "Prikaz izračuna";
             this.btnIzracun.UseVisualStyleBackColor = false;
@@ -148,7 +149,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SimplexForma";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Simplex postupak problema";
+            this.Text = "Simpleks postupak problema";
             this.Load += new System.EventHandler(this.SimplexForma_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSimplexTablica)).EndInit();
             this.ResumeLayout(false);

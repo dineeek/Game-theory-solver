@@ -31,7 +31,7 @@ namespace OI2GameTheory
         {
             podaciStrategija = podaci;
 
-            if (minDif < 0)
+            if (minDif <= 0)
                 diferencija = Math.Abs(minDif) + 1;
             else
                 diferencija = 0;
@@ -542,11 +542,16 @@ namespace OI2GameTheory
                     if (string.IsNullOrEmpty(SimplexTabliceRazlomci.Rows[j][i].ToString()))
                         praznaCelija = true;
                     else
-                        broj = Convert.ToDouble(SimplexTabliceRazlomci.Rows[j][i]); 
+                        broj = Convert.ToDouble(SimplexTabliceRazlomci.Rows[j][i]);
+
+                    //int cijeliBroj = 0;
 
                     if (!praznaCelija)
                     {
-                        if ((broj % 1) != 0)
+                        if ((broj - Math.Floor(broj)).ToString() == "0,999999")
+                            SimplexTabliceRazlomci.Rows[j][i] = Math.Ceiling(broj);
+
+                        else if ((broj % 1) != 0)
                             SimplexTabliceRazlomci.Rows[j][i] = RealToFraction(broj, 0.0001).N + "/" + RealToFraction(broj, 0.0001).D;
                     }
                 }

@@ -117,9 +117,9 @@
             this.btnGenerirajMatricu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnGenerirajMatricu.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerirajMatricu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnGenerirajMatricu.Location = new System.Drawing.Point(346, 47);
+            this.btnGenerirajMatricu.Location = new System.Drawing.Point(346, 37);
             this.btnGenerirajMatricu.Name = "btnGenerirajMatricu";
-            this.btnGenerirajMatricu.Size = new System.Drawing.Size(82, 43);
+            this.btnGenerirajMatricu.Size = new System.Drawing.Size(82, 53);
             this.btnGenerirajMatricu.TabIndex = 5;
             this.btnGenerirajMatricu.Text = "Generiraj matricu";
             this.btnGenerirajMatricu.UseVisualStyleBackColor = false;
@@ -161,9 +161,9 @@
             this.btnSimplex.Enabled = false;
             this.btnSimplex.Location = new System.Drawing.Point(118, 358);
             this.btnSimplex.Name = "btnSimplex";
-            this.btnSimplex.Size = new System.Drawing.Size(93, 23);
+            this.btnSimplex.Size = new System.Drawing.Size(108, 23);
             this.btnSimplex.TabIndex = 8;
-            this.btnSimplex.Text = "Simplex metoda";
+            this.btnSimplex.Text = "Simpleks postupak";
             this.btnSimplex.UseVisualStyleBackColor = false;
             this.btnSimplex.Click += new System.EventHandler(this.btnSimplex_Click);
             // 
@@ -311,7 +311,7 @@
             this.MaximizeBox = false;
             this.Name = "PocetnaForma";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Game Theory Solver";
+            this.Text = "Zero Sum Game Theory Solver";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrica)).EndInit();
             this.gbOdabirIgraca.ResumeLayout(false);
             this.gbOdabirIgraca.PerformLayout();
