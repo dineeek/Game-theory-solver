@@ -82,7 +82,7 @@ namespace OI2GameTheory
             int brojacA = 1;
             foreach (var vjerojatnost in igracAPostoci)
             {
-                zakljucak += "X" + brojacA + " = " + Math.Round((vjerojatnost * 100), 2, MidpointRounding.ToEven) + "%   ";
+                zakljucak += "X" + brojacA + " = " + Math.Round((vjerojatnost * 100), 2, MidpointRounding.AwayFromZero) + "%   ";
                 brojacA++;
             }
 
@@ -92,7 +92,7 @@ namespace OI2GameTheory
             int brojacB = 1;
             foreach (var vjerojatnost in igracBPostoci)
             {
-                zakljucak += "Y" + brojacB + " = " + Math.Round((vjerojatnost * -100), 2, MidpointRounding.ToEven) + "%   ";
+                zakljucak += "Y" + brojacB + " = " + Math.Round((vjerojatnost * -100), 2, MidpointRounding.AwayFromZero) + "%   ";
                 brojacB++;
             }
 

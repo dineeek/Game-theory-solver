@@ -150,6 +150,7 @@
             this.dgvMatrica.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvMatrica.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvMatrica.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvMatrica.Size = new System.Drawing.Size(409, 259);
             this.dgvMatrica.TabIndex = 6;
             this.dgvMatrica.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvMatrica_DataError);

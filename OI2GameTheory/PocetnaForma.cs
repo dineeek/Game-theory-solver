@@ -34,6 +34,10 @@ namespace OI2GameTheory
             {
                 MessageBox.Show("Unesite broj strategija svakog igrača!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (int.Parse(txtStrA.Text) <= 1 || int.Parse(txtStrB.Text) <= 1)
+            {
+                MessageBox.Show("Broj strategija igrača mora biti veći od jedne strategije!", "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
             {
                 try
@@ -112,7 +116,7 @@ namespace OI2GameTheory
                         MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " u korist igrača A.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else if (rezultatIgre == 0)
                     {
-                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " - neriješeno.", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Postoji sedlo!\nVrijednost ove igre iznosi " + rezultatIgre + " - neriješeno (pravedna igra).", "Kraj igre!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         nerijesenRezultat = true;
                     }
                     else
@@ -261,13 +265,14 @@ namespace OI2GameTheory
                 {
                     SedloDominacija provjeraSedla = new SedloDominacija(uneseniDobiciGubitci);
                     provjeraSedla.ProvjeriSedlo();
-                    if (nerijesenRezultat == true)
+
+                    if (nerijesenRezultat == true || protuprirodnaIgra == true || kontradiktornaIgra == true)
                     {
                         MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
                         FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
                         formaSedla.ShowDialog();
                     }
-
+                    /*
                     else if (protuprirodnaIgra == true)
                     {
                         MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
@@ -280,6 +285,7 @@ namespace OI2GameTheory
                         FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
                         formaSedla.ShowDialog();
                     }
+                    */
                     else
                     {
                         provjeraSedla.ukloniDominantneStrategije();
