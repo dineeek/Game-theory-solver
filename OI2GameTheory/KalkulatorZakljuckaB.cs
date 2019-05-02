@@ -49,7 +49,7 @@ namespace OI2GameTheory
                 VCrtanoRazlomak = VCrtano.ToString();
 
             postupakZakljucka += "V' = 1 / (" + brojRazlomak + ")" + " = " + VCrtanoRazlomak + Environment.NewLine;
-            postupakZakljucka += "Vrijednost igre V: " + VCrtanoRazlomak + " - " + diferencija.ToString() + " = " + V.ToString() + Environment.NewLine + "Vjerojatnosti igranja strategija pojedinog igrača: " + Environment.NewLine;
+            postupakZakljucka += "Vrijednost igre V: " + VCrtanoRazlomak + " - " + diferencija.ToString() + " = " + V.ToString() + Environment.NewLine + "Vjerojatnosti igranja strategija pojedinog igrača: " + Environment.NewLine + "Igrač A "; ;
 
             //postoci strategija igraca
             igracAPostoci = new double[podaciStrategija.igracA.Count];
@@ -90,6 +90,7 @@ namespace OI2GameTheory
             for (int i = 0; i <= zadnjaTablica.Rows.Count - 3; i++)
                 varijableBUTablici.Add(zadnjaTablica.Rows[i][1].ToString());
 
+            postupakZakljucka += "Igrač B "+Environment.NewLine;
 
             //provjera podudaranja
             int brojacB = 0;

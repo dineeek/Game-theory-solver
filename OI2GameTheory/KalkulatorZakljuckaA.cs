@@ -49,7 +49,7 @@ namespace OI2GameTheory
                 VCrtanoRazlomak = VCrtano.ToString();
 
             postupakZakljucka += "V' = 1 / (" + brojRazlomak +")" + " = " +VCrtanoRazlomak+ Environment.NewLine;
-            postupakZakljucka += "Vrijednost igre V: " + VCrtanoRazlomak + " - " + diferencija.ToString() +" = "+ V.ToString() + Environment.NewLine + "Vjerojatnosti igranja strategija pojedinog igrača: " + Environment.NewLine;
+            postupakZakljucka += "Vrijednost igre V: " + VCrtanoRazlomak + " - " + diferencija.ToString() +" = "+ V.ToString() + Environment.NewLine + "Vjerojatnosti igranja strategija pojedinog igrača: " + Environment.NewLine + "Igrač B" + Environment.NewLine;
 
 
 
@@ -58,7 +58,7 @@ namespace OI2GameTheory
             igracBPostoci = new double[podaciStrategija.igracB.Count];
 
             int brojacB = 0;
-            for(int i=2+podaciStrategija.igracA.Count+1; i<zadnjaTablica.Columns.Count-(podaciStrategija.igracB.Count + 2); i++)//gledaju se w varijable
+            for(int i=2+podaciStrategija.igracA.Count*2+1; i<zadnjaTablica.Columns.Count - 2; i++)//gledaju se w varijable i<zadnjaTablica.Columns.Count-(podaciStrategija.igracB.Count + 2)
             {
                 igracBPostoci[brojacB] = Convert.ToDouble(zadnjaTablica.Rows[zadnjaTablica.Rows.Count - 3][i]) * VCrtano;
                 brojacB++;
@@ -92,6 +92,7 @@ namespace OI2GameTheory
             for (int i = 0; i <= zadnjaTablica.Rows.Count - 4; i++)
                 varijableAUTablici.Add(zadnjaTablica.Rows[i][1].ToString());
 
+            postupakZakljucka += "Igrač A " + Environment.NewLine;
 
             //provjera podudaranja
             int brojacA = 0;
@@ -147,7 +148,7 @@ namespace OI2GameTheory
             int brojacB = 1;
             foreach (var vjerojatnost in igracBPostoci)
             {
-                zakljucak += "Y" + brojacB + " = " + Math.Round((vjerojatnost * -100), 2, MidpointRounding.AwayFromZero) + "%   ";
+                zakljucak += "Y" + brojacB + " = " + Math.Round((vjerojatnost * 100), 2, MidpointRounding.AwayFromZero) + "%   ";
                 brojacB++;
             }
 
