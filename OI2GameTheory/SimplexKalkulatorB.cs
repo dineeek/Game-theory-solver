@@ -522,7 +522,8 @@ namespace OI2GameTheory
 
                 KalkulatorZakljuckaB zakljucak = new KalkulatorZakljuckaB(novaSimplexTablica, podaciStrategija, diferencija);
                 Zakljucak = zakljucak.DohvatiZakljucak();
-                
+                postupakIzracuna += zakljucak.DohvatiPostupakZakljucka();
+
                 //pretvaranje decimalni u razlomke
                 SimplexTabliceRazlomci = SimplexTablice.Copy();
                 SimplexTablice = new DataTable();
