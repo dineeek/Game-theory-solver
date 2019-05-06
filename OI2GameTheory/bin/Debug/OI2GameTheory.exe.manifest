@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>DN4TOXteQMdmK9XqR+Gz5xFhXMqg4kZ3WfSkIwlWIz8=</dsig:DigestValue>
+        <dsig:DigestValue>LUxof5G2fqge9yCZoHsjf36z8ZbG2UVLGbir3E0yFkI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -94,6 +94,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>gXPU0Xy3KObyxeLOgSTOfrD0WdxiCFvKq3hqvx9rN6c=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Pomoc.pdf" size="1023686">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+2rt9e4RYX51JkjENSeWe6lboJY+owOQoge3PCHY3mI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\bearPaw.ico" size="327662">

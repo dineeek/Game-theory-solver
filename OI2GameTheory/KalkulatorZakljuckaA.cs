@@ -58,7 +58,7 @@ namespace OI2GameTheory
             igracBPostoci = new double[podaciStrategija.igracB.Count];
 
             int brojacB = 0;
-            for(int i=2+podaciStrategija.igracA.Count*2+1; i<zadnjaTablica.Columns.Count - 2; i++)//gledaju se w varijable i<zadnjaTablica.Columns.Count-(podaciStrategija.igracB.Count + 2)
+            for(int i=2+podaciStrategija.igracA.Count+podaciStrategija.igracB.Count+1; i<zadnjaTablica.Columns.Count - 2; i++)//gledaju se w varijable i<zadnjaTablica.Columns.Count-(podaciStrategija.igracB.Count + 2)
             {
                 igracBPostoci[brojacB] = Convert.ToDouble(zadnjaTablica.Rows[zadnjaTablica.Rows.Count - 3][i]) * VCrtano;
                 brojacB++;

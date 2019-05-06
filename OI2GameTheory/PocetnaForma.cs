@@ -590,7 +590,21 @@ namespace OI2GameTheory
 
         private void pomoćToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //pdf otvara iz diplomskog 6. poglavlje
+            string putPomoci = Application.StartupPath + @"\Pomoc.pdf";
+            OtvoriDatoteku(putPomoci);
+
+        }
+
+        private void OtvoriDatoteku(string putDatoteke)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(putDatoteke);
+            }
+            catch
+            {
+                MessageBox.Show("Dogodila se pogreška kod otvaranja pomoći alata!\nPokušajte ponovno!");
+            }
         }
 
         private void ispisModelaZadatkaToolStripMenuItem_Click(object sender, EventArgs e)
