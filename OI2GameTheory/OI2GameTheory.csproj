@@ -91,63 +91,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrtanjeMatrice.cs" />
-    <Compile Include="DGVPrinter.cs" />
-    <Compile Include="EkstenzijskeMetode.cs" />
-    <Compile Include="FormaIzracuna.cs">
+    <Compile Include="Matrica\CrtanjeMatrice.cs" />
+    <Compile Include="Ostalo\DGVPrinter.cs" />
+    <Compile Include="Ostalo\EkstenzijskeMetode.cs" />
+    <Compile Include="Forme\FormaIzracuna.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormaIzracuna.Designer.cs">
+    <Compile Include="Forme\FormaIzracuna.Designer.cs">
       <DependentUpon>FormaIzracuna.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormaModela.cs">
+    <Compile Include="Forme\FormaModela.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormaModela.Designer.cs">
+    <Compile Include="Forme\FormaModela.Designer.cs">
       <DependentUpon>FormaModela.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormaSedla.cs">
+    <Compile Include="Forme\FormaSedla.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormaSedla.Designer.cs">
+    <Compile Include="Forme\FormaSedla.Designer.cs">
       <DependentUpon>FormaSedla.cs</DependentUpon>
     </Compile>
-    <Compile Include="IzgradnjaModelaA.cs" />
-    <Compile Include="IzgradnjaModelaB.cs" />
-    <Compile Include="KalkulatorZakljuckaA.cs" />
-    <Compile Include="KalkulatorZakljuckaB.cs" />
-    <Compile Include="KriterijiProtuprirodnosti.cs" />
-    <Compile Include="MatricnaIgra.cs" />
-    <Compile Include="PocetnaForma.cs">
+    <Compile Include="Modeli\IzgradnjaModelaA.cs" />
+    <Compile Include="Modeli\IzgradnjaModelaB.cs" />
+    <Compile Include="Simpleks\KalkulatorZakljuckaA.cs" />
+    <Compile Include="Simpleks\KalkulatorZakljuckaB.cs" />
+    <Compile Include="Matrica\KriterijiProtuprirodnosti.cs" />
+    <Compile Include="Matrica\MatricnaIgra.cs" />
+    <Compile Include="Forme\PocetnaForma.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PocetnaForma.Designer.cs">
+    <Compile Include="Forme\PocetnaForma.Designer.cs">
       <DependentUpon>PocetnaForma.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProtuprirodnaKontradiktornaIgra.cs" />
-    <Compile Include="SedloDominacija.cs" />
-    <Compile Include="SimplexForma.cs">
+    <Compile Include="Matrica\ProtuprirodnaKontradiktornaIgra.cs" />
+    <Compile Include="Matrica\SedloDominacija.cs" />
+    <Compile Include="Forme\SimplexForma.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SimplexForma.Designer.cs">
+    <Compile Include="Forme\SimplexForma.Designer.cs">
       <DependentUpon>SimplexForma.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimplexKalkulatorA.cs" />
-    <Compile Include="SimplexKalkulatorB.cs" />
-    <Compile Include="SpremanjeUnosa.cs" />
-    <Compile Include="Strategija.cs" />
-    <EmbeddedResource Include="FormaIzracuna.resx">
+    <Compile Include="Simpleks\SimplexKalkulatorA.cs" />
+    <Compile Include="Simpleks\SimplexKalkulatorB.cs" />
+    <Compile Include="Matrica\SpremanjeUnosa.cs" />
+    <Compile Include="Matrica\Strategija.cs" />
+    <EmbeddedResource Include="Forme\FormaIzracuna.resx">
       <DependentUpon>FormaIzracuna.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormaModela.resx">
+    <EmbeddedResource Include="Forme\FormaModela.resx">
       <DependentUpon>FormaModela.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormaSedla.resx">
+    <EmbeddedResource Include="Forme\FormaSedla.resx">
       <DependentUpon>FormaSedla.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PocetnaForma.resx">
+    <EmbeddedResource Include="Forme\PocetnaForma.resx">
       <DependentUpon>PocetnaForma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -160,7 +160,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SimplexForma.resx">
+    <EmbeddedResource Include="Forme\SimplexForma.resx">
       <DependentUpon>SimplexForma.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="OI2GameTheory_TemporaryKey.pfx" />
@@ -207,6 +207,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
