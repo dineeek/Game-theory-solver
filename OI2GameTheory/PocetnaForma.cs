@@ -163,7 +163,7 @@ namespace OI2GameTheory
                     {
                         kontradiktornaIgra = true;
                         MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
-                        provjeraSedla.ukloniDuplikatneStrategije();
+                        //provjeraSedla.ukloniDuplikatneStrategije();
 
                         SimplexKalkulatorA smplxCalcKI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
@@ -243,7 +243,7 @@ namespace OI2GameTheory
                     {
                         kontradiktornaIgra = true;
                         MessageBox.Show("Unesena je kontradiktorna igra!\nNe uklanjam dominantne strategije.");//kontradiktorna nastaje nakon uklanjanja strategija svođenjem jednog igrača na samo 1 strategiju
-                        provjeraSedla.ukloniDuplikatneStrategije();
+                        //provjeraSedla.ukloniDuplikatneStrategije();
 
                         SimplexKalkulatorB smplxCalcKI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
 
