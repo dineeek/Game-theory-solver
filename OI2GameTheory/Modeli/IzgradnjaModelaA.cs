@@ -22,7 +22,7 @@ namespace OI2GameTheory
         {
             upisaniPodaci = podaci;
 
-            if (minDif < 0)
+            if (minDif <= 0)
                 diferencija = Math.Abs(minDif) + 1;
             else
                 diferencija = 0;

@@ -49,7 +49,7 @@ namespace OI2GameTheory
                 VCrtanoRazlomak = VCrtano.ToString();
 
             postupakZakljucka += "V' = 1 / (" + brojRazlomak +")" + " = " +VCrtanoRazlomak+ Environment.NewLine;
-            postupakZakljucka += "Vrijednost igre V: " + VCrtanoRazlomak + " - " + diferencija.ToString() +" = "+ V.ToString() + Environment.NewLine + "Vjerojatnosti igranja strategija pojedinog igrača: " + Environment.NewLine + "Igrač B" + Environment.NewLine;
+            postupakZakljucka += "Vrijednost igre V = " + VCrtanoRazlomak + " - " + diferencija.ToString() +" = "+ V.ToString() + Environment.NewLine + "Vjerojatnosti igranja strategija pojedinog igrača: " + Environment.NewLine + "Igrač B" + Environment.NewLine;
 
 
 
