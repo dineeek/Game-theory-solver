@@ -257,6 +257,15 @@ namespace OI2GameTheory
             }
         }
 
+        public void ukloniDuplikatneStrategije()
+        {
+            for (int i = 0; i < uneseniPodaci.igracA.Count + uneseniPodaci.igracB.Count; i++)
+            {
+                ukloniDuplikateA();
+                ukloniDuplikateB();
+            }
+        }
+
         public string IspisUklonjenihStrategijaIgraca()
         {
             string uklonjeneStrategijeA = "";
