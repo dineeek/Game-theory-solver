@@ -131,7 +131,7 @@ namespace OI2GameTheory
 
                     if (vrstaIgre == 0)
                     {
-                        provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih strategija te ih eliminira
+                        provjeraSedla.ukloniDominantneStrategije(); //provjera dal postoje dominantnih i duplikatnih strategija te ih eliminira
 
                         Tuple<bool, int, int> postojanjeSedlaIntern = provjeraSedla.ProvjeriSedlo();
                         bool postojiSedloIntern = postojanjeSedlaIntern.Item1;
@@ -153,6 +153,11 @@ namespace OI2GameTheory
                     {
                         protuprirodnaIgra = true;
                         MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
+
+                        if (protuprirodnost.ProtupIgraca() == 1)
+                            provjeraSedla.ukloniDominantneB();
+                        else if (protuprirodnost.ProtupIgraca() == 2)
+                            provjeraSedla.ukloniDominantneA();
                         provjeraSedla.ukloniDuplikatneStrategije();
 
                         SimplexKalkulatorA smplxCalcPI = new SimplexKalkulatorA(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
@@ -233,6 +238,11 @@ namespace OI2GameTheory
                     {
                         protuprirodnaIgra = true;
                         MessageBox.Show("Unesena je protuprirodna igra!\nNe uklanjam dominantne strategije.");
+
+                        if (protuprirodnost.ProtupIgraca() == 1)
+                            provjeraSedla.ukloniDominantneB();
+                        else if (protuprirodnost.ProtupIgraca() == 2)
+                            provjeraSedla.ukloniDominantneA();
                         provjeraSedla.ukloniDuplikatneStrategije();
 
                         SimplexKalkulatorB smplxCalcPI = new SimplexKalkulatorB(provjeraSedla.uneseniPodaci, provjeraSedla.ProvjeriSedlo().Item3);
@@ -270,7 +280,7 @@ namespace OI2GameTheory
                     {
                         MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
                         FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                        formaSedla.ShowDialog();
+                        formaSedla.Show();
                     }
                     /*
                     else if (protuprirodnaIgra == true)
@@ -291,12 +301,12 @@ namespace OI2GameTheory
                         provjeraSedla.ukloniDominantneStrategije();
                         MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
                         FormaSedla formaSedla = new FormaSedla(provjeraSedla.maximumiStupca, provjeraSedla.minimumiReda, matricnaIgra.IspisMatricneIgre());
-                        formaSedla.ShowDialog();
+                        formaSedla.Show();
                     }
                 }
                 else
                 {
-                    simplexForma.ShowDialog();
+                    simplexForma.Show();
                     ispisTablicaIteracijaToolStripMenuItem.Enabled = true;
                     ispisPostupkaIzračunaToolStripMenuItem.Enabled = true;
                 }
@@ -341,6 +351,10 @@ namespace OI2GameTheory
                     }
                     else if (vrstaIgre == 1) // izračun po 3 kriterija
                     {
+                        if (protuprirodnost.ProtupIgraca() == 1)
+                            provjeraSedla.ukloniDominantneB();
+                        else if (protuprirodnost.ProtupIgraca() == 2)
+                            provjeraSedla.ukloniDominantneA();
                         provjeraSedla.ukloniDuplikatneStrategije();
 
                         MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
@@ -363,11 +377,11 @@ namespace OI2GameTheory
                     }
                     else
                     {
-                        provjeraSedla.ukloniDuplikatneStrategije();
+                        //provjeraSedla.ukloniDuplikatneStrategije();
 
                         MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
 
-                        string uklonjeneStrategije = "Unesena igra je kontradiktorna ili postaje kontradiktorna igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uklanjam dominantne strategije. ";
+                        string uklonjeneStrategije = "Unesena igra je kontradiktorna ili postaje kontradiktorna igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uklanjam strategije. ";
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihA();
 
                         matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
@@ -410,6 +424,11 @@ namespace OI2GameTheory
                     }
                     else if (vrstaIgre == 1) // izračun po 3 kriterija
                     {
+                        if(protuprirodnost.ProtupIgraca() == 1)
+                            provjeraSedla.ukloniDominantneB();
+                        else if(protuprirodnost.ProtupIgraca() == 2)
+                            provjeraSedla.ukloniDominantneA();
+
                         provjeraSedla.ukloniDuplikatneStrategije();
 
                         MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
@@ -430,11 +449,11 @@ namespace OI2GameTheory
                     }
                     else
                     {
-                        provjeraSedla.ukloniDuplikatneStrategije();
+                        //provjeraSedla.ukloniDuplikatneStrategije();
 
                         MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
 
-                        string uklonjeneStrategije = "Unesena igra je kontradiktorna ili postaje kontradiktorna igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uklanjam dominantne strategije. ";
+                        string uklonjeneStrategije = "Unesena igra je kontradiktorna ili postaje kontradiktorna igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uklanjam strategije. ";
                         uklonjeneStrategije += provjeraSedla.IspisUklonjenihDuplikatnihB();
 
                         matricnaIgra = new MatricnaIgra(provjeraSedla.uneseniPodaci);
@@ -457,14 +476,14 @@ namespace OI2GameTheory
                 if (rbIgracA.Checked == true)
                 {
                     formaModela = new FormaModela(stvoriModelProblema());
-                    formaModela.ShowDialog();
+                    formaModela.Show();
 
                     ispisModelaZadatkaToolStripMenuItem.Enabled = true;
                 }
                 else //igracB.Check == true;
                 {
                     formaModela = new FormaModela(stvoriModelProblema());
-                    formaModela.ShowDialog();
+                    formaModela.Show();
 
                     ispisModelaZadatkaToolStripMenuItem.Enabled = true;
                 }
@@ -506,14 +525,22 @@ namespace OI2GameTheory
 
         private void novaIgraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            txtStrA.Text = String.Empty;
-            txtStrB.Text = String.Empty;
-            dgvMatrica.DataSource = null;
-            btnModelZadatka.Enabled = false;
-            btnSimplex.Enabled = false;
-            ispisModelaZadatkaToolStripMenuItem.Enabled = false;
-            ispisTablicaIteracijaToolStripMenuItem.Enabled = false;
-            ispisPostupkaIzračunaToolStripMenuItem.Enabled = false;
+            try
+            {
+                txtStrA.Text = String.Empty;
+                txtStrB.Text = String.Empty;
+                dgvMatrica.DataSource = null;
+                btnModelZadatka.Enabled = false;
+                btnSimplex.Enabled = false;
+                ispisModelaZadatkaToolStripMenuItem.Enabled = false;
+                ispisTablicaIteracijaToolStripMenuItem.Enabled = false;
+                ispisPostupkaIzračunaToolStripMenuItem.Enabled = false;
+            }
+            catch
+            {
+                MessageBox.Show("Ispravite prvo pogreške u matrici plaćanja!");
+            }
+
         }
 
         private void izlazToolStripMenuItem_Click(object sender, EventArgs e)

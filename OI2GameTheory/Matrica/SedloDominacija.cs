@@ -213,6 +213,22 @@ namespace OI2GameTheory
             }
         }
 
+        public void ukloniDominantneA()
+        {
+            for (int i = 0; i < uneseniPodaci.igracA.Count; i++)
+            {
+                ukloniDominantneIgracaA();
+            }
+        }
+
+        public void ukloniDominantneB()
+        {
+            for (int i = 0; i < uneseniPodaci.igracB.Count; i++)
+            {
+                ukloniDominantneIgracaB();
+            }
+        }
+
         public string IspisUklonjenihStrategijaIgracaA()
         {
             string uklonjeneStrategijeA1 = "";
