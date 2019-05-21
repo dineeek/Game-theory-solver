@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OI2GameTheory.exe" size="517552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OI2GameTheory.exe" size="518576">
       <assemblyIdentity name="OI2GameTheory" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ss1jobcgiuIRPq0b0Tgz/nLiE+aJrTkyNU8PlQqcIao=</dsig:DigestValue>
+        <dsig:DigestValue>4uQQGHnHuIV9/A1aaz8gzIZCUyEA7uAm1BVifwOn6+w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -96,13 +96,13 @@
       <dsig:DigestValue>gXPU0Xy3KObyxeLOgSTOfrD0WdxiCFvKq3hqvx9rN6c=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Pomoc.pdf" size="1023686">
+  <file name="Pomoc.pdf" size="1016873">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>+2rt9e4RYX51JkjENSeWe6lboJY+owOQoge3PCHY3mI=</dsig:DigestValue>
+      <dsig:DigestValue>3omu5NHlhri08Jf9Eq1+04Sni/8MSj8ssoGYo3K7boM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\bearPaw.ico" size="327662">

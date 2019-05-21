@@ -269,29 +269,60 @@ namespace OI2GameTheory
         public string IspisUklonjenihStrategijaIgraca()
         {
             string uklonjeneStrategijeA = "";
+            string ispisDominantne = "";
+            string uklonjeneStrategijeB = "";
+            string ispisDuplikatne = "";
             string ispisA = "";
+            string ispisB = "";
+
+            if (varijableAInvertedDominantne.Count != 0 || varijableBInvertedDominantne.Count != 0)
+                ispisDominantne += "Uklonjene dominantne strategije: " + Environment.NewLine;
+
             foreach (var str in varijableAInvertedDominantne)
                 uklonjeneStrategijeA += str.Value + ".) " + str.Key + " ";
-            foreach (var str in varijableAInvertedDuplikatne)
-                uklonjeneStrategijeA += str.Value + ".) " + str.Key + " ";
+
+            foreach (var str in varijableBInvertedDominantne)
+                uklonjeneStrategijeB += str.Value + ".) " + str.Key + " ";
 
             if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
             {
                 ispisA += "Igrač A: " + uklonjeneStrategijeA + Environment.NewLine;
             }
 
-            string uklonjeneStrategijeB = "";
-            string ispisB = "";
-            foreach (var str in varijableBInvertedDominantne)
-                uklonjeneStrategijeB += str.Value + ".) " + str.Key + " ";
-            foreach (var str in varijableBInvertedDuplikatne)
-                uklonjeneStrategijeB += str.Value + ".) " + str.Key + " ";
             if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
             {
                 ispisB += "Igrač B: " + uklonjeneStrategijeB;
             }
 
-            string uklonjeneStrategije = ispisA + ispisB;
+            ispisDominantne += ispisA + ispisB;
+
+            uklonjeneStrategijeA = "";
+            uklonjeneStrategijeB = "";
+            ispisA = "";
+            ispisB = "";
+
+            if (varijableAInvertedDuplikatne.Count != 0 || varijableBInvertedDuplikatne.Count != 0)
+                ispisDuplikatne += Environment.NewLine+ "Uklonjene duplikatne strategije: " + Environment.NewLine;
+
+            foreach (var str in varijableAInvertedDuplikatne)
+                uklonjeneStrategijeA += str.Value + ".) " + str.Key + " ";
+
+            foreach (var str in varijableBInvertedDuplikatne)
+                uklonjeneStrategijeB += str.Value + ".) " + str.Key + " ";
+
+            if (!String.IsNullOrEmpty(uklonjeneStrategijeA))
+            {
+                ispisA += "Igrač A: " + uklonjeneStrategijeA + Environment.NewLine;
+            }
+
+            if (!String.IsNullOrEmpty(uklonjeneStrategijeB))
+            {
+                ispisB += "Igrač B: " + uklonjeneStrategijeB;
+            }
+
+            ispisDuplikatne += ispisA + ispisB;
+
+            string uklonjeneStrategije = ispisDominantne + ispisDuplikatne;
 
             /*
             string uklonjeneStrategijeA = "";
