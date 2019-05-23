@@ -109,6 +109,28 @@ namespace OI2GameTheory
             return protuprirodaZaIgraca;
         }
 
+        public bool ProvjeraSvihJednakihIsplata()
+        {
+            bool isti = false;
+            int prviElement = uneseniPodaci.igracA.First().DobitakGubitakStrategije[0];
+
+            int brojacIstih = 0;
+            foreach (var strategija in uneseniPodaci.igracA)
+            {
+                for(int i = 0; i<strategija.DobitakGubitakStrategije.Count(); i++)
+                {
+                    if (prviElement == strategija.DobitakGubitakStrategije[i])
+                        brojacIstih++;
+                }
+
+            }
+
+            if (brojacIstih == uneseniPodaci.igracA.Count*uneseniPodaci.igracB.Count())
+                isti = true;
+
+            return isti;
+        }
+
         //PROVJERA BRISANJA
         private void UkloniA()
         {

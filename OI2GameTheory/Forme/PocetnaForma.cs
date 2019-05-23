@@ -409,7 +409,10 @@ namespace OI2GameTheory
                     else if (vrstaIgre == 1) // izračun po 3 kriterija
                     {
                         provjeraDominacije.ukloniDuplikatneStrategije();
-                        protuprirodnost.ukloniDuplikatneStrategije();
+                        if(!protuprirodnost.ProvjeraSvihJednakihIsplata())
+                            protuprirodnost.ukloniDuplikatneStrategije();
+                        
+                        //protuprirodnost.ukloniDuplikatneStrategije();
 
                         MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
 
@@ -485,7 +488,11 @@ namespace OI2GameTheory
                     else if (vrstaIgre == 1) // izračun po 3 kriterija
                     {
                         provjeraDominacije.ukloniDuplikatneStrategije();
-                        protuprirodnost.ukloniDuplikatneStrategije();
+
+                        if (!protuprirodnost.ProvjeraSvihJednakihIsplata())
+                            protuprirodnost.ukloniDuplikatneStrategije();
+
+                        //protuprirodnost.ukloniDuplikatneStrategije();
 
                         MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
                         KriterijiProtuprirodnosti kriteriji = new KriterijiProtuprirodnosti(protuprirodnost.uneseniPodaci, 2); //rjesavanje po kriterijima
