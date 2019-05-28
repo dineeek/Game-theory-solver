@@ -93,7 +93,7 @@ namespace OI2GameTheory
         {
             diferencirajPodatke();
             zapisModela += "Diferencija = " + diferencija + Environment.NewLine;
-            zapisModela += "DIFERENCIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
+            zapisModela += "OBLIK PROBLEMA S DIFERENCIJOM: " + Environment.NewLine + "Z = ";
 
             for (int i = 1; i <= sveVarijableYCrtano.Count; i++)
             {
