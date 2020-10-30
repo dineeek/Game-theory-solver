@@ -37,26 +37,26 @@ namespace OI2GameTheory
 
         private void FormaSedla_Load(object sender, EventArgs e)
         {
-            matricaPlacanja += Environment.NewLine + Environment.NewLine + "Minimumi reda: ";
+            matricaPlacanja += Environment.NewLine + Environment.NewLine + "Minimums of rows: ";
             foreach (var min in minimumiReda)
                 matricaPlacanja += min.ToString()+ " ";
 
-            matricaPlacanja += Environment.NewLine + "Maksimum minimuma reda - MAXMIN: " + maximumMinimumaReda;
+            matricaPlacanja += Environment.NewLine + "Maximum minimum of row - MAXMIN: " + maximumMinimumaReda;
 
-            matricaPlacanja += Environment.NewLine + Environment.NewLine + "Maksimumi stupca: ";
+            matricaPlacanja += Environment.NewLine + Environment.NewLine + "Maximums of columns: ";
             foreach (var max in maximumiStupca)
                 matricaPlacanja += max.ToString() + " ";
 
-            matricaPlacanja += Environment.NewLine + "Minimum maksimuma stupca - MINMAX: " + minimumMaximumaStupca;
+            matricaPlacanja += Environment.NewLine + "Minimum maximum of column - MINMAX: " + minimumMaximumaStupca;
 
-            matricaPlacanja += Environment.NewLine + Environment.NewLine + "Kako je MAXMIN reda = MINMAX stupca postoji sedlo.";
+            matricaPlacanja += Environment.NewLine + Environment.NewLine + "As the MAXMIN = MINMAX there is a saddle.";
 
             if(minimumMaximumaStupca > 0)
-                matricaPlacanja += Environment.NewLine + Environment.NewLine + "Vrijednost ove igre iznosi "+minimumMaximumaStupca+" u korist igrača A.";
+                matricaPlacanja += Environment.NewLine + Environment.NewLine + "The value of this game is " + minimumMaximumaStupca+ " in favor of player A.";
             else if(minimumMaximumaStupca == 0)
-                matricaPlacanja += Environment.NewLine + Environment.NewLine + "Vrijednost ove igre iznosi " + minimumMaximumaStupca + ". Uvijek se odigrava remi - neriješen rezultat.";
+                matricaPlacanja += Environment.NewLine + Environment.NewLine + "The value of this game is " + minimumMaximumaStupca + ". There is always a draw.";
             else
-                matricaPlacanja += Environment.NewLine + Environment.NewLine + "Vrijednost ove igre iznosi " + minimumMaximumaStupca + " u korist igrača B.";
+                matricaPlacanja += Environment.NewLine + Environment.NewLine + "The value of this game is " + minimumMaximumaStupca + " in favor of player B.";
 
             txtSedlo.Text = matricaPlacanja;
 

@@ -54,7 +54,7 @@ namespace OI2GameTheory
             }
 
 
-            zapisModela += "Igrač A" + Environment.NewLine + "ORIGINALNI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
+            zapisModela += "Player A" + Environment.NewLine + "ORIGINAL FORM OF THE PROBLEM: " + Environment.NewLine + "Z = ";
 
             for(int i=1; i<= sveVarijableX.Count; i++)
             {
@@ -94,8 +94,8 @@ namespace OI2GameTheory
         private void stvoriDiferenciraniOblik()
         {
             diferencirajPodatke();
-            zapisModela += "Diferencija = " + diferencija + Environment.NewLine;
-            zapisModela += "OBLIK PROBLEMA S DIFERENCIJOM: " + Environment.NewLine + "Z = ";
+            zapisModela += "Differentiation = " + diferencija + Environment.NewLine;
+            zapisModela += "FORM OF PROBLEM WITH DIFFERENCE:: " + Environment.NewLine + "Z = ";
 
             for (int i = 1; i <= sveVarijableXCrtano.Count; i++)
             {
@@ -144,9 +144,9 @@ namespace OI2GameTheory
 
         private void supstituiraj()
         {
-            zapisModela += "SUPSTITUCIJA: " + Environment.NewLine + "x̄(i) = x'(i)/V'" + Environment.NewLine + Environment.NewLine;
+            zapisModela += "SUBSTITUTION: " + Environment.NewLine + "x̄(i) = x'(i)/V'" + Environment.NewLine + Environment.NewLine;
 
-            zapisModela += "SUPSTITUIRANI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
+            zapisModela += "SUBSTITUTED FORM OF THE PROBLEM: " + Environment.NewLine + "Z = ";
 
             for (int i = 1; i <= sveVarijableXA.Count; i++)
             {
@@ -185,7 +185,7 @@ namespace OI2GameTheory
 
         private void stvoriKanonskiOblik()
         {
-            zapisModela += "KANONSKI OBLIK PROBLEMA: " + Environment.NewLine + "Z = ";
+            zapisModela += "CANONICAL FORM OF THE PROBLEM: " + Environment.NewLine + "Z = ";
 
             for (int i = 1; i <= sveVarijableXA.Count; i++)
             {

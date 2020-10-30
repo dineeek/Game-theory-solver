@@ -29,7 +29,7 @@ namespace OI2GameTheory
 
         public string IspisMatricneIgre()
         {
-            string matricnaIgra = Environment.NewLine + "Matrica plaćanja: " +Environment.NewLine+ "__|";
+            string matricnaIgra = Environment.NewLine + "Payoff matrix: " + Environment.NewLine+ "__|";
 
             foreach (var varijabla in varijableB)
                 matricnaIgra += varijabla + "_";

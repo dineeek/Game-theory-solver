@@ -49,7 +49,7 @@ namespace OI2GameTheory
                 VCrtanoRazlomak = VCrtano.ToString();
 
             postupakZakljucka += "V' = 1 / (" + brojRazlomak +")" + " = " +VCrtanoRazlomak+ Environment.NewLine;
-            postupakZakljucka += "Vrijednost igre V = " + VCrtanoRazlomak + " - " + diferencija.ToString() +" = "+ V.ToString() + Environment.NewLine + "Vjerojatnosti igranja strategija pojedinog igrača: " + Environment.NewLine + "Igrač B" + Environment.NewLine;
+            postupakZakljucka += "The value of the game V = " + VCrtanoRazlomak + " - " + diferencija.ToString() +" = "+ V.ToString() + Environment.NewLine + "Probabilities of playing individual player strategies: " + Environment.NewLine + "Player B" + Environment.NewLine;
 
 
 
@@ -92,7 +92,7 @@ namespace OI2GameTheory
             for (int i = 0; i <= zadnjaTablica.Rows.Count - 4; i++)
                 varijableAUTablici.Add(zadnjaTablica.Rows[i][1].ToString());
 
-            postupakZakljucka += "Igrač A " + Environment.NewLine;
+            postupakZakljucka += "Player A " + Environment.NewLine;
 
             //provjera podudaranja
             int brojacA = 0;
@@ -133,8 +133,8 @@ namespace OI2GameTheory
 
         public string DohvatiZakljucak()
         {
-            zakljucak = "Vrijednost zadane igre: " + V + Environment.NewLine + "Vjerojatnosti igranja strategija pojedinog igrača: "+Environment.NewLine;
-            zakljucak += "Igrač A: ";
+            zakljucak = "Game value: " + V + Environment.NewLine + "Probabilities of playing individual player strategies: " + Environment.NewLine;
+            zakljucak += "Player A: ";
             int brojacA = 1;
             foreach (var vjerojatnost in igracAPostoci)
             {
@@ -143,7 +143,7 @@ namespace OI2GameTheory
             }
 
             zakljucak += Environment.NewLine;
-            zakljucak += "Igrač B: ";
+            zakljucak += "Player B: ";
 
             int brojacB = 1;
             foreach (var vjerojatnost in igracBPostoci)

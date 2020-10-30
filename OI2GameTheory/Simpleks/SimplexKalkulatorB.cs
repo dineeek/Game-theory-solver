@@ -57,7 +57,7 @@ namespace OI2GameTheory
             //stupci
             pocetnaSimplexTablica.Columns.Add("Cj", typeof(int));
             pocetnaSimplexTablica.Columns.Add("Var", typeof(string));
-            pocetnaSimplexTablica.Columns.Add("Kol", typeof(string));
+            pocetnaSimplexTablica.Columns.Add("Qty", typeof(string));
 
             for(int i=0; i<podaciStrategija.igracB.Count; i++)
                 pocetnaSimplexTablica.Columns.Add("ȳ" + (i + 1) + "", typeof(string)); //ȳ - supstitucija za yi/v'
@@ -65,8 +65,8 @@ namespace OI2GameTheory
             for (int i = 0; i < podaciStrategija.igracA.Count; i++)
                 pocetnaSimplexTablica.Columns.Add("u" + (i + 1) + "", typeof(string)); //dopunske varijable - ovise o broju jednadzbi tj. igracu 
 
-            pocetnaSimplexTablica.Columns.Add("Kontrola", typeof(string));
-            pocetnaSimplexTablica.Columns.Add("Rezultat", typeof(string));
+            pocetnaSimplexTablica.Columns.Add("Control", typeof(string));
+            pocetnaSimplexTablica.Columns.Add("Result", typeof(string));
 
             //redci
             int brojacStrategijaA = 0;
@@ -77,7 +77,7 @@ namespace OI2GameTheory
 
                 noviRedak["Cj"] = 0;
                 noviRedak["Var"] = "u" + (brojacStrategijaA + 1) + "";
-                noviRedak["Kol"] = 1; //sve strategije (x1+x2.. = 1)
+                noviRedak["Qty"] = 1; //sve strategije (x1+x2.. = 1)
                 internKontrol += 1;
 
                 for (int j = 0; j < strategijaA.DobitakGubitakStrategije.Length; j++)
@@ -98,7 +98,7 @@ namespace OI2GameTheory
                         noviRedak["u" + (j + 1) + ""] = 0;
                 }
 
-                noviRedak["Kontrola"] = internKontrol;
+                noviRedak["Control"] = internKontrol;
                 pocetnaSimplexTablica.Rows.Add(noviRedak);
                 brojacStrategijaA++;
             }
@@ -106,7 +106,7 @@ namespace OI2GameTheory
             //Zj-Cj redak
             var redakZjCj = pocetnaSimplexTablica.NewRow();
             redakZjCj["Var"] = "Zj-Cj";
-            redakZjCj["Kol"] = 0;
+            redakZjCj["Qty"] = 0;
 
             for (int i = 0; i < podaciStrategija.igracB.Count; i++)
             {
@@ -118,12 +118,12 @@ namespace OI2GameTheory
                 redakZjCj["u" + (i + 1) + ""] = 0;
             }
 
-            double kontrolaRedka = 0;//kolicina
+            double kontrolaRedka = 0;//Qtyicina
             foreach (var strategija in podaciStrategija.igracB)
                 kontrolaRedka--;
 
 
-            redakZjCj["Kontrola"] = kontrolaRedka;
+            redakZjCj["Control"] = kontrolaRedka;
             pocetnaSimplexTablica.Rows.Add(redakZjCj);
 
             //prazan redak radi preglednosti
@@ -143,7 +143,7 @@ namespace OI2GameTheory
             double najveci = 0;
             double internHelp = 0;
 
-            //koliko ima neg. u zadnjem redku
+            //Qtyiko ima neg. u zadnjem redku
             int brojNegativnih = 0;
             for (int i = 3; i < prethodnaSimplexTablica.Columns.Count - 2; i++)
             {
@@ -223,7 +223,7 @@ namespace OI2GameTheory
 
             for (int i = 0; i<prethodnaSimplexTablica.Rows.Count-2; i++) // djeljenik može biti negativan, djelitelj ne
             {
-                djeljenik = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]);//kolicina
+                djeljenik = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][2]);//Qtyicina
                 djelitelj = Convert.ToDouble(prethodnaSimplexTablica.Rows[i][indexStupca]);//vodeci stupac
 
                 internHelp = (double) djeljenik/djelitelj;              
@@ -470,8 +470,8 @@ namespace OI2GameTheory
             //postupakIzracuna += "Postupak izračuna za igrača A: " + Environment.NewLine;
             if (help == 1) // za prikaz postupka izracunavanja 
             {
-                postupakIzracuna += "Postupak izračuna za igrača B: " + Environment.NewLine;
-                postupakIzracuna += "--------------------1. ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;
+                postupakIzracuna += "Calculation procedure for player B: " + Environment.NewLine;
+                postupakIzracuna += "--------------------1. ITERATION--------------------" + Environment.NewLine + Environment.NewLine;
                 help++;
             }
 
@@ -479,7 +479,7 @@ namespace OI2GameTheory
 
             SimplexTablice.Merge(novaSimplexTablica); //prije if-a obavezno
 
-            //koliko ima neg. u zadnjem redku
+            //Qtyiko ima neg. u zadnjem redku
             int brojNegativnih = 0;
             for (int i = 3; i < novaSimplexTablica.Columns.Count - 2; i++)
             {
@@ -497,7 +497,7 @@ namespace OI2GameTheory
                 prethodnaSimplexTablica = novaSimplexTablica.Copy();//da naslijedi strukturu samo
                 novaSimplexTablica = new DataTable();
 
-                postupakIzracuna += "--------------------" + brojIteracija + ". ITERACIJA--------------------" + Environment.NewLine + Environment.NewLine;
+                postupakIzracuna += "--------------------" + brojIteracija + ". ITERATION--------------------" + Environment.NewLine + Environment.NewLine;
                 brojIteracija++;
 
                 pokreniSimplexPostupak();
@@ -513,7 +513,7 @@ namespace OI2GameTheory
                 {
                     if (i == brojRedovaIteracije)
                     {
-                        SimplexTablice.Rows[i][1] ="Tablica "+ brojIteracija+". iteracije";
+                        SimplexTablice.Rows[i][1] ="Table of "+ brojIteracija+ ". ITERATION";
                         brojRedovaIteracije += brojRedova;
                         brojIteracija++;
                     }

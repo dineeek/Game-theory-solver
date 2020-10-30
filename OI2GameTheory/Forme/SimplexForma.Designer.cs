@@ -115,7 +115,7 @@
             this.btnIzracun.Name = "btnIzracun";
             this.btnIzracun.Size = new System.Drawing.Size(119, 23);
             this.btnIzracun.TabIndex = 4;
-            this.btnIzracun.Text = "Prikaz izračuna";
+            this.btnIzracun.Text = "Calculations";
             this.btnIzracun.UseVisualStyleBackColor = false;
             this.btnIzracun.Click += new System.EventHandler(this.btnIzracun_Click);
             // 

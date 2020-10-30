@@ -55,9 +55,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(2, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 13);
+            this.label1.Size = new System.Drawing.Size(170, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Postupak simplex algoritma:";
+            this.label1.Text = "Simplex algorithm procedure:";
             // 
             // btnOK
             // 
@@ -83,7 +83,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormaIzracuna";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Postupak izračunavanja simplex algoritma";
+            this.Text = "Simplex algorithm calculation procedure";
+            this.Load += new System.EventHandler(this.FormaIzracuna_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

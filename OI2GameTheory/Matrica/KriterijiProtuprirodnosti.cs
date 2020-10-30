@@ -271,9 +271,9 @@ namespace OI2GameTheory
             }
 
             if(vrstaIgraca == 1)
-                return "Optimalna strategija prema kriterijima igrača A: " + Environment.NewLine + "1. Laplaceov kriterij: "+laplace +" Optimalna -> " + laplaceOdabir + Environment.NewLine + "2. Savageov kriterij: " +savage + " Optimalna -> " + savageOdabir + Environment.NewLine + "3. Hurwiczow kriterij (alfa = 0.5): " + hurwicz+ " Optimalna -> " + hurwiczOdabir + Environment.NewLine;
+                return "Optimal strategy according to the criteria of player A: " + Environment.NewLine + "1. Laplace criterion: " + laplace +" Optimal -> " + laplaceOdabir + Environment.NewLine + "2. Savage criterion: " + savage + " Optimal -> " + savageOdabir + Environment.NewLine + "3. Hurwicz criterion (alfa = 0.5): " + hurwicz+ " Optimal -> " + hurwiczOdabir + Environment.NewLine;
             else
-                return "Optimalna strategija prema kriterijima igrača B: " + Environment.NewLine + "1. Laplaceov kriterij: " + laplace + " Optimalna -> " + laplaceOdabir + Environment.NewLine + "2. Savageov kriterij: " + savage + " Optimalna -> " + savageOdabir + Environment.NewLine + "3. Hurwiczow kriterij (alfa = 0.5): " + hurwicz + " Optimalna -> " + hurwiczOdabir + Environment.NewLine;
+                return "Optimal strategy according to the criteria of player B: " + Environment.NewLine + "1. Laplace criterion: " + laplace + " Optimal -> " + laplaceOdabir + Environment.NewLine + "2. Savage criterion: " + savage + " Optimal -> " + savageOdabir + Environment.NewLine + "3. Hurwicz criterion (alfa = 0.5): " + hurwicz + " Optimal -> " + hurwiczOdabir + Environment.NewLine;
 
         }
     }

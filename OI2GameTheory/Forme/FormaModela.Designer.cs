@@ -57,9 +57,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(1, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.Size = new System.Drawing.Size(165, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Model problema:";
+            this.label1.Text = "Model of the given problem:";
             // 
             // btnOK
             // 
@@ -85,7 +85,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormaModela";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Model zadatka";
+            this.Text = "Problem model";
             this.ResumeLayout(false);
             this.PerformLayout();
 

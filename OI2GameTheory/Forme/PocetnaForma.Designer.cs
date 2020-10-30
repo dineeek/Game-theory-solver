@@ -52,9 +52,11 @@
             this.ispisTablicaIteracijaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ispisPostupkaIzračunaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomoćToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrica)).BeginInit();
             this.gbOdabirIgraca.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -64,35 +66,35 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(289, 363);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 13);
+            this.label1.Size = new System.Drawing.Size(152, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Autor aplikacije: Dino Kliček";
+            this.label1.Text = "Application author: Dino Kliček";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(21, 40);
+            this.label2.Location = new System.Drawing.Point(28, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Broj strategija igrača A:";
+            this.label2.Text = "Player A:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(21, 71);
+            this.label3.Location = new System.Drawing.Point(28, 39);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Broj strategija igrača B:";
+            this.label3.Text = "Player B:";
             // 
             // txtStrA
             // 
-            this.txtStrA.Location = new System.Drawing.Point(142, 37);
+            this.txtStrA.Location = new System.Drawing.Point(99, 15);
             this.txtStrA.Mask = "00000";
             this.txtStrA.Name = "txtStrA";
             this.txtStrA.PromptChar = ' ';
@@ -103,7 +105,7 @@
             // 
             // txtStrB
             // 
-            this.txtStrB.Location = new System.Drawing.Point(142, 68);
+            this.txtStrB.Location = new System.Drawing.Point(99, 36);
             this.txtStrB.Mask = "00000";
             this.txtStrB.Name = "txtStrB";
             this.txtStrB.PromptChar = ' ';
@@ -121,7 +123,7 @@
             this.btnGenerirajMatricu.Name = "btnGenerirajMatricu";
             this.btnGenerirajMatricu.Size = new System.Drawing.Size(82, 53);
             this.btnGenerirajMatricu.TabIndex = 5;
-            this.btnGenerirajMatricu.Text = "Generiraj matricu";
+            this.btnGenerirajMatricu.Text = "Generate a matrix";
             this.btnGenerirajMatricu.UseVisualStyleBackColor = false;
             this.btnGenerirajMatricu.Click += new System.EventHandler(this.btnGenerirajMatricu_Click);
             // 
@@ -164,7 +166,7 @@
             this.btnSimplex.Name = "btnSimplex";
             this.btnSimplex.Size = new System.Drawing.Size(108, 23);
             this.btnSimplex.TabIndex = 8;
-            this.btnSimplex.Text = "Simpleks postupak";
+            this.btnSimplex.Text = "Simplex procedure";
             this.btnSimplex.UseVisualStyleBackColor = false;
             this.btnSimplex.Click += new System.EventHandler(this.btnSimplex_Click);
             // 
@@ -176,7 +178,7 @@
             this.btnModelZadatka.Name = "btnModelZadatka";
             this.btnModelZadatka.Size = new System.Drawing.Size(93, 23);
             this.btnModelZadatka.TabIndex = 7;
-            this.btnModelZadatka.Text = "Model problema";
+            this.btnModelZadatka.Text = "Problem model";
             this.btnModelZadatka.UseVisualStyleBackColor = false;
             this.btnModelZadatka.Click += new System.EventHandler(this.btnModelZadatka_Click);
             // 
@@ -190,7 +192,7 @@
             this.gbOdabirIgraca.Size = new System.Drawing.Size(123, 60);
             this.gbOdabirIgraca.TabIndex = 9;
             this.gbOdabirIgraca.TabStop = false;
-            this.gbOdabirIgraca.Text = "Simpleks postupak";
+            this.gbOdabirIgraca.Text = "Simplex procedure";
             // 
             // rbIgracB
             // 
@@ -199,7 +201,7 @@
             this.rbIgracB.Name = "rbIgracB";
             this.rbIgracB.Size = new System.Drawing.Size(78, 17);
             this.rbIgracB.TabIndex = 1;
-            this.rbIgracB.Text = "za igrača B";
+            this.rbIgracB.Text = "for player B";
             this.rbIgracB.UseVisualStyleBackColor = true;
             // 
             // rbIgracA
@@ -211,7 +213,7 @@
             this.rbIgracA.Size = new System.Drawing.Size(78, 17);
             this.rbIgracA.TabIndex = 0;
             this.rbIgracA.TabStop = true;
-            this.rbIgracA.Text = "za igrača A";
+            this.rbIgracA.Text = "for player A";
             this.rbIgracA.UseVisualStyleBackColor = true;
             // 
             // menuStrip
@@ -233,8 +235,8 @@
             this.novaIgraToolStripMenuItem,
             this.izlazToolStripMenuItem});
             this.polaznoToolStripMenuItem.Name = "polaznoToolStripMenuItem";
-            this.polaznoToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.polaznoToolStripMenuItem.Text = "Polazno";
+            this.polaznoToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.polaznoToolStripMenuItem.Text = "Main";
             // 
             // novaIgraToolStripMenuItem
             // 
@@ -257,8 +259,9 @@
             this.ispisTablicaIteracijaToolStripMenuItem,
             this.ispisPostupkaIzračunaToolStripMenuItem});
             this.dodatnoToolStripMenuItem.Name = "dodatnoToolStripMenuItem";
-            this.dodatnoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.dodatnoToolStripMenuItem.Text = "Dodatno";
+            this.dodatnoToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.dodatnoToolStripMenuItem.Text = "Additonal";
+            this.dodatnoToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ispisModelaZadatkaToolStripMenuItem
             // 
@@ -284,9 +287,24 @@
             // pomoćToolStripMenuItem
             // 
             this.pomoćToolStripMenuItem.Name = "pomoćToolStripMenuItem";
-            this.pomoćToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.pomoćToolStripMenuItem.Text = "Pomoć";
+            this.pomoćToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.pomoćToolStripMenuItem.Text = "Help";
             this.pomoćToolStripMenuItem.Click += new System.EventHandler(this.pomoćToolStripMenuItem_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.txtStrB);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtStrA);
+            this.groupBox1.ForeColor = System.Drawing.Color.Black;
+            this.groupBox1.Location = new System.Drawing.Point(19, 30);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(192, 60);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Number of strategies";
             // 
             // PocetnaForma
             // 
@@ -294,15 +312,12 @@
             this.BackgroundImage = global::OI2GameTheory.Properties.Resources.poz;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(445, 384);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbOdabirIgraca);
             this.Controls.Add(this.btnModelZadatka);
             this.Controls.Add(this.btnSimplex);
             this.Controls.Add(this.dgvMatrica);
             this.Controls.Add(this.btnGenerirajMatricu);
-            this.Controls.Add(this.txtStrB);
-            this.Controls.Add(this.txtStrA);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip);
             this.DoubleBuffered = true;
@@ -318,6 +333,8 @@
             this.gbOdabirIgraca.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,6 +363,7 @@
         private System.Windows.Forms.ToolStripMenuItem ispisPostupkaIzračunaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pomoćToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ispisModelaZadatkaToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

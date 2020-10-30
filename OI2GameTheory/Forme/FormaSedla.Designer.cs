@@ -59,9 +59,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.Size = new System.Drawing.Size(141, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Otkrivanje sedla:";
+            this.label1.Text = "Saddle detection procedure:";
             // 
             // FormaSedla
             // 
@@ -76,7 +76,7 @@
             this.MaximizeBox = false;
             this.Name = "FormaSedla";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Prikaz sedla";
+            this.Text = "Saddle display";
             this.Load += new System.EventHandler(this.FormaSedla_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

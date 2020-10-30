@@ -22,5 +22,10 @@ namespace OI2GameTheory
         {
             this.Close();
         }
+
+        private void FormaIzracuna_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

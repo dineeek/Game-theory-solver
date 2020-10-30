@@ -408,10 +408,10 @@ namespace OI2GameTheory
                         provjeraDominacije.ukloniDominantneStrategije();
                         MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraDominacije.uneseniPodaci);
 
-                        string uklonjeneStrategije = "Unesena je miješana matrična igra." + Environment.NewLine;
+                        string uklonjeneStrategije = "A mixed matrix game is entered." + Environment.NewLine;
                         
                         uklonjeneStrategije += provjeraDominacije.IspisUklonjenihStrategijaIgracaA();
-                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uključujem dominantne ili duplikatne strategije.";//prikaz matricne igre
+                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Dominant and duplicate strategies are not included on model creation.";//prikaz matricne igre
 
                         IzgradnjaModelaA modelZadatkaA = new IzgradnjaModelaA(provjeraDominacije.uneseniPodaci, provjeraDominacije.ProvjeriSedlo().Item3);
 
@@ -433,7 +433,7 @@ namespace OI2GameTheory
 
                         KriterijiProtuprirodnosti kriteriji = new KriterijiProtuprirodnosti(protuprirodnost.uneseniPodaci, 1); //rjesavanje po kriterijima
 
-                        string uklonjeneStrategije = "Unesena igra je protuprirodna ili postaje protuprirodna igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + kriteriji.IspisiVrijednostiKriterija() + Environment.NewLine + "Kod izrade modela ne uključujem dominantne ili duplikatne strategije." + Environment.NewLine;
+                        string uklonjeneStrategije = "The entered game is unnatural or becomes an unnatural game after removing the strategies:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + kriteriji.IspisiVrijednostiKriterija() + Environment.NewLine + "Kod izrade modela ne uključujem dominantne ili duplikatne strategije." + Environment.NewLine;
                         
                         /* NEPOTREBNO- ponovni ispis uklonjenih strategija i matrice
                         if(protuprirodnost.IspisUklonjenihStrategijaIgraca() != string.Empty)
@@ -488,10 +488,10 @@ namespace OI2GameTheory
                         provjeraDominacije.ukloniDominantneStrategije();
                         MatricnaIgra matricnaIgra = new MatricnaIgra(provjeraDominacije.uneseniPodaci);
 
-                        string uklonjeneStrategije = "Unesena je miješana matrična igra." + Environment.NewLine;
+                        string uklonjeneStrategije = "A mixed matrix game is entered." + Environment.NewLine;
 
                         uklonjeneStrategije += provjeraDominacije.IspisUklonjenihStrategijaIgracaB();
-                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Kod izrade modela ne uključujem dominantne ili duplikatne strategije.";
+                        uklonjeneStrategije += matricnaIgra.IspisMatricneIgre() + Environment.NewLine + Environment.NewLine + "Dominant and duplicate strategies are not included on model creation.";
 
                         IzgradnjaModelaB modelZadatkaB = new IzgradnjaModelaB(provjeraDominacije.uneseniPodaci, provjeraDominacije.ProvjeriSedlo().Item3);
 
@@ -512,7 +512,7 @@ namespace OI2GameTheory
                         MatricnaIgra matricnaIgra = new MatricnaIgra(protuprirodnost.uneseniPodaci);
                         KriterijiProtuprirodnosti kriteriji = new KriterijiProtuprirodnosti(protuprirodnost.uneseniPodaci, 2); //rjesavanje po kriterijima
                         
-                        string uklonjeneStrategije = "Unesena igra je protuprirodna ili postaje protuprirodna igra nakon uklanjanja strategija:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + kriteriji.IspisiVrijednostiKriterija() + Environment.NewLine + "Kod izrade modela ne uključujem dominantne ili duplikatne strategije." + Environment.NewLine;
+                        string uklonjeneStrategije = "The entered game is unnatural or becomes an unnatural game after removing the strategies:" + protuprirodnost.IspisUklonjenihStrategijaIgraca() + matricnaIgra.IspisMatricneIgre() + Environment.NewLine + kriteriji.IspisiVrijednostiKriterija() + Environment.NewLine + "Kod izrade modela ne uključujem dominantne ili duplikatne strategije." + Environment.NewLine;
 
                         /* NEPOTREBNO
                         if (protuprirodnost.IspisUklonjenihStrategijaIgraca() != string.Empty)
